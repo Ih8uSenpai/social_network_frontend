@@ -1,0 +1,42 @@
+.widgetCard {
+    flex: 1 1 0; /* Grow and shrink evenly, starting with a basis of 0 */
+    /* Additional styles for appearance */
+    padding: 10px;
+
+    justify-content: start;
+    background: #333333;
+    color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 2px solid white;
+    box-shadow: 0 0 10px white, inset 0 0 10px white;
+    transition: all 0.3s ease-in-out;
+}
+
+
+.widgetCard:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.widgetTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.widgetContent {
+    font-size: 14px;
+}
+
+.widgetContainer {
+    display: flex; /* Establishes a flex container */
+    flex-direction: row; /* Align children horizontally */
+    align-items: stretch; /* Stretch children to fill the container height */
+    overflow-x: auto; /* Allows horizontal scrolling */
+    gap: 10px; /* Optional: adds some space between the cards */
+}
+
+
+
+/* Other styles remain the same */

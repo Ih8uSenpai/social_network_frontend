@@ -1,0 +1,59 @@
+/* UserProfile.module.css */
+.userProfile {
+    position: relative;
+    width: 1200px;
+    min-height: 100vh;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+    transform: translate(125px, 0);
+    border: 1px solid transparent;
+}
+
+@media (max-width: 1450px) {
+    .userProfile {
+        margin-left: 250px;
+        transform: translate(0, 0);
+    }
+
+}
+
+.windowWrapper {
+    min-height: 100vh;
+    max-width: 100vw;
+    min-width: 1450px;
+    margin: 0;
+    padding: 0;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: 3fr 2fr; /* Две колонки с одинаковой шириной */
+    grid-template-rows: auto auto; /* Две строки, высота которых определяется контентом */
+    gap: 10px; /* Отступы между элементами сетки */
+    width: 100%;
+}
+
+.firstColumn {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2; /* Занимает две строки */
+    background-color: #444; /* Пример фона */
+    padding: 10px; /* Отступы внутри блока */
+}
+
+.secondColumnTop,
+.secondColumnBottom {
+    grid-column: 2 / 3;
+    background-color: #555;
+    color: #fff;
+    padding: 10px;
+    height: fit-content;
+}
+
+.second-column-top {
+    grid-row: 1;
+}
+
+.second-column-bottom {
+    grid-row: 2;
+}

@@ -1,0 +1,27 @@
+import {PostData} from "../../messages/Types";
+import {PostComment} from "../CommentInput";
+
+export async function fetchComments(postId: number, token: string): Promise<PostComment[]> {
+
+    try {
+
+        const response = await fetch(`http://localhost:8080/api/posts/${postId}/comments`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+                // Добавьте здесь любые другие заголовки, например, для аутентификации
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error fetching comments: ${response.statusText}`);
+        }
+
+        const comments: PostComment[] = await response.json();
+        return comments;
+    } catch (error) {
+        console.error('fetchComments error:', error);
+        throw error;
+    }
+}

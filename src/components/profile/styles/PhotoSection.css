@@ -1,0 +1,13 @@
+.photo img{
+    position: relative;
+    bottom: auto;
+    left: auto;
+    background-color: transparent;
+}
+.photo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}

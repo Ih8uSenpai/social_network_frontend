@@ -1,0 +1,247 @@
+html{
+    background-image: url("/src/components/resources/images/wall10.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    width: 100%;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+.main-content-background{
+    background: rgba(0, 0, 0, 0.0);
+    background-size: 100%;
+    width: 100%;
+}
+.main-content {
+    display: flex;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    align-content: flex-start;
+    min-height: 100vh;
+}
+
+.content-area {
+    width: 100%;
+
+}
+
+
+
+.profile-banner {
+    position: relative;
+    width: 100%;
+}
+
+.banner-image-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 0;
+}
+
+.banner-image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.7) 100%);
+}
+
+.banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+
+.user-info {
+    position: absolute;
+    bottom: -150px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    height: 300px;
+
+}
+
+.user-icon {
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    border: 3px solid black;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    height: 170px;
+    margin-top: 200px;
+}
+
+.status{
+    position: absolute;
+    bottom: 85px;
+    left: 150px;
+}
+
+.user-details h2 {
+    margin: 0 0 0 8px;
+    color: #eeeeee;
+    align-self: flex-start;
+}
+.user-details p {
+    margin: 0 0 0 5px;
+    padding: 0;
+    color: #eeeeee;
+    align-self: flex-start;
+    font-size: 0.8em;
+}
+.user-details > div {
+    display: flex;
+    flex-direction: row;
+}
+.follow-btn {
+    padding: 0.5em;
+    margin-left: 1em;
+    margin-top: 1em;
+    width: 7em;
+    background: linear-gradient(45deg, #21bbfd, #cccccc);
+    border-radius: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;;
+}
+.unfollow-btn{
+    padding: 0.5em;
+    margin-left: 1em;
+    margin-top: 1em;
+    width: 7em;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    border-radius: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;;
+}
+.follow-btn:hover, .unfollow-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.additional-info {
+    display: flex;
+    justify-content: end;
+    background: #4b4c57;
+    color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    border-radius: 0 0 20px 20px;
+}
+
+
+.additional-info > p {
+    text-align: center;
+    border-left: 1px solid #888888;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.additional-info > p:hover{
+    background:rgba(0, 0, 0, 0.1);
+    elevation: higher;
+    transition-duration: 0.5s;
+}
+
+
+.additional-info > p > span:first-child {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    color: #cccccc;
+
+}
+
+
+.additional-info > p > span:last-child {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #aaa;
+}
+
+
+.user-posts {
+    padding: 20px;
+    width: 60%;
+}
+.settings-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0,0,0,0.5);
+    color: #aaaaaa;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 5px 10px;
+    z-index: 999;
+}
+
+.settings-button:hover{
+    background-color: rgba(0,0,0,0.3);
+}
+
+.settings-menu {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background: #333333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 999;
+}
+
+.settings-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.settings-menu ul li button {
+    color: white;
+    background: none;
+    border: none;
+    padding: 10px 10px;
+}
+.settings-menu ul li button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.tag{
+    font-size: 0.8em;
+    color: #cccccc;
+}

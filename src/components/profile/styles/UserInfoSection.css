@@ -1,0 +1,21 @@
+.info-section {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* Две колонки */
+    gap: 20px; /* Отступы между ячейками */
+    background-color: #333333; /* Фон всей секции */
+    padding: 20px; /* Отступ вокруг сетки */
+    border-radius: 8px; /* Скругление углов секции */
+}
+
+.grid-item {
+    background-color: #1a1a1a; /* Фон для ячеек */
+    color: #ffffff; /* Цвет текста */
+    padding: 20px; /* Отступы внутри ячеек */
+    border-radius: 8px; /* Скругление углов ячеек */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для ячеек */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* Центрирование текста */
+    font-size: 1.1em; /* Размер шрифта */
+}
