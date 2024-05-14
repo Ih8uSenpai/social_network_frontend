@@ -9,8 +9,11 @@
 .message-entry-container{
     display: flex;
     width: 100%;
-
-    margin-top: 1em;
+    max-width: 100%;
+    padding: 15px 0;
+}
+.message-entry-container-highlight{
+    background: rgba(255, 255, 255, 0.2);
 }
 
 

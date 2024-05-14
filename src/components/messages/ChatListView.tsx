@@ -1,12 +1,15 @@
 // ChatListView.js
-import React from 'react';
-import {Chat, ChatType} from "./Types";
+import React, {useRef} from 'react';
+import {Chat, ChatMessage, ChatType} from "./Types";
 import './Messages.css'
 import {defaultChatIcon, defaultProfileIcon} from "../utils/Constants";
+import {Box, ListItem} from "@mui/material";
+import {useIntersectionObserver} from "../news/hooks/useIntersectionObserver";
 
 interface ChatListViewProps {
     chats: Chat[];
     onChatSelect: (chatId: number) => void;
+    token;
 }
 
 interface ChatViewProps {
@@ -28,7 +31,9 @@ const ChatView: React.FC<ChatViewProps> = ({chat, onBack}) => {
     );
 };
 
-export const ChatListView: React.FC<ChatListViewProps> = ({chats, onChatSelect}) => {
+export const ChatListView: React.FC<ChatListViewProps> = ({chats, onChatSelect, token}) => {
+
+
     return (
         <div>
 
@@ -38,13 +43,34 @@ export const ChatListView: React.FC<ChatListViewProps> = ({chats, onChatSelect})
                         {chat.chatType !== null ?
                             chat.profileData !== null ?
                                 chat.chatType.toString() === ChatType[ChatType.PRIVATE] ?
-                                    <div className={"message-entry-container"}>
+                                    <div className={chat.unviewedMessages == 0 ? "message-entry-container": "message-entry-container message-entry-container-highlight"} style={{position:"relative"}}>
                                         <img
                                             src={chat.profileData.profilePictureUrl || defaultProfileIcon} // Указать URL изображения по умолчанию
                                             alt={chat.profileData.user.username}
                                             className="messages-user-icon"
+                                            style={{marginLeft:10}}
                                         />
-                                        <h3>{chat.profileData.firstName + " " + chat.profileData.lastName}</h3>
+                                        <Box display={"flex"} flexDirection={"column"} maxWidth={'80%'}
+                                             justifyContent={"center"} marginLeft={1}>
+                                            <Box>{chat.profileData.firstName + " " + chat.profileData.lastName}</Box>
+                                            {chat.lastMessage ?
+                                                <Box sx={{fontSize:18, wordWrap:"break-word", color:"#ddd", display:"flex", alignItems:"center"}}>
+                                                    <img
+                                                        src={chat.lastMessageSenderIconUrl || defaultProfileIcon} // Указать URL изображения по умолчанию
+                                                        className="messages-user-icon-small"
+                                                    />
+                                                    {chat.lastMessage.length > 30 ? `${chat.lastMessage.slice(0, 30)}...` : chat.lastMessage}
+                                                </Box>
+                                                :
+                                                <Box sx={{fontSize:18, color:"#bbb"}}>{"no messages"}</Box>}
+                                        </Box>
+                                        {chat.unviewedMessages > 0 && <Box
+                                            sx={{position:"absolute", right:10, top:"30%", background:"#aaa",
+                                                width:50, height:50, display:"flex", justifyContent:"center",
+                                                alignItems:"center", borderRadius:"50%", fontSize:20}}>
+
+                                            {chat.unviewedMessages}
+                                        </Box>}
                                     </div>
                                     :
                                     <div className={"message-entry-container"}>

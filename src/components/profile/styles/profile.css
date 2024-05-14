@@ -32,9 +32,23 @@ html{
 
 .content-area {
     width: 100%;
-
 }
 
+*::-webkit-scrollbar {
+    width: 15px; /* width of the entire scrollbar */
+    max-width: 1.2vw;
+    min-width: 0.6vw;
+}
+
+*::-webkit-scrollbar-track {
+    background: #2e2e2e; /* color of the track (part that the thumb slides within) */
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #555; /* color of the scroll thumb */
+    border-radius: 10px; /* roundness of the scroll thumb */
+    border: 2px solid #2e2e2e; /* creates padding around scroll thumb */
+}
 
 
 .profile-banner {

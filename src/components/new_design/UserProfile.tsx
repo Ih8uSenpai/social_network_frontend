@@ -84,7 +84,7 @@ const UserProfile: React.FC<ProfileProps> = ({
                            fetchProfile={fetchProfile}
                            token={token} isExisting={isExisting}
                            chatId={chatId} handleFollowToggle={handleFollowToggle}
-                           isFollowing={isFollowing} height={"500px"}
+                           isFollowing={isFollowing} height={"400px"}
             />
             <p style={{height: "130px", margin: "0"}}>
                 <AdditionalInfo userId={userId} currentUserId={currentUserId}
@@ -93,7 +93,7 @@ const UserProfile: React.FC<ProfileProps> = ({
             </p>
 
             <Grid container spacing={-2} marginTop={2} sx={{minWidth: "1100px", overflow:'auto', border: '1px solid transparent'}}>
-                <Grid item xs={7.1}>
+                <Grid item xs={7.5}>
                     <Paper elevation={4}
                            sx={{padding: 2, margin: 'auto', maxWidth: 700, bgcolor: 'rgba(0, 0, 0, 0.4)'}}>
                         <NavigationButtonsPanel onSectionChange={handleSectionChange} section={section}/>
@@ -110,7 +110,7 @@ const UserProfile: React.FC<ProfileProps> = ({
                             </Box>
                         )}
                         {section == 'music' && (
-                            <div>
+                            <div style={{marginTop:15}}>
                                 <TrackList token={token} OnSectionChange={handleSectionChange}
                                            section={"music_my_music"} onSelectTrack={setSelectedTrack}
                                            isProfilePage={true} setIsVisible={setIsVisible}/>
@@ -128,7 +128,7 @@ const UserProfile: React.FC<ProfileProps> = ({
                     </Box>
                 </Grid>
 
-                <Grid item xs={4.5} marginLeft={2.5}>
+                <Grid item xs={4.0} marginLeft={2.5}>
                     <UserProfileOptionalData profile={profile} token={token} fetchProfile={fetchProfile}
                                              isOwnProfile={currentUserId === userId || userId == null}/>
                     <Paper elevation={4} sx={{

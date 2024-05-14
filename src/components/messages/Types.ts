@@ -31,6 +31,7 @@ export interface ChatMessage {
     };
     content: string;
     sentAt: string;
+    viewed: boolean;
 }
 
 export interface Chat {
@@ -39,6 +40,9 @@ export interface Chat {
     chatType: ChatType;
     messages: ChatMessage[] | null;
     profileData: ProfileData;
+    lastMessage;
+    lastMessageSenderIconUrl;
+    unviewedMessages:number;
 }
 
 export interface ChatViewProps {

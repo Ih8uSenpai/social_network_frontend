@@ -117,7 +117,7 @@ export const ProfileStatistics: React.FC<ProfileStatisticsProps> = ({
 
     const StatisticCard = ({icon, title, value}) => (
         <Grid item xs={4}>
-            <Card sx={{display: 'flex', alignItems: 'center', height: '100%'}}>
+            <Card sx={{display: 'flex', alignItems: 'center', height: '100%', bgcolor:'rgba(0, 0, 0, 0.5)'}}>
                 <CardContent sx={{display: 'flex', alignItems: 'center'}}>
                     <Box sx={{mr: 2, color: 'action.active'}}>{icon}</Box>
                     <Box>
@@ -133,8 +133,8 @@ export const ProfileStatistics: React.FC<ProfileStatisticsProps> = ({
     return (
         <ThemeProvider theme={darkTheme}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <Paper elevation={5} sx={{padding: 2, margin: 'auto', maxWidth: 700, bgcolor: 'background.default'}}>
-                    <Grid container spacing={2}>
+                <Paper elevation={5} sx={{padding: 2, margin: 'auto', maxWidth: 700, bgcolor:'transparent'}}>
+                    <Grid container spacing={2} bgcolor={"transparent"}>
                         <StatisticCard icon={<PostAddIcon/>} title="Posts created" value={postsCount}/>
                         <StatisticCard icon={<ThumbUpAltIcon/>} title="Likes received" value={likesCount}/>
                         <StatisticCard icon={<CommentIcon/>} title="Comments" value={commentsCount}/>

@@ -85,10 +85,10 @@ export const UserProfileOptionalData: React.FC<UserProfileInfoProps> = ({
                 ) : (
                     <Box sx={{position:"relative"}}>
                         <Typography variant="h6">About Me</Typography>
-                        <Typography>I am: {profile.about_me ? profile.about_me : "-"}</Typography>
-                        <Typography>Age: {age ? age : "-"}</Typography>
-                        <Typography>Country: {profile.country ? profile.country : "-"}</Typography>
-                        <Typography>Interests: {profile.interests ? profile.interests : "-"}</Typography>
+                        <Typography><span style={{color:'#bbb'}}>Bio:</span> {profile.about_me ? profile.about_me : "-"}</Typography>
+                        <Typography><span style={{color:'#bbb'}}>Age:</span> {age ? age : "-"}</Typography>
+                        <Typography><span style={{color:'#bbb'}}>Country:</span> {profile.country ? profile.country : "-"}</Typography>
+                        <Typography><span style={{color:'#bbb'}}>Interests:</span> {profile.interests ? profile.interests : "-"}</Typography>
                         {isOwnProfile &&
                             <button className={'user-profile-optional-data-button'} onClick={() => setIsEditing(true)} style={{position:"absolute", top:-10, right:-10}}>
                                 <EditIcon/>

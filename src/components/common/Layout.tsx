@@ -23,9 +23,8 @@ const Layout = ({children, selectedTrack, isVisible, setIsVisible, isMusicPage, 
                     <TrackPlayer2 track={selectedTrack} selectedTrack={selectedTrack} isVisible={isVisible}
                                   setIsVisible={setIsVisible}/>}
             </Box>}
-
+            <NavigationList setIsMusicPage={setIsMusicPage}/>
             <div className={styles.userProfile}>
-                <NavigationList setIsMusicPage={setIsMusicPage}/>
                 {children}
             </div>
         </div>

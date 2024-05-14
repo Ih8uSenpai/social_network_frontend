@@ -102,3 +102,28 @@ export function formatDateRange(dateRange: StartEndDateRange): string {
         return `from ${format(dateRange.start, 'PPP')} to ${format(dateRange.end, 'PPP')}`;
     }
 }
+
+
+export function formatDate3(sentAt: string) {
+    const sentDate = new Date(sentAt);
+    const today = new Date();
+    const yesterday = new Date();
+    yesterday.setDate(today.getDate() - 1);
+
+    const dayDiff = Math.floor((today.getTime() - sentDate.getTime()) / (1000 * 60 * 60 * 24));
+    const yearDiff = today.getFullYear() - sentDate.getFullYear();
+
+    const time = sentDate.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+
+    if (sentDate.toDateString() === today.toDateString()) {
+        return "today at " + time;
+    } else if (sentDate.toDateString() === yesterday.toDateString()) {
+        return 'yesterday at ' + time;
+    } else if (dayDiff < 7) {
+        return `${dayDiff} days ago at ` + time;
+    } else if (yearDiff === 0) {
+        return sentDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' }) + " at " + time;
+    } else {
+        return sentDate.toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+}

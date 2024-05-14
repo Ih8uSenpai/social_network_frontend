@@ -13,6 +13,7 @@ import {red} from "@mui/material/colors";
 import {ViewCarousel} from "@mui/icons-material";
 import Carousel from 'react-material-ui-carousel'
 import {useIntersectionObserver} from "./hooks/useIntersectionObserver";
+import {useNavigate} from "react-router-dom";
 
 interface PostProps {
     post: PostData;
@@ -30,6 +31,7 @@ const Post: React.FC<PostProps> = ({post, profileId, setPosts}) => {
     const imgRef2 = useRef<HTMLImageElement>(null);
     const [height, setHeight] = useState<number>(0);
     const postRef = useRef(null);
+    const navigate = useNavigate();
 
     const markPostAsViewed = async () => {
         const userId = localStorage.getItem('currentUserId');
@@ -114,7 +116,8 @@ const Post: React.FC<PostProps> = ({post, profileId, setPosts}) => {
                     src={post.profile.profilePictureUrl || defaultProfileIcon}
                     alt="avatar"
                     className="avatar"
-                    style={{marginLeft: 13}}
+                    style={{marginLeft: 13, cursor:"pointer"}}
+                    onClick={() => navigate(`/profile/${post.profile.user.userId}`)}
                 />
                 <div className="user-details-post">
                     <strong>{post.profile.firstName + ' ' + post.profile.lastName}</strong>
@@ -122,7 +125,7 @@ const Post: React.FC<PostProps> = ({post, profileId, setPosts}) => {
                     <span> · {formatDate(post.createdAt)}</span>
                 </div>
             </div>
-            <p style={{color: 'white', marginLeft: 13}}>{post.content}</p>
+            <p style={{color: 'white', marginLeft: 23}}>{post.content}</p>
 
             {post.postAttachments.length < 2 ? post.postAttachments.length != 0 &&
                 <Container sx={{maxWidth: 630, textAlign: 'center', display: "flex", justifyContent: "center"}}>
@@ -137,13 +140,10 @@ const Post: React.FC<PostProps> = ({post, profileId, setPosts}) => {
                            height={400}>
                         {post.postAttachments.map((url, index) => (
                             <Box sx={{width: 630, textAlign: 'center', position:'relative', background:"rgba(0,0,0,0.4)", borderRadius:4}} marginLeft={2}>
-
                                 <img src={"http://localhost:8080/" + url} alt={`Preview ${url}`}
                                      style={{maxWidth: 630, height: 390, objectFit: 'cover'}}
                                      ref={imgRef}/>
-
                             </Box>
-
                         ))}
                     </Carousel>
                 )}
@@ -162,7 +162,6 @@ const Post: React.FC<PostProps> = ({post, profileId, setPosts}) => {
                     onClick={handleLike}>
                     {likesCount} {liked ? <FavoriteIcon/> : <FavoriteBorderIcon/>}
                 </span>
-                {/* Добавьте здесь другие кнопки для действий (ретвит, коммент) */}
             </div>
 
             {commentOpen &&

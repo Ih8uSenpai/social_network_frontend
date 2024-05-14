@@ -43,7 +43,7 @@ export const UserInfo: React.FC<UserInfoProps> = ({
             />
 
             <div className="user-details">
-                <p className="tag">@{profile.tag}</p>
+                <p className="tag" style={{color:"#d6d6ff"}}>@{profile.tag}</p>
                 <h2>{profile.firstName} {profile.lastName}</h2>
                 <p>Joined at: {profile.user.createdAt}</p>
                 {!isOwnProfile && (

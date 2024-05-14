@@ -8,6 +8,7 @@ import {UserInfo} from "./UserInfo";
 import {CropTest} from "./CropTest";
 import Button from "@mui/material/Button";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import {CropBanner} from "./CropBanner";
 
 interface ProfileBannerProps {
     userId: string
@@ -123,8 +124,7 @@ export const ProfileBanner: React.FC<ProfileBannerProps> = ({
                         <div className="settings-menu">
                             <ul>
                                 <li>
-                                    <button style={{width:"100%"}} onClick={handleBannerSelect}>Изменить обложку профиля
-                                    </button>
+                                    <button><CropBanner profile={profile} token={token} fetchProfile={fetchProfile}/></button>
                                 </li>
                                 <li>
                                     <button><CropTest profile={profile} token={token} fetchProfile={fetchProfile}/></button>

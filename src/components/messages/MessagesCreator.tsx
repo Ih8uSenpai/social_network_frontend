@@ -27,16 +27,14 @@ const MessagesCreator: React.FC<MessagesCreatorProps> = ({chatId, onMessageCreat
         adjustTextAreaHeight();
     };
 
-    const adjustTextAreaHeight = () => {
-        const textArea = textAreaRef.current;
-        if (textArea) {
-            textArea.style.height = 'auto';
-            textArea.style.height = `${textArea.scrollHeight}px`;
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault(); // Предотвращаем добавление новой строки
+            handleSubmitForm(); // Вызываем отправку формы
         }
     };
 
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    const handleSubmitForm = async () => {
         if (content.trim()) {
             try {
                 await createMessage(chatId, content);
@@ -47,6 +45,19 @@ const MessagesCreator: React.FC<MessagesCreatorProps> = ({chatId, onMessageCreat
             } catch (error) {
                 console.error('Ошибка при отправке сообщения:', error);
             }
+        }
+    };
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        handleSubmitForm();
+    };
+
+    const adjustTextAreaHeight = () => {
+        const textArea = textAreaRef.current;
+        if (textArea) {
+            textArea.style.height = 'auto';
+            textArea.style.height = `${textArea.scrollHeight}px`;
         }
     };
 
@@ -83,6 +94,7 @@ const MessagesCreator: React.FC<MessagesCreatorProps> = ({chatId, onMessageCreat
                 <TextareaAutosize
                     value={content}
                     onChange={handleChange}
+                    onKeyDown={handleKeyDown}
                     ref={textAreaRef}
                     className={"create-post-area"}
                     placeholder={"write a message..."}

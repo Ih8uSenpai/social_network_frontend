@@ -108,66 +108,66 @@ const TrackList: React.FC<TrackListProps & { onSelectTrack: (track: Track) => vo
     }
 
     return (
-        <Paper elevation={4} sx={{padding: 2, margin: 'auto', bgcolor: 'rgba(0, 0, 0, 0.6)', color:'black', marginBottom:2, borderRadius:5, border:'1px solid grey'  }}>
-        <List sx={{width: '100%', bgcolor: 'transparent'}}>
-            {section == "music_main" && tracks.map((track) => (
-                <ListItem
-                    key={track.id}
-                    alignItems="flex-start"
-                    sx={{width: '100%'}}
-                    className={activeTrackId === track.id ? "active" : ""}
-                    onClick={() => {
-                        onSelectTrack(track);
-                        setIsVisible(true);
-                        setActiveTrackId(track.id); // Обновление активного трека
-                    }}>
-                    <ListItemIcon>
-                        <img src={track.icon_url || defaultMusicIcon}
-                             style={{height: 50, width: 50, objectFit: "cover", marginRight: 10}}/>
-                    </ListItemIcon>
-                    <ListItemText
-                        primary={track.title}
-                        secondary={track.artist}
-                        sx={{color: 'text.primary', flexGrow: 1}}
-                    />
-                    <Button onClick={() => addTracktoMyPlaylist(track)}><PlaylistAddIcon/></Button>
-                </ListItem>
-            ))}
+        section == "music_my_music" && myTracks.length == 0 ?
+        <Box sx={{width: "100%", textAlign: "center", color: '#999', marginTop: 5, marginBottom: 5}}>This playlist is empty :(</Box>
+            :
+            <Paper elevation={4} sx={{padding: 2, margin: 'auto', bgcolor: 'rgba(0, 0, 0, 0.6)', color:'black', marginBottom:2, borderRadius:5, border:'1px solid grey'  }}>
+                <List sx={{width: '100%', bgcolor: 'transparent'}}>
+                    {section == "music_main" && tracks.map((track) => (
+                        <ListItem
+                            key={track.id}
+                            alignItems="flex-start"
+                            sx={{width: '100%'}}
+                            className={activeTrackId === track.id ? "active" : ""}
+                            onClick={() => {
+                                onSelectTrack(track);
+                                setIsVisible(true);
+                                setActiveTrackId(track.id); // Обновление активного трека
+                            }}>
+                            <ListItemIcon>
+                                <img src={track.icon_url || defaultMusicIcon}
+                                     style={{height: 50, width: 50, objectFit: "cover", marginRight: 10}}/>
+                            </ListItemIcon>
+                            <ListItemText
+                                primary={track.title}
+                                secondary={track.artist}
+                                sx={{color: 'text.primary', flexGrow: 1}}
+                            />
+                            <Button onClick={() => addTracktoMyPlaylist(track)}><PlaylistAddIcon/></Button>
+                        </ListItem>
+                    ))}
 
-            {section == "music_my_music" && myTracks.length > 0 && myTracks.map((track) => (
-                <ListItem
-                    key={track.id}
-                    alignItems="flex-start"
-                    sx={{width: '100%'}}
-                    className={activeTrackId === track.id ? "active" : ""}
-                    onClick={() => {
-                        onSelectTrack(track);
-                        setIsVisible(true);
-                        setActiveTrackId(track.id); // Обновление активного трека
-                    }}>
-                    <ListItemIcon>
-                        <img src={track.icon_url || defaultMusicIcon}
-                             style={{height: 50, width: 50, objectFit: "cover", marginRight: 10}}/>
-                    </ListItemIcon>
-                    <ListItemText
-                        primary={track.title}
-                        secondary={track.artist}
-                        sx={{color: 'text.primary', flexGrow: 1}}
-                    />
-                    {!isProfilePage &&
-                        <Button onClick={() => deleteTrackFromMyPlaylist(track)} sx={{background:"transparent"}}><CloseIcon/></Button>}
-                </ListItem>
-            ))}
+                    {section == "music_my_music" && myTracks.length > 0 && myTracks.map((track) => (
+                        <ListItem
+                            key={track.id}
+                            alignItems="flex-start"
+                            sx={{width: '100%'}}
+                            className={activeTrackId === track.id ? "active" : ""}
+                            onClick={() => {
+                                onSelectTrack(track);
+                                setIsVisible(true);
+                                setActiveTrackId(track.id); // Обновление активного трека
+                            }}>
+                            <ListItemIcon>
+                                <img src={track.icon_url || defaultMusicIcon}
+                                     style={{height: 50, width: 50, objectFit: "cover", marginRight: 10}}/>
+                            </ListItemIcon>
+                            <ListItemText
+                                primary={track.title}
+                                secondary={track.artist}
+                                sx={{color: 'text.primary', flexGrow: 1}}
+                            />
+                            {!isProfilePage &&
+                                <Button onClick={() => deleteTrackFromMyPlaylist(track)} sx={{background:"transparent"}}><CloseIcon/></Button>}
+                        </ListItem>
+                    ))}
 
-            {section == "music_my_music" && myTracks.length == 0 &&
-                <Box sx={{width: "100%", textAlign: "center", color: '#999', marginTop: 5, marginBottom: 5}}>This playlist is empty :(</Box>
-            }
 
-            {section == "music_recommendations" &&
-                <Box sx={{width: "100%", textAlign: "center", color: '#999', marginTop: 5, marginBottom: 5}}>Recommendations will be available in the future!</Box>
-            }
-        </List>
-        </Paper>
+                    {section == "music_recommendations" &&
+                        <Box sx={{width: "100%", textAlign: "center", color: '#999', marginTop: 5, marginBottom: 5}}>Recommendations will be available in the future!</Box>
+                    }
+                </List>
+            </Paper>
     );
 };
 export default TrackList;

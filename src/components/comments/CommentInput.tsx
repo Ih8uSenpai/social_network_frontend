@@ -10,6 +10,7 @@ import {Comment} from "./Comment";
 import {useProfile} from "../profile/hooks/useProfile";
 import {fetchPosts} from "../profile/service/PostService";
 import {useParams} from "react-router-dom";
+import RecursiveComment from "./RecursiveComment";
 
 interface CommentInputProps {
     postId: number;
@@ -26,6 +27,8 @@ export interface PostComment {
     url?: string;
     userLiked?: boolean;
     likesCount?: number;
+    replies: PostComment[];
+    parentTag:string;
 }
 
 export const CommentInput: React.FC<CommentInputProps> = ({postId, profileId, setPosts}) => {
@@ -61,6 +64,21 @@ export const CommentInput: React.FC<CommentInputProps> = ({postId, profileId, se
             formData.append('file', image);
             formData.append('content', comment)
             const response = await axios.post(`http://localhost:8080/api/profiles/post/${postId}/comment`, formData, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+        } catch (error) {
+            console.error('Error uploading comment:', error);
+        }
+    };
+
+    const createReplyToComment = async (parentCommentId) => {
+        try {
+            const formData = new FormData();
+            formData.append('file', image);
+            formData.append('content', comment)
+            const response = await axios.post(`http://localhost:8080/api/profiles/post/${postId}/${parentCommentId}/commentReply`, formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -130,9 +148,11 @@ export const CommentInput: React.FC<CommentInputProps> = ({postId, profileId, se
             )}
 
 
-            <Paper elevation={4}
-                   sx={{padding: 2, margin: 'auto', maxWidth: 700, bgcolor: 'rgba(0, 0, 0, 0.4)', color: 'black'}}>
-                {postComments.map(comment => <Comment comment={comment}/>)}
+            <Paper elevation={4} sx={{ padding: 2, margin: 'auto', maxWidth: 700, bgcolor: 'rgba(0, 0, 0, 0.4)', color: 'black' }}>
+                {postComments.map(comment => (
+                    <RecursiveComment key={comment.id} comment={comment} postId={postId} setPosts={setPosts}
+                                      setPostComments={setPostComments} profileId={profileId} />
+                ))}
             </Paper>
         </Box>
     );

@@ -116,7 +116,7 @@ export const Messages = () => {
             {!selectedChat ? (
                 <>
 
-                    <ChatListView chats={chats} onChatSelect={handleChatSelect}/></>
+                    <ChatListView chats={chats} onChatSelect={handleChatSelect} token={token}/></>
             ) : (
                 <>
                     <ChatView chat={selectedChat} onBack={handleBack} setMessages={setMessages}/>
