@@ -25,8 +25,10 @@ export function formatDate(sentAt: string) {
 
     if (sentDate.toDateString() === today.toDateString()) {
         return time;
-    } else if (sentDate.toDateString() === yesterday.toDateString()) {
+    } else if (sentDate.toDateString() == yesterday.toDateString()) {
         return 'yesterday';
+    } else if (dayDiff == 1) {
+        return `${dayDiff} day ago`;
     } else if (dayDiff < 7) {
         return `${dayDiff} days ago`;
     } else if (yearDiff === 0) {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './header.css';
+import './styles/header.css';
 import {logout} from "../auth/service/UserService";
 
 const Header = () => {

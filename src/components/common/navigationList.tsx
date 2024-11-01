@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import './navigationStyle.css'
-import './header.css'
+import './styles/navigationStyle.css'
+import './styles/header.css'
 import logo from '../resources/images/robin2.png'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import MessageIcon from '@mui/icons-material/Message';

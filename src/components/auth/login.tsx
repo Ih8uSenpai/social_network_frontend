@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import './Login.css'
+import './styles/Login.css'
 // @ts-ignore
 import video from '../resources/videos/bg3.mp4'
 import {LicenseInfo} from "@mui/x-date-pickers-pro";

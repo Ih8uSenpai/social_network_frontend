@@ -1,5 +1,5 @@
 import {NavigateFunction} from "react-router-dom";
-import {ProfileData} from "../../messages/Types";
+import {ProfileData} from "../../utils/Types";
 
 export const handleUserFollowNavigation = (userId: string, currentUserId: string, navigate: NavigateFunction, navigationType: 'followers' | 'following') => {
     const validatedUserId = userId || currentUserId; // This will use userId if it's truthy, otherwise it falls back to currentUserId

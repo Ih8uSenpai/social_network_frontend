@@ -1,4 +1,4 @@
-import {Chat, ChatType, ProfileData} from "../../messages/Types";
+import {Chat, ChatType, ProfileData} from "../../utils/Types";
 import {NavigateFunction} from "react-router-dom";
 import {PostComment} from "../../comments/CommentInput";
 

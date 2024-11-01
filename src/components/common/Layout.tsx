@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Box} from '@mui/material';
-import styles from "../new_design/styles/UserProfile.module.css";
-import {TrackPlayer2} from "../Music/TrackPlayer2";
+import styles from "../profile/styles/UserProfile.module.css";
+import {TrackPlayer2} from "../Music/components/TrackPlayer2";
 import NavigationList from "./navigationList";
 // @ts-ignore
 import video from "../resources/videos/bg3.mp4";
@@ -20,8 +20,8 @@ const Layout = ({children, selectedTrack, isVisible, setIsVisible, isMusicPage, 
             </div>
             {isMusicPage == false && <Box marginTop={3} marginBottom={3} position="fixed" bottom={0} right={0} zIndex={999}>
                 {selectedTrack &&
-                    <TrackPlayer2 track={selectedTrack} selectedTrack={selectedTrack} isVisible={isVisible}
-                                  setIsVisible={setIsVisible}/>}
+                    <TrackPlayer2 isVisible={isVisible}
+                                  setIsVisible={setIsVisible} selectedTrack={selectedTrack}/>}
             </Box>}
             <NavigationList setIsMusicPage={setIsMusicPage}/>
             <div className={styles.userProfile}>

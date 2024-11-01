@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import {ProfileData} from "../../messages/Types";
+import {ProfileData} from "../../utils/Types";
 import {defaultProfileIcon} from "../../utils/Constants";
 import {Simulate} from "react-dom/test-utils";
 

@@ -1,5 +1,5 @@
-import {ChatType} from "../../messages/Types";
-import {Track} from "../TrackList";
+import {ChatType} from "../../utils/Types";
+import {Track} from "../components/TrackList";
 
 export async function createPlaylist(name: string, description:string, token: string): Promise<string[]> {
 

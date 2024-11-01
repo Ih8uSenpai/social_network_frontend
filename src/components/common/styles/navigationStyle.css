@@ -1,0 +1,52 @@
+.navigation-list {
+    position: fixed;
+    left: calc(50% - 600px - 125px);
+    top: 0%;
+    margin: 0;
+    height: 100vh;
+
+    background: rgba(0, 0 , 0, 0.5);
+    padding: 0;
+    z-index: 999;
+    list-style: none;
+    width: 250px;
+}
+
+@media (max-width: 1450px) {
+    .navigation-list {
+        left: 0;
+    }
+
+}
+
+.navigation-list li {
+    font-family: Georgia, sans-serif;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding-left: 50px;
+    padding-top: 10px;
+}
+.navigation-list p {
+    padding-left: 40px;
+}
+
+.navigation-list li a {
+    color: #aaaaaa;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.navigation-list li a:hover {
+    color: #dddddd; /* Цвет ссылок при наведении */
+}
+
+.logout-btn{
+    color: #777777;
+    margin-top: 15px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.logout-btn:hover{
+    color: indianred;
+    transition-duration: 1s;
+}

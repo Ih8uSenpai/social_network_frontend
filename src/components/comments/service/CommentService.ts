@@ -1,4 +1,4 @@
-import {PostData} from "../../messages/Types";
+import {PostData} from "../../utils/Types";
 import {PostComment} from "../CommentInput";
 
 export async function fetchComments(postId: number, token: string): Promise<PostComment[]> {

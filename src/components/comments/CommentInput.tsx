@@ -4,13 +4,14 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import SendIcon from '@mui/icons-material/Send';
 import axios from "axios";
 import {fetchComments} from "./service/CommentService";
-import {PostData} from "../messages/Types";
-import Post from "../news/Post";
+import {PostData} from "../utils/Types";
+import Post from "../news/components/Post";
 import {Comment} from "./Comment";
 import {useProfile} from "../profile/hooks/useProfile";
 import {fetchPosts} from "../profile/service/PostService";
 import {useParams} from "react-router-dom";
 import RecursiveComment from "./RecursiveComment";
+import './styles/Style.css'
 
 interface CommentInputProps {
     postId: number;
@@ -28,7 +29,8 @@ export interface PostComment {
     userLiked?: boolean;
     likesCount?: number;
     replies: PostComment[];
-    parentTag:string;
+    parentTag: string;
+    parentId?: number;
 }
 
 export const CommentInput: React.FC<CommentInputProps> = ({postId, profileId, setPosts}) => {
@@ -39,6 +41,45 @@ export const CommentInput: React.FC<CommentInputProps> = ({postId, profileId, se
     const token = localStorage.getItem('authToken');
     const [postComments, setPostComments] = useState<PostComment[]>([]);
     const {userId} = useParams();
+    const [openCommentId, setOpenCommentId] = useState<number | null>(null);
+    const commentRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
+
+
+    const isElementInViewport = (element: HTMLDivElement) => {
+        const rect = element.getBoundingClientRect();
+        const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+        const windowWidth = (window.innerWidth || document.documentElement.clientWidth);
+
+        const fullyVisible = (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= windowHeight &&
+            rect.right <= windowWidth
+        );
+
+        return fullyVisible;
+    };
+
+    const scrollToParent = (parentId: number) => {
+        const parentRef = commentRefs.current[parentId];
+        if (parentRef) {
+            if (!isElementInViewport(parentRef))
+                parentRef.scrollIntoView({behavior: 'smooth', block: 'start'});
+            parentRef.classList.add('highlight');
+
+            setTimeout(() => {
+                parentRef.classList.remove('highlight');
+            }, 2000);
+        }
+    };
+
+    const handleCommentSectionToggle = (commentId: number) => {
+        if (openCommentId === commentId) {
+            setOpenCommentId(null);
+        } else {
+            setOpenCommentId(commentId);
+        }
+    };
 
     useEffect(() => {
         fetchComments(postId, token).then((comments) => {
@@ -148,10 +189,14 @@ export const CommentInput: React.FC<CommentInputProps> = ({postId, profileId, se
             )}
 
 
-            <Paper elevation={4} sx={{ padding: 2, margin: 'auto', maxWidth: 700, bgcolor: 'rgba(0, 0, 0, 0.4)', color: 'black' }}>
+            <Paper elevation={4}
+                   sx={{padding: 2, margin: 'auto', maxWidth: 700, bgcolor: 'rgba(0, 0, 0, 0.4)', color: 'black'}}>
                 {postComments.map(comment => (
                     <RecursiveComment key={comment.id} comment={comment} postId={postId} setPosts={setPosts}
-                                      setPostComments={setPostComments} profileId={profileId} />
+                                      setPostComments={setPostComments} profileId={profileId}
+                                      isCommentOpen={openCommentId}
+                                      onToggleComment={handleCommentSectionToggle} commentRefs={commentRefs}
+                                      scrollToParent={scrollToParent}/>
                 ))}
             </Paper>
         </Box>

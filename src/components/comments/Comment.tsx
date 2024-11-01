@@ -8,6 +8,9 @@ import {fetchPosts} from "../profile/service/PostService";
 import axios from "axios";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import SendIcon from "@mui/icons-material/Send";
+import ReplyIcon from '@mui/icons-material/Reply';
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
+import {useNavigate} from "react-router-dom";
 
 interface CommentProps {
     comment: PostComment;
@@ -15,10 +18,14 @@ interface CommentProps {
     setPostComments;
     profileId;
     setPosts;
+    isCommentOpen;
+    onToggleComment;
+    commentRefs;
+    scrollToParent;
 }
 
 
-export const Comment: React.FC<CommentProps> = ({comment, postId, setPostComments, setPosts, profileId}) => {
+export const Comment: React.FC<CommentProps> = ({comment, postId, setPostComments, setPosts, profileId, isCommentOpen, onToggleComment, commentRefs, scrollToParent}) => {
     const defaultProfileIcon = "http://localhost:8080/src/main/resources/static/standart_icon.jpg";
     const [liked, setLiked] = useState(comment.userLiked);
     const [likesCount, setLikesCount] = useState(comment.likesCount);
@@ -29,7 +36,12 @@ export const Comment: React.FC<CommentProps> = ({comment, postId, setPostComment
     const {profile, fetchProfile} = useProfile(comment.userId.toString(), comment.userId.toString(), token, true);
     const [image, setImage] = useState<File | null>(null);
     const [commentContent, setComment] = useState('');
-    const [commentOpen, setCommentOpen] = useState(false);
+    const navigate = useNavigate();
+    const commentRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        commentRefs.current[comment.id] = commentRef.current;
+    }, [commentRefs, comment.id]);
 
     useEffect(() => {
         fetchProfile();
@@ -64,12 +76,6 @@ export const Comment: React.FC<CommentProps> = ({comment, postId, setPostComment
         fileInputRef.current?.click();
     };
 
-    const handleComment = async () => {
-        if (!commentOpen)
-            setCommentOpen(true);
-        else
-            setCommentOpen(false);
-    };
 
     const createReplyToComment = async (parentCommentId) => {
         try {
@@ -116,33 +122,44 @@ export const Comment: React.FC<CommentProps> = ({comment, postId, setPostComment
         }
     };
     return (
-        <>
+        <div ref={commentRef}>
             {profile &&
                 <Box sx={{
                     width: "600px",
                     color: "#ddd",
                     paddingLeft: 2,
                     marginTop: '5px',
-                    borderBottom: '2px solid gray'
+                    position: 'relative',
+                    '&::after': {
+                        content: '""',
+                        position: 'absolute',
+                        bottom: 0,
+                        left: '65px',
+                        width: '80%',
+                        borderBottom: '1px solid gray',
+                    }
                 }} className={"user-details-post-box"}>
 
                     <div className="user-details-post">
-                        <a href={`/profile/${profile.user.userId}`} style={{marginRight: '10px', alignSelf: "center"}}>
-                            <img
-                                src={profile.profilePictureUrl || defaultProfileIcon}
-                                alt="avatar"
-                                className="avatar"
-                                style={{width: 40, height: 40}}
-                            />
-                        </a>
+                        <img
+                            src={profile.profilePictureUrl || defaultProfileIcon}
+                            alt="avatar"
+                            className="avatar"
+                            style={{width: 40, height: 40, cursor: "pointer", marginRight: '10px', alignSelf: "center"}}
+                            onClick={() => navigate('/profile/' + profile.user.userId)}
+                        />
+
                         <div style={{display: "flex", flexDirection: "column", marginTop: 0, marginBottom: 4}}>
                             <div>
                                 <strong>{profile.firstName + ' ' + profile.lastName}</strong>
                                 @{profile.tag}
-                                {comment.parentTag && <span style={{marginLeft:2}}>replies to <span style={{color:"#1da1f2", marginLeft:0}}>@{comment.parentTag}</span></span>}
+                                {comment.parentTag && <span style={{marginLeft: 2}}>replies to <span
+                                    style={{color: "#1da1f2", marginLeft: 0}}>@{comment.parentTag}</span></span>}
+                                {comment.parentId &&
+                                <KeyboardReturnIcon style={{fontSize:18, marginLeft:10, cursor:"pointer"}} onClick={() => scrollToParent(comment.parentId)}/>}
                             </div>
                             <p style={{margin: 0, color: "#eee"}}>{comment.content}</p>
-                            <Box sx={{marginTop:0.5}}>
+                            <Box sx={{marginTop: 0.5}}>
                             <span style={{
                                 color: "#999",
                                 marginLeft: 0,
@@ -155,13 +172,13 @@ export const Comment: React.FC<CommentProps> = ({comment, postId, setPostComment
                                     fontSize: '14px',
                                     fontFamily: 'sans-serif',
                                     cursor: "pointer",
-                                }} onClick={handleComment}> Reply</span>
+                                }} onClick={onToggleComment}> Reply</span>
                             </Box>
                         </div>
                     </div>
 
 
-                    {commentOpen &&
+                    {isCommentOpen &&
                         <Box>
                             <Box
                                 sx={{
@@ -203,7 +220,7 @@ export const Comment: React.FC<CommentProps> = ({comment, postId, setPostComment
 
                 </Box>
             }
-        </>
+        </div>
     );
 };
 

@@ -1,4 +1,4 @@
-import {PostData} from "../../messages/Types";
+import {PostData} from "../../utils/Types";
 import axios from "axios";
 
 export async function countPostsPerPeriod  (profileId: number, fromDate, toDate, token: String): Promise<number> {

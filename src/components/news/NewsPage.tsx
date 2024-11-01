@@ -3,15 +3,27 @@ import styles from './styles/UserInfo.module.css';
 import {useNavigate, useParams} from "react-router-dom";
 import {useFollowingStatus} from "../profile/hooks/useFollowingStatus";
 import {useProfile} from "../profile/hooks/useProfile";
-import {PostData} from "../messages/Types";
+import {PostData, ProfileData} from "../utils/Types";
 import {useChatExistence} from "../profile/hooks/useChatExistence";
 import {fetchPosts} from "../profile/service/PostService";
 import {News} from "./News";
 import {fetchNewsFeed} from "./service/NewsService";
 import {color} from "framer-motion";
 
+interface NewsProps {
 
-export const NewsPage = () => {
+    selectedTrack;
+    setSelectedTrack;
+    isVisible;
+    setIsVisible;
+}
+
+export const NewsPage: React.FC<NewsProps> = ({
+                                                  selectedTrack,
+                                                  setSelectedTrack,
+                                                  isVisible,
+                                                  setIsVisible
+                                              }) => {
     const {userId} = useParams();
     const navigate = useNavigate();
     const token = localStorage.getItem('authToken');
@@ -44,9 +56,6 @@ export const NewsPage = () => {
     }, [profile]);
 
 
-    if (!profile) {
-        return <>Загрузка данных профиля...</>;
-    }
 
     const handlePostCreated = (newPost: PostData) => {
         setPosts([...posts, newPost]);
@@ -58,8 +67,16 @@ export const NewsPage = () => {
 
         }
     };
+
+    if (!profile) {
+        return <></>;
+    }
+
     return (
-        <News profile={profile} posts={posts} handlePostCreated={handlePostCreated} setPosts={setPosts}/>
+        <News profile={profile} posts={posts} handlePostCreated={handlePostCreated} setPosts={setPosts}
+              selectedTrack={selectedTrack}
+              setSelectedTrack={setSelectedTrack}
+              isVisible={isVisible} setIsVisible={setIsVisible}/>
     );
 };
 

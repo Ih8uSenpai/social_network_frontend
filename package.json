@@ -67,6 +67,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/react-beautiful-dnd": "^13.1.8",
     "@types/sockjs-client": "^1.5.4",
     "@types/stompjs": "^2.3.9"

@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {useParams} from "react-router-dom";
-import {PostData} from "../messages/Types";
+import {PostData} from "../utils/Types";
 import {Box, Paper} from "@mui/material";
 import Button from "@mui/material/Button";
 import {CommentInput} from "./CommentInput";
@@ -32,20 +32,8 @@ export const CommentCreator: React.FC<PostCreatorProps> = ({postId, profileId, s
         }
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setContent(e.target.value);
-    };
 
-    // Функция handleSubmit и createPost здесь
-    const handleSubmit = async (event: { preventDefault: () => void; }) => {
-        event.preventDefault();
-        try {
 
-            setContent(''); // Очистить поле ввода после создания поста
-        } catch (error) {
-            console.error(error);
-        }
-    };
 
 
     const currentUserId = localStorage.getItem('currentUserId');

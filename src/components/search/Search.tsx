@@ -1,19 +1,19 @@
 import React, {useState, useEffect} from 'react';
-import {useSearchParams} from 'react-router-dom';
+import {useNavigate, useSearchParams} from 'react-router-dom';
 import Header from "../common/header";
 import NavigationList from "../common/navigationList";
-import {ChatListView} from "../messages/ChatListView";
-import {ChatView} from "../messages/ChatView";
+import {ChatListView} from "../messages/components/ChatListView";
+import {ChatView} from "../messages/components/ChatView";
 import './Search.css'
-import {ProfileData} from "../messages/Types";
-import styles from "../new_design/styles/UserProfile.module.css";
-import {ProfileBanner} from "../profile/ProfileBanner";
-import {AdditionalInfo} from "../profile/Additionalnfo";
-import {NavigationButtonsPanel} from "../profile/NavigationButtonsPanel";
-import PostCreator from "../news/postCreator";
-import PostsFeed from "../news/PostsFeed";
-import {UserProfileOptionalData} from "../profile/UserProfileOptionalData";
-import UserInfoSection from "../profile/UserInfoSection";
+import {ProfileData} from "../utils/Types";
+import styles from "../profile/styles/UserProfile.module.css";
+import {ProfileBanner} from "../profile/components/ProfileBanner";
+import {AdditionalInfo} from "../profile/components/Additionalnfo";
+import {NavigationButtonsPanel} from "../profile/components/NavigationButtonsPanel";
+import PostCreator from "../news/components/postCreator";
+import PostsFeed from "../news/components/PostsFeed";
+import {UserProfileOptionalData} from "../profile/components/UserProfileOptionalData";
+import UserInfoSection from "../profile/components/UserInfoSection";
 import {MusicPage} from "../Music/MusicPage";
 
 interface User {
@@ -30,6 +30,7 @@ const Search = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const defaultProfileIcon = "http://localhost:8080/src/main/resources/static/standart_icon.jpg";
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProfiles = async () => {
@@ -83,24 +84,31 @@ const Search = () => {
                         <div className="follower-entry-container">
                             <li key={profile.profileId}
                                 style={{display: 'flex', alignItems: 'center', marginBottom: '10px'}}>
-                                <a href={`/profile/${profile.user.userId}`} style={{marginRight: '10px'}}>
-                                    <img
-                                        src={profile.profilePictureUrl || defaultProfileIcon} // Указать URL изображения по умолчанию
-                                        alt={profile.user.username}
-                                        className="follower-entry-icon"
-                                        style={{width: '100px', height: '100px', borderRadius: '50%'}}
-                                    />
-                                </a>
-                                <a href={`/profile/${profile.user.userId}`}
-                                   style={{
-                                       fontSize: '1.5em',
-                                       color: "white",
-                                       textDecoration: "none",
-                                       alignSelf: "flex-start",
-                                       marginLeft: '10px'
-                                   }}>
+                                <img
+                                    src={profile.profilePictureUrl || defaultProfileIcon} // Указать URL изображения по умолчанию
+                                    alt={profile.user.username}
+                                    className="follower-entry-icon"
+                                    style={{
+                                        width: '100px',
+                                        height: '100px',
+                                        borderRadius: '50%',
+                                        marginRight: '10px',
+                                        cursor: "pointer"
+                                    }}
+                                    onClick={() => navigate('/profile/' + profile.user.userId)}
+                                />
+                                <p
+                                    style={{
+                                        fontSize: '1.5em',
+                                        color: "white",
+                                        textDecoration: "none",
+                                        alignSelf: "flex-start",
+                                        marginLeft: '10px',
+                                        cursor:"pointer"
+                                    }}
+                                    onClick={() => navigate('/profile/' + profile.user.userId)}>
                                     {profile.firstName} {profile.lastName}
-                                </a>
+                                </p>
                             </li>
                         </div>
                     ))}

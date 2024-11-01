@@ -2,16 +2,29 @@ import React, {useState, useEffect} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import NavigationList from "../common/navigationList"; // Импортируйте компонент списка навигации
 
-import {ChatListView} from "./ChatListView";
-import {ChatView} from "./ChatView";
+import {ChatListView} from "./components/ChatListView";
+import {ChatView} from "./components/ChatView";
 import Header from "../common/header";
-import MessagesCreator from "./MessagesCreator";
-import {Chat, ChatMessage, PostData} from "./Types";
-import {ChatType} from "./Types";
-import styles from "../new_design/styles/UserProfile.module.css";
+import MessagesCreator from "./components/MessagesCreator";
+import {Chat, ChatMessage, PostData} from "../utils/Types";
+import {ChatType} from "../utils/Types";
+import styles from "../profile/styles/UserProfile.module.css";
 import {fetchChats} from "../profile/service/ChatService";
 // @ts-ignore
 import video from "../resources/videos/bg3.mp4";
+import {ProfileBanner} from "../profile/components/ProfileBanner";
+import {AdditionalInfo} from "../profile/components/Additionalnfo";
+import {Box, Grid, Paper} from "@mui/material";
+import {NavigationButtonsPanel} from "../profile/components/NavigationButtonsPanel";
+import UserInfoSection from "../profile/components/UserInfoSection";
+import {PhotoSection} from "../profile/components/PhotoSection";
+import TrackList from "../Music/components/TrackList";
+import PostCreator from "../news/components/postCreator";
+import PostsFeed from "../news/components/PostsFeed";
+import {UserProfileOptionalData} from "../profile/components/UserProfileOptionalData";
+import {Followers} from "../followers/Followers";
+import SearchMessages from "./components/SearchMessages";
+import axios from "axios";
 
 
 export const Messages = () => {
@@ -21,6 +34,7 @@ export const Messages = () => {
     const navigate = useNavigate();
     const {chatId} = useParams();
     const token = localStorage.getItem('authToken');
+    const [search, setSearch] = useState('');
     useEffect(() => {
 
         fetchChats(setChats);
@@ -110,19 +124,85 @@ export const Messages = () => {
         createChat(chatName);
     }
 
+    const handleSearch = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.get('http://localhost:8080/api/chats/search', {
+                params: { query: search },
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            setChats(response.data);
+        } catch (error) {
+            console.error('Ошибка при поиске треков:', error);
+        }
+    };
 
     return (
-        <>
+        <div >
             {!selectedChat ? (
                 <>
+                    <Grid container spacing={-2} marginTop={2}
+                          sx={{minWidth: "1100px", overflow: 'auto', border: '1px solid transparent'}}>
+                        <Grid item xs={7.5}>
+                            <Paper elevation={4}
+                                   sx={{
+                                       padding: 2,
+                                       minHeight: "90vh",
+                                       margin: 'auto',
+                                       maxWidth: 700,
+                                       bgcolor: 'rgba(0, 0, 0, 0.4)'
+                                   }}>
+                                <form onSubmit={handleSearch} className="messages-search"
+                                      style={{margin: 0, padding: 0, width: "100%"}}>
+                                    <input
+                                        type="text"
+                                        value={search}
+                                        onChange={(e) => setSearch(e.target.value)}
+                                        placeholder="Search..."
+                                    />
+                                </form>
 
-                    <ChatListView chats={chats} onChatSelect={handleChatSelect} token={token}/></>
+                                <div style={{height: "100%", marginTop:15}}>
+                                    {chats.length > 0 ?
+                                        <ChatListView chats={chats} onChatSelect={handleChatSelect} token={token}/>
+                                        : <div style={{
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            alignItems: "center",
+                                            minHeight: "90vh",
+                                            color: "#AAA"
+                                        }}>There's so empty here...</div>}
+                                </div>
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={4.0} marginLeft={2.5}>
+                            <Paper elevation={4}
+                                   sx={{
+                                       padding: 2,
+                                       minHeight: "30vh",
+                                       margin: 'auto',
+                                       maxWidth: 700,
+                                       bgcolor: 'rgba(0, 0, 0, 0.4)',
+                                       textAlign:'center'
+                                   }}>
+                                People who might share your interests:
+
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                </>
+
             ) : (
                 <>
                     <ChatView chat={selectedChat} onBack={handleBack} setMessages={setMessages}/>
                 </>
             )}
-        </>
+
+
+        </div>
     );
 };
 

@@ -1,34 +1,56 @@
 import React, {useState} from "react";
-import TrackList, {Track} from "./TrackList";
-import {TrackPlayer} from "./TrackPlayer";
-import styles from "../new_design/styles/UserProfile.module.css";
+import TrackList, {Track} from "./components/TrackList";
+import {TrackPlayer} from "./components/TrackPlayer";
+import styles from "../profile/styles/UserProfile.module.css";
 import NavigationList from "../common/navigationList";
-import {MusicNavigationPanel} from "./MusicNavigationPanel";
+import {MusicNavigationPanel} from "./components/MusicNavigationPanel";
 // @ts-ignore
 import video from "../resources/videos/bg3.mp4";
 import {Paper} from "@mui/material";
+import {useAudioPlayer} from "./components/AudioPlayerContext";
+import axios from "axios";
 
-interface MusicPageProps {
-    OnSectionChange;
-    section;
-    token: string;
-}
 
-export const MusicPage: React.FC = () => {
+export const MusicPage = ({selectedTrack, setSelectedTrack}) => {
     const token = localStorage.getItem('authToken');
-    const track: Track = {
-        artist: "artist1",
-        icon_url: "http://localhost:8080/uploads/1709513768509_blob",
-        id: 0,
-        url: "http://localhost:8080/uploads/K_DA,%20Madison%20Beer%20feat.%20Kim%20Petras,%20League%20of%20Legends%20-%20VILLAIN.mp3",
-        title: "title1"
-    }
     const [activeSection, setActiveSection] = useState('music_main');
     const [search, setSearch] = useState('')
-    const [selectedTrack, setSelectedTrack] = useState<Track | null>(null);
 
-    const handleSearch = (event: { preventDefault: () => void; }) => {
+    const {
+        tracks,
+        setTracks,
+        setTrack,
+        audioRef,
+        currentAlbum,
+        setActiveTrackId,
+        setCurrentIndex,
+        setIsTrackEnded,
+        isPlaying,
+        currentTrack,
+        setCurrentTrack
+    } = useAudioPlayer();
+
+
+
+    const handleSearch = async (event) => {
         event.preventDefault();
+        try {
+            const response = await axios.get('http://localhost:8080/api/tracks/search', {
+                params: { query: search },
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            response.data.map(track => {
+                track.url = "http://localhost:8080/" + track.url;
+                if (track.icon_url)
+                    track.icon_url = "http://localhost:8080/" + track.icon_url;
+            });
+            setTracks(response.data);
+        } catch (error) {
+            console.error('Ошибка при поиске треков:', error);
+        }
     };
 
     const handleSectionChange = (section: string) => {
@@ -40,7 +62,7 @@ export const MusicPage: React.FC = () => {
         <>
             <div>
                 {selectedTrack && (
-                    <TrackPlayer track={selectedTrack} selectedTrack={selectedTrack} isVisible={true}
+                    <TrackPlayer selectedTrack={selectedTrack} isVisible={true}
                                  setIsVisible={() => {
                                  }}/>)}
                 <Paper elevation={4} sx={{
@@ -54,7 +76,8 @@ export const MusicPage: React.FC = () => {
                 }}>
                     <MusicNavigationPanel onSectionChange={handleSectionChange} section={activeSection}
                                           token={token}/>
-                    <form onSubmit={handleSearch} className="music-search">
+                    <form onSubmit={handleSearch} className="messages-search"
+                          style={{margin: 0, padding: 0, width: "100%"}}>
                         <input
                             type="text"
                             value={search}
@@ -64,8 +87,8 @@ export const MusicPage: React.FC = () => {
                     </form>
                 </Paper>
                 <TrackList token={token} OnSectionChange={handleSectionChange} section={activeSection}
-                           onSelectTrack={setSelectedTrack} isProfilePage={false} setIsVisible={() => {
-                }}/>
+                          onSelectTrack={setTrack} isProfilePage={false} setIsVisible={() => {
+                }} setTracks={setTracks} tracks={tracks} selectedTracks={[]}/>
             </div>
         </>
 

@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import NavigationList from "../common/navigationList";
-import {ProfileData} from "../messages/Types";
-import styles from "../new_design/styles/UserProfile.module.css";
-import {Box, List, ListItem, Paper} from "@mui/material";
+import {ProfileData} from "../utils/Types";
+import styles from "../profile/styles/UserProfile.module.css";
+import {Box, IconButton, List, ListItem, Paper} from "@mui/material";
+import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 
 
 interface User {
@@ -66,6 +67,7 @@ export const Followers: React.FC<FollowersProps> = ({
     const defaultProfileIcon = "http://localhost:8080/src/main/resources/static/standart_icon.jpg";
     const [followers, setFollowers] = useState<ProfileData[]>([]);
     const [hoveredProfileId, setHoveredProfileId] = useState<number | null>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (userId) {
@@ -76,33 +78,62 @@ export const Followers: React.FC<FollowersProps> = ({
 
     return (
         <div style={{marginTop: 0, paddingTop: 0}}>
-            {fullSize &&
-                <List style={{marginTop: 0, paddingTop: 0}}>
-                    {followers.map(profile => (
-                        <List className="follower-entry-container">
-                            <p key={profile.profileId}
-                               style={{display: 'flex', alignItems: 'center', marginBottom: '10px'}}>
-                                <a href={`/profile/${profile.user.userId}`} style={{marginRight: '10px'}}>
-                                    <img
-                                        src={profile.profilePictureUrl || defaultProfileIcon} // Указать URL изображения по умолчанию
-                                        alt={profile.user.username}
-                                        className="follower-entry-icon"
-                                    />
-                                </a>
-                                <a href={`/profile/${profile.user.userId}`}
-                                   style={{
-                                       fontSize: '1.5em',
-                                       color: "white",
-                                       textDecoration: "none",
-                                       alignSelf: "flex-start",
-                                       marginLeft: '10px'
-                                   }}>
-                                    {profile.firstName} {profile.lastName}
-                                </a>
-                            </p>
-                        </List>
-                    ))}
-                </List>}
+            {fullSize && (
+                <div style={{position: "relative"}}>
+                    <IconButton onClick={()=>navigate(-1)} style={{
+                        color: "white",
+                        cursor:"pointer",
+                        background: 'rgba(0,0,0,0.25)',
+                        borderRadius:'50%',
+                        margin:5,
+                        position:"absolute",
+                        zIndex:1
+                    }}>
+                        <KeyboardReturnIcon fontSize={"large"}
+                        />
+                    </IconButton>
+
+
+                    <List style={{marginTop: 0, paddingTop: 10}}>
+                        <div className="follower-entry-container" style={{width: '100%'}}>
+                            {followers.map(profile => (
+                                <div key={profile.profileId} className="follower-entry" style={{width: '100%'}}>
+                                    <p
+                                        style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            marginBottom: '10px'
+                                        }}>
+                                        <img
+                                            src={profile.profilePictureUrl || defaultProfileIcon}
+                                            alt={profile.user.username}
+                                            className="follower-entry-icon"
+                                            style={{
+                                                marginRight: '10px',
+                                                cursor: "pointer"
+                                            }}
+                                            onClick={() => navigate('/profile/' + profile.user.userId)}
+                                        />
+                                        <p
+                                            style={{
+                                                fontSize: '1.5em',
+                                                color: "white",
+                                                textDecoration: "none",
+                                                alignSelf: "flex-start",
+                                                marginLeft: '10px',
+                                                cursor: "pointer"
+                                            }}
+                                            onClick={() => navigate('/profile/' + profile.user.userId)}
+                                        >
+                                            {profile.firstName} {profile.lastName}
+                                        </p>
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </List>
+                </div>
+            )}
             {!fullSize &&
                 <List style={{
                     width: '100%',
@@ -131,13 +162,13 @@ export const Followers: React.FC<FollowersProps> = ({
                                   }}
                                   onMouseEnter={() => setHoveredProfileId(profile.profileId)}
                                   onMouseLeave={() => setHoveredProfileId(null)}>
-                            <a href={`/profile/${profile.user.userId}`} style={{marginRight: '10px'}}>
-                                <img
-                                    src={profile.profilePictureUrl || defaultProfileIcon} // Указать URL изображения по умолчанию
-                                    alt={profile.user.username}
-                                    className="follower-entry-icon-small"
-                                />
-                            </a>
+                            <img
+                                src={profile.profilePictureUrl || defaultProfileIcon} // Указать URL изображения по умолчанию
+                                alt={profile.user.username}
+                                className="follower-entry-icon-small"
+                                style={{marginRight: '10px', cursor: "pointer"}}
+                                onClick={() => navigate('/profile/' + profile.user.userId)}
+                            />
                             {hoveredProfileId === profile.profileId && (
                                 <Paper elevation={4} sx={{
                                     position: 'absolute',
