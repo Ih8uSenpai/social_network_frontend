@@ -172,8 +172,7 @@ export const Messages = () => {
                                             display: "flex",
                                             justifyContent: "center",
                                             alignItems: "center",
-                                            minHeight: "90vh",
-                                            color: "#AAA"
+                                            height:'100%'
                                         }}>There's so empty here...</div>}
                                 </div>
                             </Paper>

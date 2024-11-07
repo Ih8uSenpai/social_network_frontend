@@ -125,7 +125,7 @@ const UserProfile: React.FC<ProfileProps> = ({
                     </Paper>
 
                     <Box marginTop={2}>
-                        <PostCreator profileId={profile.profileId}
+                        <PostCreator profile={profile}
                                      onPostCreated={handlePostCreated} selectedTrack={selectedTrack}
                                      setSelectedTrack={setSelectedTrack} isVisible={isVisible}
                                      setIsVisible={setIsVisible}></PostCreator>

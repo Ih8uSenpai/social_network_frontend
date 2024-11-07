@@ -3,7 +3,7 @@ import '../styles/Post.css';
 import {PostData} from "../../utils/Types";
 import PostCreator from "./postCreator";
 import {CommentCreator} from "../../comments/CommentCreator";
-import {Box, Container} from "@mui/material";
+import {Box, Container, Modal} from "@mui/material";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
@@ -26,6 +26,7 @@ import axios from "axios";
 import {formatText} from "../../utils/CommonFunctions";
 import TrackList from "../../Music/components/TrackList";
 import {useAudioPlayer} from "../../Music/components/AudioPlayerContext";
+import {photo_box_style} from "../../utils/Constants";
 
 interface PostProps {
     post: PostData;
@@ -54,6 +55,7 @@ const Post: React.FC<PostProps> = ({
     const defaultProfileIcon = "http://localhost:8080/src/main/resources/static/standart_icon.jpg";
     const [liked, setLiked] = useState(post.liked);
     const [likesCount, setLikesCount] = useState(post.likesCount);
+    const [commentsCount, setCommentsCount] = useState(post.commentsCount);
     const imgRef = useRef<HTMLImageElement>(null);
     const imgRef2 = useRef<HTMLImageElement>(null);
     const [height, setHeight] = useState<number>(0);
@@ -70,6 +72,18 @@ const Post: React.FC<PostProps> = ({
         tracks,
         setTracks
     } = useAudioPlayer();
+
+    const [open, setOpen] = useState(false);
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    const handleOpen = (index) => {
+        setSelectedIndex(index);
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     const handleSectionChange = (section: string) => {
         setActiveSection(section);
     };
@@ -335,7 +349,8 @@ const Post: React.FC<PostProps> = ({
                         }} marginLeft={2}>
                             <img src={`http://localhost:8080/${url}`} alt={`Preview ${index}`}
                                  style={{maxWidth: 630, height: 390, objectFit: 'cover'}}
-                                 ref={imgRef}/>
+                                 ref={imgRef}
+                                 onClick={() => handleOpen(index)}/>
                         </Box>
                     ))}
                 </Carousel>
@@ -350,7 +365,8 @@ const Post: React.FC<PostProps> = ({
                     }}>
                         <img src={`http://localhost:8080/${post.postAttachments[0]}`}
                              style={{maxWidth: "630px", maxHeight: "700px", objectFit: 'cover'}}
-                             alt="error loading image" ref={imgRef2}/>
+                             alt="error loading image" ref={imgRef2}
+                        onClick={() => handleOpen(0)}/>
                     </Box>
                 </Container>
             )}
@@ -365,7 +381,7 @@ const Post: React.FC<PostProps> = ({
             }
             <div className="post-actions" style={{marginTop: "10px"}}>
                 <span onClick={onToggleComment}>
-                    {post.commentsCount}
+                    {commentsCount}
                     <CommentIcon/>
                 </span>
                 <span>
@@ -381,9 +397,40 @@ const Post: React.FC<PostProps> = ({
 
             {isCommentOpen &&
                 (<Box marginTop={2}>
-                        <CommentCreator postId={post.id} profileId={profileId} setPosts={setPosts}/>
+                        <CommentCreator postId={post.id} profileId={profileId} setPosts={setPosts} setCommentsCount={() => setCommentsCount(commentsCount + 1)}/>
                     </Box>
                 )}
+
+
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={photo_box_style}>
+                    <Carousel fullHeightHover={true} autoPlay={false} changeOnFirstRender={true} index={selectedIndex}
+                              height={750} className={'photo'}>
+                        {post.postAttachments?.map((url, index) => (
+                            <Box key={index} sx={{width: 1750, textAlign: 'center'}}>
+                                <p style={{
+                                    width: 1750,
+                                    height: "100%",
+                                    background: "rgba(0,0,0,0.5)",
+                                    position: "absolute",
+                                    zIndex: -1,
+                                    right: 0,
+                                    top: -16
+                                }}></p>
+                                <img src={"http://localhost:8080/" + url} alt={`Preview ${url}`}
+                                     style={{maxWidth: 1750, height: 750, objectFit: 'cover'}}/>
+                            </Box>
+
+                        ))}
+                    </Carousel>
+
+                </Box>
+            </Modal>
         </div>
     );
 };

@@ -116,17 +116,20 @@
 
 .create-post-area {
     width: 400px;
-    padding: 10px;
+    padding: 15px;
     background: transparent;
-    border: 1px solid #aaa;
+    border: none;
     border-radius: 8px;
     font-size: 1.2em;
     color: white;
+    outline: none;
     resize: none;
 }
 .create-post-area::placeholder {
-    color: #cccccc;
-    font-size: 16px;
+    position: absolute;
+    top: calc(50% - 15px);
+    color: #aaa;
+    font-size: 1.5em;
     opacity: 1;
 }
 
@@ -207,8 +210,8 @@
 
 
 .post-creator-menu {
-    margin-right: 400px;
-    padding: 10px;
+    margin-right: 335px;
+    padding: 5px;
     z-index: 999;
     display: flex;
     width: 170px;

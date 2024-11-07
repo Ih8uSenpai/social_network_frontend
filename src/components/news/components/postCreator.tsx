@@ -3,7 +3,7 @@ import React, {useState, useRef, useEffect} from 'react';
 
 import post from "./Post";
 import {useParams} from "react-router-dom";
-import {PostData} from "../../utils/Types";
+import {PostData, ProfileData} from "../../utils/Types";
 import {Box, IconButton, Paper, TextareaAutosize, TextField} from "@mui/material";
 import Button from "@mui/material/Button";
 import axios from "axios";
@@ -17,7 +17,7 @@ import {useAudioPlayer} from "../../Music/components/AudioPlayerContext";
 import TrackList, {Track} from "../../Music/components/TrackList";
 
 interface PostCreatorProps {
-    profileId: number;
+    profile: ProfileData;
     onPostCreated: (newPost: PostData) => void;
     selectedTrack;
     setSelectedTrack;
@@ -27,7 +27,7 @@ interface PostCreatorProps {
 
 
 const PostCreator: React.FC<PostCreatorProps> = ({
-                                                     profileId,
+                                                     profile,
                                                      onPostCreated,
                                                      selectedTrack,
                                                      setSelectedTrack,
@@ -68,7 +68,7 @@ const PostCreator: React.FC<PostCreatorProps> = ({
         event.preventDefault();
         try {
             if (files.length > 0 || content || selectedTracks.length > 0) {
-                const newPost = await createPost(profileId, content, files, selectedTracks);
+                const newPost = await createPost(profile.profileId, content, files, selectedTracks);
                 onPostCreated(newPost);
                 setContent('');
                 setPreviewUrls([]);
@@ -104,7 +104,7 @@ const PostCreator: React.FC<PostCreatorProps> = ({
         files.forEach(file => formData.append('files', file));
 
         // Отправляем selectedTracks как JSON-строку с указанием правильного типа
-        formData.append('selectedTracks', new Blob([JSON.stringify(selectedTracks)], { type: 'application/json' }));
+        formData.append('selectedTracks', new Blob([JSON.stringify(selectedTracks)], {type: 'application/json'}));
 
         if (!token) {
             console.error('Токен не найден');
@@ -153,16 +153,19 @@ const PostCreator: React.FC<PostCreatorProps> = ({
                 }}>
                     <form onSubmit={handleSubmit} style={{maxWidth: '700'}}>
 
-                        <TextareaAutosize
-                            value={content}
-                            onChange={handleChange}
-                            onKeyDown={handleKeyDown}
-                            ref={textAreaRef}
-                            className={"create-post-area"}
-                            placeholder={"What's happening?"}
-                            style={{maxHeight: "300px", width: "90%", border: '1px solid gray', borderRadius: '5px'}}
-                        />
-
+                        <Box style={{display: "flex", flexDirection: "row", justifyContent:"center", alignItems:"center", position:"relative"}}>
+                            <img src={profile.profilePictureUrl} className={"avatar"}
+                                 style={{height: '60px', width: '60px'}}/>
+                            <TextareaAutosize
+                                value={content}
+                                onChange={handleChange}
+                                onKeyDown={handleKeyDown}
+                                ref={textAreaRef}
+                                className={"create-post-area"}
+                                placeholder={"What's happening?"}
+                                style={{maxHeight: "300px", width: "90%", border: "none"}}
+                            />
+                        </Box>
 
                         <Box
                             sx={{
@@ -173,12 +176,15 @@ const PostCreator: React.FC<PostCreatorProps> = ({
                         >
 
 
-                            <div className="post-creator-menu">
+                            <div className="post-creator-menu" style={{color: '#1da1f2'}}>
 
                                 <IconButton onClick={handleClickAttachIcon}
-                                            aria-label="attach file"><PanoramaIcon/></IconButton>
-                                <IconButton><OndemandVideoIcon/></IconButton>
-                                <IconButton onClick={handleMusicClick}>
+                                            aria-label="attach file"
+                                            style={{color: '#1da1f2'}}><PanoramaIcon/></IconButton>
+                                <IconButton
+                                    style={{color: '#1da1f2'}}><OndemandVideoIcon/></IconButton>
+                                <IconButton onClick={handleMusicClick}
+                                            style={{color: '#1da1f2'}}>
                                     <MusicNoteIcon/>
                                 </IconButton>
 

@@ -1,8 +1,8 @@
 import { createTheme } from "@mui/material";
 
-export const darkTheme = createTheme({
+export const lightTheme = createTheme({
     palette: {
-        mode: 'dark',
+        mode: 'light',
     },
     components: {
         MuiTextField: {
@@ -11,10 +11,10 @@ export const darkTheme = createTheme({
                     margin: 8,
                     '& .MuiOutlinedInput-root': {
                         '& fieldset': {
-                            borderColor: 'rgba(255, 255, 255, 0.23)',
+                            borderColor: 'rgba(0, 0, 0, 0.23)',
                         },
                         '&:hover fieldset': {
-                            borderColor: 'white',
+                            borderColor: 'black',
                         },
                         '&.Mui-focused fieldset': {
                             borderColor: 'primary.main',
@@ -27,22 +27,22 @@ export const darkTheme = createTheme({
             styleOverrides: {
                 root: {
                     margin: 8,
-                    color: 'white',
+                    color: 'black',
                     borderRadius: '4px',
-                    backgroundColor: '#4b4c57',
+                    backgroundColor: '#f0f0f0',
                     '&:hover': {
-                        backgroundColor: '#656775',
-                        color: '#90caf9',
+                        backgroundColor: '#d6d6d6',
+                        color: '#3f51b5',
                     },
-                    textTransform:"none",
-                    transitionDuration:'0.5s'
+                    textTransform: "none",
+                    transitionDuration: '0.5s'
                 },
             },
         },
         MuiList: {
             styleOverrides: {
                 root: {
-
+                    // Add specific styles for the light theme if needed
                 },
             },
         },
@@ -50,7 +50,7 @@ export const darkTheme = createTheme({
             styleOverrides: {
                 root: {
                     '&:hover': {
-                        backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                        backgroundColor: 'rgba(0, 0, 0, 0.08)',
                         borderRadius: '5px',
                     },
                 },
@@ -59,28 +59,27 @@ export const darkTheme = createTheme({
         MuiListItemIcon: {
             styleOverrides: {
                 root: {
-                    minWidth: 36, // Уменьшаем минимальную ширину для иконок
-                    color: 'rgba(255, 255, 255, 0.7)', // Цвет иконок
+                    minWidth: 36, // Minimal width for icons
+                    color: 'rgba(0, 0, 0, 0.54)', // Icon color for the light theme
                 },
             },
         },
         MuiAvatar: {
             styleOverrides: {
                 root: {
-                    backgroundColor: 'rgba(255, 255, 255, 0.23)', // Фон для аватара
+                    backgroundColor: 'rgba(0, 0, 0, 0.23)', // Background for avatar in light theme
                 },
             },
         },
         MuiListItemText: {
             styleOverrides: {
                 primary: {
-                    color: '#fff', // Белый цвет для основного текста (название трека)
+                    color: '#000', // Black color for primary text (track name)
                 },
                 secondary: {
-                    color: 'rgba(255, 255, 255, 0.7)', // Светлее для второстепенного текста (исполнитель)
+                    color: 'rgba(0, 0, 0, 0.54)', // Lighter for secondary text (artist)
                 },
             },
         },
-
     },
 });

@@ -17,6 +17,7 @@ interface CommentInputProps {
     postId: number;
     profileId: number;
     setPosts;
+    setPostCommentCount;
 }
 
 export interface PostComment {
@@ -33,7 +34,7 @@ export interface PostComment {
     parentId?: number;
 }
 
-export const CommentInput: React.FC<CommentInputProps> = ({postId, profileId, setPosts}) => {
+export const CommentInput: React.FC<CommentInputProps> = ({postId, profileId, setPosts, setPostCommentCount}) => {
     const [comment, setComment] = useState('');
     const [image, setImage] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState('');
@@ -139,10 +140,8 @@ export const CommentInput: React.FC<CommentInputProps> = ({postId, profileId, se
                 .then(() => {
                         fetchComments(postId, token).then((comments) => {
                             setPostComments(comments);
-                            fetchPosts(profileId, token).then((posts) => {
-                                setPosts(posts);
-                            });
                         });
+                        setPostCommentCount();
                     }
                 );
             setComment('');
@@ -195,6 +194,7 @@ export const CommentInput: React.FC<CommentInputProps> = ({postId, profileId, se
                     <RecursiveComment key={comment.id} comment={comment} postId={postId} setPosts={setPosts}
                                       setPostComments={setPostComments} profileId={profileId}
                                       isCommentOpen={openCommentId}
+                                      setPostCommentCount={setPostCommentCount}
                                       onToggleComment={handleCommentSectionToggle} commentRefs={commentRefs}
                                       scrollToParent={scrollToParent}/>
                 ))}

@@ -56,7 +56,7 @@ export const News: React.FC<NewsProps> = ({
             <Grid container spacing={5} sx={{minWidth: "1200px"}}>
                 <Grid item xs={7.4}>
                     <Box marginTop={2}>
-                        <PostCreator profileId={profile.profileId} onPostCreated={handlePostCreated}
+                        <PostCreator profile={profile} onPostCreated={handlePostCreated}
                                      selectedTrack={selectedTrack} setSelectedTrack={setSelectedTrack}
                                      isVisible={isVisible} setIsVisible={setIsVisible}/>
                     </Box>

@@ -45,7 +45,7 @@ export const Login = () => {
             const data = await response.json();
             localStorage.setItem('authToken', data.token);
             localStorage.setItem('currentUserId', data.user.userId);
-            navigate("/profile/" + data.user.userId);
+            navigate("/news/");
         } else {
             console.error('Ошибка при входе');
         }

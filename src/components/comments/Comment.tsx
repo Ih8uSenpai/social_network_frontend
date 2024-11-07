@@ -16,6 +16,7 @@ interface CommentProps {
     comment: PostComment;
     postId;
     setPostComments;
+    setPostCommentCount
     profileId;
     setPosts;
     isCommentOpen;
@@ -25,7 +26,7 @@ interface CommentProps {
 }
 
 
-export const Comment: React.FC<CommentProps> = ({comment, postId, setPostComments, setPosts, profileId, isCommentOpen, onToggleComment, commentRefs, scrollToParent}) => {
+export const Comment: React.FC<CommentProps> = ({comment, postId, setPostComments, setPostCommentCount, setPosts, profileId, isCommentOpen, onToggleComment, commentRefs, scrollToParent}) => {
     const defaultProfileIcon = "http://localhost:8080/src/main/resources/static/standart_icon.jpg";
     const [liked, setLiked] = useState(comment.userLiked);
     const [likesCount, setLikesCount] = useState(comment.likesCount);
@@ -87,6 +88,7 @@ export const Comment: React.FC<CommentProps> = ({comment, postId, setPostComment
                     'Authorization': `Bearer ${token}`,
                 },
             });
+            setPostCommentCount();
         } catch (error) {
             console.error('Error uploading comment:', error);
         }
@@ -110,9 +112,6 @@ export const Comment: React.FC<CommentProps> = ({comment, postId, setPostComment
                 .then(() => {
                         fetchComments(postId, token).then((comments) => {
                             setPostComments(comments);
-                            fetchPosts(profileId, token).then((posts) => {
-                                setPosts(posts);
-                            });
                         });
                     }
                 );

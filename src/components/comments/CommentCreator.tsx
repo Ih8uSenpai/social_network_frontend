@@ -10,10 +10,11 @@ interface PostCreatorProps {
     postId: number;
     profileId: number;
     setPosts;
+    setCommentsCount;
 }
 
 
-export const CommentCreator: React.FC<PostCreatorProps> = ({postId, profileId, setPosts}) => {
+export const CommentCreator: React.FC<PostCreatorProps> = ({postId, profileId, setPosts, setCommentsCount}) => {
     const [content, setContent] = useState('');
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
     const {userId} = useParams();
@@ -40,6 +41,6 @@ export const CommentCreator: React.FC<PostCreatorProps> = ({postId, profileId, s
     const isOwnProfile = currentUserId === userId || userId == null;
 
     return (
-        <CommentInput postId={postId} profileId={profileId} setPosts={setPosts}/>
+        <CommentInput postId={postId} profileId={profileId} setPosts={setPosts} setPostCommentCount={setCommentsCount}/>
     );
 };

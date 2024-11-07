@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import '../styles/UserInfoSection.css';
 import {ProfileStatistics} from "./ProfileStatistics";
-import {Box, Modal, Paper} from "@mui/material";
+import {Box, IconButton, Modal, Paper} from "@mui/material";
 import {fetchComments} from "../../comments/service/CommentService";
 import {fetchPhotos} from "../service/ProfileService";
 import {PostComment} from "../../comments/CommentInput";
@@ -9,29 +9,24 @@ import Post from "../../news/components/Post";
 import Button from "@mui/material/Button";
 import Carousel from "react-material-ui-carousel";
 import '../styles/PhotoSection.css';
+import {photo_box_style} from "../../utils/Constants";
+import CloseIcon from '@mui/icons-material/Close';
+import axios from "axios";
+import {useParams} from "react-router-dom";
 
 interface PhotoInputProps {
     profileId: number;
 }
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '1700px',
-    overflowY: 'auto',
-    bgcolor: '#333',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4
-};
 
 export const PhotoSection: React.FC<PhotoInputProps> = ({profileId}) => {
     const token = localStorage.getItem('authToken');
+    const currentUserId = localStorage.getItem("currentUserId");
+    const {userId} = useParams();
     const [photos, setPhotos] = useState<string[]>([]);
     const [showAll, setShowAll] = useState(false);
     const [open, setOpen] = useState(false);
+    const [hoverIndex, setHoverIndex] = useState(null);
     const [selectedPhoto, setSelectedPhoto] = useState('');
     const [selectedIndex, setSelectedIndex] = useState(0);
     useEffect(() => {
@@ -40,10 +35,26 @@ export const PhotoSection: React.FC<PhotoInputProps> = ({profileId}) => {
         });
     }, [profileId, token]);
 
+    const deletePhoto = async (index) => {
+        try {
+
+            const response = await axios.delete(`http://localhost:8080/api/profiles/photo/${index}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+            fetchPhotos(profileId, token).then((fetchedPhotos) => {
+                setPhotos(fetchedPhotos);
+            });
+        } catch (error) {
+            console.error('Error deleting photo:', error);
+        }
+    };
     const handleOpen = (index) => {
         setSelectedIndex(index);
         setOpen(true);
     };
+
 
     const handleClose = () => {
         setOpen(false);
@@ -52,7 +63,8 @@ export const PhotoSection: React.FC<PhotoInputProps> = ({profileId}) => {
     return (
         <>
             {photos.length == 0 &&
-                <Box sx={{width: '100%', color: '#999', textAlign: 'center', marginTop:5, marginBottom:5}}>Unfortunately, there's no photos added...</Box>}
+                <Box sx={{width: '100%', color: '#999', textAlign: 'center', marginTop: 5, marginBottom: 5}}>Unfortunately,
+                    there's no photos added...</Box>}
             <Paper elevation={4} sx={{
                 padding: 0,
                 margin: 'auto',
@@ -79,11 +91,25 @@ export const PhotoSection: React.FC<PhotoInputProps> = ({profileId}) => {
                         <div key={index} style={{
                             width: 'calc(33.3% - 1px)',
                             display: 'flex',
-                            justifyContent: 'center'
-                        }}>
+                            justifyContent: 'center',
+                            position: "relative"
+                        }}
+                        onMouseLeave={() => setHoverIndex(null)}>
                             <img src={`http://localhost:8080/${photo}`}
                                  style={{width: '100%', height: '200px', objectFit: 'cover', border: '3px solid black'}}
-                                 alt={`Photo ${index + 1}`} onClick={() => handleOpen(index)}/>
+                                 alt={`Photo ${index + 1}`} onClick={() => handleOpen(index)}
+                                 onMouseEnter={() => setHoverIndex(index)}
+                                 />
+                            {index == hoverIndex && currentUserId == userId &&
+                                <CloseIcon sx={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    right: 0,
+                                    background: 'black',
+                                    borderRadius: '50%',
+                                    margin:'5px',
+                                    color:'gray'
+                                }} onClick={() => deletePhoto(index)}/>}
                         </div>
                     ))}
 
@@ -101,7 +127,7 @@ export const PhotoSection: React.FC<PhotoInputProps> = ({profileId}) => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style}>
+                <Box sx={photo_box_style}>
                     <Carousel fullHeightHover={true} autoPlay={false} changeOnFirstRender={true} index={selectedIndex}
                               height={750} className={'photo'}>
                         {photos.map((url, index) => (
