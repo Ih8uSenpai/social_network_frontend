@@ -67,9 +67,9 @@ const TrackList: React.FC<TrackListProps & { onSelectTrack: (track: Track) => vo
                 },
             });
             response.data.map(track => {
-                track.url = "http://localhost:8080/" + track.url;
+                track.url = `${process.env.REACT_APP_BACK_BASE_URL}/` + track.url;
                 if (track.icon_url)
-                    track.icon_url = "http://localhost:8080/" + track.icon_url;
+                    track.icon_url = `${process.env.REACT_APP_BACK_BASE_URL}/` + track.icon_url;
             });
             setTracks(response.data);
             if (!currentTrack && response.data.length > 0 && isPlaying == false) {
@@ -97,9 +97,9 @@ const TrackList: React.FC<TrackListProps & { onSelectTrack: (track: Track) => vo
                 },
             });
             response.data.map(track => {
-                track.url = "http://localhost:8080/" + track.url;
+                track.url = `${process.env.REACT_APP_BACK_BASE_URL}/` + track.url;
                 if (track.icon_url)
-                    track.icon_url = "http://localhost:8080/" + track.icon_url;
+                    track.icon_url = `${process.env.REACT_APP_BACK_BASE_URL}/` + track.icon_url;
             });
 
             setMyTracks(response.data);

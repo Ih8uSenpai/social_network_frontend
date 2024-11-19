@@ -14,7 +14,7 @@ const SearchMessages = () => {
     const [messages, setMessages] = useState<ProfileData[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const defaultProfileIcon = "http://localhost:8080/src/main/resources/static/standart_icon.jpg";
+    const defaultProfileIcon = `${process.env.REACT_APP_BACK_BASE_URL}/src/main/resources/static/standart_icon.jpg`;
 
     useEffect(() => {
         const fetchProfiles = async () => {

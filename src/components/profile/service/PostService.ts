@@ -20,9 +20,9 @@ export async function fetchPosts(profileId: number, token: string): Promise<Post
         const posts: PostData[] = await response.json();
         posts.map(post => {
             post.postTracks.map(track => {
-                track.url = "http://localhost:8080/" + track.url;
+                track.url = `${process.env.REACT_APP_BACK_BASE_URL}/` + track.url;
                 if (track.icon_url)
-                    track.icon_url = "http://localhost:8080/" + track.icon_url;
+                    track.icon_url = `${process.env.REACT_APP_BACK_BASE_URL}/` + track.icon_url;
             });
         });
         return posts;

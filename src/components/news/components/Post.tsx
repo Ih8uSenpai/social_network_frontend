@@ -52,7 +52,7 @@ const Post: React.FC<PostProps> = ({
                                        selectedTrack,
                                        setSelectedTrack
                                    }) => {
-    const defaultProfileIcon = "http://localhost:8080/src/main/resources/static/standart_icon.jpg";
+    const defaultProfileIcon = `${process.env.REACT_APP_BACK_BASE_URL}/src/main/resources/static/standart_icon.jpg`;
     const [liked, setLiked] = useState(post.liked);
     const [likesCount, setLikesCount] = useState(post.likesCount);
     const [commentsCount, setCommentsCount] = useState(post.commentsCount);
@@ -347,7 +347,7 @@ const Post: React.FC<PostProps> = ({
                             background: "rgba(0,0,0,0.4)",
                             borderRadius: 4
                         }} marginLeft={2}>
-                            <img src={`http://localhost:8080/${url}`} alt={`Preview ${index}`}
+                            <img src={`${process.env.REACT_APP_BACK_BASE_URL}/${url}`} alt={`Preview ${index}`}
                                  style={{maxWidth: 630, height: 390, objectFit: 'cover'}}
                                  ref={imgRef}
                                  onClick={() => handleOpen(index)}/>
@@ -363,7 +363,7 @@ const Post: React.FC<PostProps> = ({
                         background: "rgba(0,0,0,0.4)",
                         borderRadius: 4
                     }}>
-                        <img src={`http://localhost:8080/${post.postAttachments[0]}`}
+                        <img src={`${process.env.REACT_APP_BACK_BASE_URL}/${post.postAttachments[0]}`}
                              style={{maxWidth: "630px", maxHeight: "700px", objectFit: 'cover'}}
                              alt="error loading image" ref={imgRef2}
                         onClick={() => handleOpen(0)}/>
@@ -422,7 +422,7 @@ const Post: React.FC<PostProps> = ({
                                     right: 0,
                                     top: -16
                                 }}></p>
-                                <img src={"http://localhost:8080/" + url} alt={`Preview ${url}`}
+                                <img src={`${process.env.REACT_APP_BACK_BASE_URL}/` + url} alt={`Preview ${url}`}
                                      style={{maxWidth: 1750, height: 750, objectFit: 'cover'}}/>
                             </Box>
 
