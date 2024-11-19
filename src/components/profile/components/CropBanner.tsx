@@ -106,7 +106,7 @@ export const CropBanner: React.FC<CropTestProps> = ({profile, token, fetchProfil
             formData.append('image', blob);
 
             try {
-                const response = await fetch(`http://localhost:8080/api/profiles/upload-banner/${profile.user.userId}`, {
+                const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/profiles/upload-banner/${profile.user.userId}`, {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${token}`,

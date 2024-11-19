@@ -38,7 +38,7 @@ export async function fetchFollowers(userId: string, currentUserId): Promise<Pro
 
     try {
         const validatedUserId = userId ? userId : currentUserId;
-        const response = await fetch(`http://localhost:8080/api/profiles/${validatedUserId}/followers`, {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/profiles/${validatedUserId}/followers`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'

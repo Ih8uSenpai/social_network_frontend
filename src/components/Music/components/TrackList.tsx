@@ -61,7 +61,7 @@ const TrackList: React.FC<TrackListProps & { onSelectTrack: (track: Track) => vo
 
     const fetchTracks = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/api/tracks', {
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/tracks`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -91,7 +91,7 @@ const TrackList: React.FC<TrackListProps & { onSelectTrack: (track: Track) => vo
 
         const param = userId ? userId : "my";
         try {
-            const response = await axios.get(`http://localhost:8080/api/playlists/${param}`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/playlists/${param}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },

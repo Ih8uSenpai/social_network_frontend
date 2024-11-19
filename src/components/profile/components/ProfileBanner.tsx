@@ -86,7 +86,7 @@ export const ProfileBanner: React.FC<ProfileBannerProps> = ({
                     return;
                 }
 
-                const response = await fetch(`http://localhost:8080/api/profiles/upload-${activeForm}/${profile.user.userId}`, {
+                const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/profiles/upload-${activeForm}/${profile.user.userId}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     },

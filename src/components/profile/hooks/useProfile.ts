@@ -10,7 +10,7 @@ export const useProfile = (userId: string | undefined, currentUserId: string | n
 
     const fetchProfile = async () => {
         try {
-            const url = userId ? `http://localhost:8080/api/profiles/other/${userId}` : 'http://localhost:8080/api/profiles/me';
+            const url = userId ? `${process.env.REACT_APP_API_BASE_URL}/profiles/other/${userId}` : `${process.env.REACT_APP_API_BASE_URL}/profiles/me`;
             const response = await fetch(url, {
                 headers: {
                     'Authorization': `Bearer ${token}`

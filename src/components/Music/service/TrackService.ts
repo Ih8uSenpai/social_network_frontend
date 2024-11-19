@@ -5,7 +5,7 @@ export async function createPlaylist(name: string, description:string, token: st
 
     try {
 
-        const response = await fetch(`http://localhost:8080/api/playlists`, {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/playlists`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export async function addTrack(playlistId:number, track:Track, token: string): P
 
     try {
 
-        const response = await fetch(`http://localhost:8080/api/playlists/${playlistId}/tracks`, {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/playlists/${playlistId}/tracks`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ export async function deleteTrack(playlistId:number, track:Track, token: string)
 
     try {
 
-        const response = await fetch(`http://localhost:8080/api/playlists/${playlistId}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/playlists/${playlistId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

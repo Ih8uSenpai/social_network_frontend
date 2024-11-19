@@ -4,7 +4,7 @@ export async function fetchNewsFeed(userId: number, token: string): Promise<Post
 
     try {
 
-        const response = await fetch(`http://localhost:8080/api/posts/feed?userId=${userId}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/posts/feed?userId=${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

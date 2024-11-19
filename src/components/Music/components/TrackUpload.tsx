@@ -34,7 +34,7 @@ export const TrackUpload: React.FC<TrackUploadProps> = ({ token }) => {
         formData.append('track', JSON.stringify({ title, artist }));
 
         try {
-            await axios.post('http://localhost:8080/api/tracks/upload', formData, {
+            await axios.post(`${process.env.REACT_APP_API_BASE_URL}/tracks/upload`, formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',

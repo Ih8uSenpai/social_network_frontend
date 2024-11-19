@@ -38,7 +38,7 @@ export const PhotoSection: React.FC<PhotoInputProps> = ({profileId}) => {
     const deletePhoto = async (index) => {
         try {
 
-            const response = await axios.delete(`http://localhost:8080/api/profiles/photo/${index}`, {
+            const response = await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/profiles/photo/${index}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },

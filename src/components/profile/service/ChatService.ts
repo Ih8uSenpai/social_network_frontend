@@ -10,7 +10,7 @@ export async function createChat(name: string, token: string, currentUserId: str
     }
 
     try {
-        const response = await fetch('http://localhost:8080/api/chats/create', {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/chats/create`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ export const fetchChats = async (setChats) => {
     }
 
     try {
-        const response = await fetch('http://localhost:8080/api/chats', {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/chats`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

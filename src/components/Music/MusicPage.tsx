@@ -34,7 +34,7 @@ export const MusicPage = ({selectedTrack, setSelectedTrack}) => {
     const handleSearch = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.get('http://localhost:8080/api/tracks/search', {
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/tracks/search`, {
                 params: { query: search },
                 headers: {
                     'Authorization': `Bearer ${token}`

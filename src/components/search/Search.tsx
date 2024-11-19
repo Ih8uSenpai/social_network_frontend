@@ -41,7 +41,7 @@ const Search = () => {
                 // Обработка отсутствия токена, например, перенаправление на страницу входа
             }
             try {
-                const response = await fetch(`http://localhost:8080/api/profiles/search?query=${query}`, {
+                const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/profiles/search?query=${query}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

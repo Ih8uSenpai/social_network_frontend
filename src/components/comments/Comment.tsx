@@ -57,7 +57,7 @@ export const Comment: React.FC<CommentProps> = ({comment, postId, setPostComment
         }
 
         const method = liked ? 'DELETE' : 'comment';
-        const response = await fetch(`http://localhost:8080/api/comments/${comment.id}/likes`, {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/comments/${comment.id}/likes`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -83,7 +83,7 @@ export const Comment: React.FC<CommentProps> = ({comment, postId, setPostComment
             const formData = new FormData();
             formData.append('file', image);
             formData.append('content', commentContent)
-            const response = await axios.post(`http://localhost:8080/api/profiles/post/${postId}/${parentCommentId}/commentReply`, formData, {
+            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/profiles/post/${postId}/${parentCommentId}/commentReply`, formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },

@@ -106,7 +106,7 @@ const Post: React.FC<PostProps> = ({
             }
 
             const response = await axios.post(
-                `http://localhost:8080/api/profiles/pinPost/${postId}`,
+                `${process.env.REACT_APP_API_BASE_URL}/profiles/pinPost/${postId}`,
                 {},
                 {
                     headers: {
@@ -138,7 +138,7 @@ const Post: React.FC<PostProps> = ({
             }
 
             const response = await axios.post(
-                `http://localhost:8080/api/profiles/unpinPost`,
+                `${process.env.REACT_APP_API_BASE_URL}/profiles/unpinPost`,
                 {},
                 {
                     headers: {
@@ -169,7 +169,7 @@ const Post: React.FC<PostProps> = ({
         }
 
         try {
-            await axios.post(`http://localhost:8080/api/posts/mark-viewed`, {
+            await axios.post(`${process.env.REACT_APP_API_BASE_URL}/posts/mark-viewed`, {
                 postId: post.id,
                 userId: userId,
                 viewType: viewType
@@ -220,7 +220,7 @@ const Post: React.FC<PostProps> = ({
         }
 
         const method = liked ? 'DELETE' : 'POST';
-        const response = await fetch(`http://localhost:8080/api/posts/${post.id}/likes`, {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/posts/${post.id}/likes`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -244,7 +244,7 @@ const Post: React.FC<PostProps> = ({
             return;
         }
 
-        const response = await fetch(`http://localhost:8080/api/profiles/${post.id}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/profiles/${post.id}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'

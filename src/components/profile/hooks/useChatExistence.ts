@@ -8,7 +8,7 @@ export const useChatExistence = (userId: string | undefined, token: string | nul
     const checkIfChatExisting = async () => {
         if (!userId || !token) return;
         try {
-            const response = await fetch(`http://localhost:8080/api/chats/isExisting/${userId}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/chats/isExisting/${userId}`, {
                 headers: { 'Authorization': `Bearer ${token}` },
             });
             if (!response.ok) throw new Error('Network response was not ok.');

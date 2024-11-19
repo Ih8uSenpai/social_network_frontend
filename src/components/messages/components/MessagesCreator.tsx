@@ -58,7 +58,7 @@ const MessagesCreator: React.FC<MessagesCreatorProps> = ({
             }
 
             const response = await axios.post(
-                `http://localhost:8080/api/chats/${chatId}/messages`,
+                `${process.env.REACT_APP_API_BASE_URL}/chats/${chatId}/messages`,
                 { content },
                 {
                     headers: {
@@ -91,7 +91,7 @@ const MessagesCreator: React.FC<MessagesCreatorProps> = ({
                 return;
             }
             const response = await axios.put(
-                `http://localhost:8080/api/chats/messages`,
+                `${process.env.REACT_APP_API_BASE_URL}/chats/messages`,
                 editMessage,
                 {
                     headers: {
@@ -170,7 +170,7 @@ const MessagesCreator: React.FC<MessagesCreatorProps> = ({
             return;
         }
 
-        const response = await fetch(`http://localhost:8080/api/chats/${chatId}/messages`, {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/chats/${chatId}/messages`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,

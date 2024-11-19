@@ -7,7 +7,7 @@ export const useFollowingStatus = (userId: string | undefined, token: string | n
     const checkIfFollowing = async () => {
         if (!userId || !token) return;
         try {
-            const response = await fetch(`http://localhost:8080/api/profiles/isFollowing/${userId}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/profiles/isFollowing/${userId}`, {
                 headers: { 'Authorization': `Bearer ${token}` },
             });
             if (!response.ok) throw new Error('Network response was not ok.');
@@ -27,7 +27,7 @@ export const useFollowingStatus = (userId: string | undefined, token: string | n
 
         try {
             const method = isFollowing ? 'DELETE' : 'POST';
-            const response = await fetch(`http://localhost:8080/api/profiles/${method === 'POST' ? 'follow' : 'unfollow'}/${userId}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/profiles/${method === 'POST' ? 'follow' : 'unfollow'}/${userId}`, {
                 method: method,
                 headers: {
                     'Authorization': `Bearer ${token}`

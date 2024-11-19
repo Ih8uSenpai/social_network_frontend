@@ -5,7 +5,7 @@ export async function fetchPosts(profileId: number, token: string): Promise<Post
 
     try {
 
-        const response = await fetch(`http://localhost:8080/api/profiles/${profileId}/posts`, {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/profiles/${profileId}/posts`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export async function fetchPosts(profileId: number, token: string): Promise<Post
 
 export async function fetchLikedPosts(token: string): Promise<PostData[]> {
     try {
-        const response = await axios.get<PostData[]>('http://localhost:8080/api/posts/liked', {
+        const response = await axios.get<PostData[]>(`${process.env.REACT_APP_API_BASE_URL}/posts/liked`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
@@ -50,7 +50,7 @@ export async function fetchLikedPosts(token: string): Promise<PostData[]> {
 
 export async function fetchRecommendedPosts(token: string): Promise<PostData[]> {
     try {
-        const response = await axios.get<PostData[]>('http://localhost:8080/api/posts/recommendations', {
+        const response = await axios.get<PostData[]>(`${process.env.REACT_APP_API_BASE_URL}/posts/recommendations`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,

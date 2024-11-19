@@ -8,7 +8,7 @@ export async function countPostsPerPeriod  (profileId: number, fromDate, toDate,
     formData.append('toDate', toDate);
 
     try {
-        const response = await axios.post('http://localhost:8080/api/statistics/postsPerPeriod', formData, {
+        const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/statistics/postsPerPeriod`, formData, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -29,7 +29,7 @@ export async function countLikesPerPeriod  (profileId: number, fromDate, toDate,
     formData.append('toDate', toDate);
 
     try {
-        const response = await axios.post('http://localhost:8080/api/statistics/likesPerPeriod', formData, {
+        const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/statistics/likesPerPeriod`, formData, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -50,7 +50,7 @@ export async function countCommentsPerPeriod  (profileId: number, fromDate, toDa
     formData.append('toDate', toDate);
 
     try {
-        const response = await axios.post('http://localhost:8080/api/statistics/commentsPerPeriod', formData, {
+        const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/statistics/commentsPerPeriod`, formData, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -71,7 +71,7 @@ export async function countFollowersPerPeriod  (userId: number, fromDate, toDate
     formData.append('toDate', toDate);
 
     try {
-        const response = await axios.post('http://localhost:8080/api/statistics/followersPerPeriod', formData, {
+        const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/statistics/followersPerPeriod`, formData, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -92,7 +92,7 @@ export async function countFollowingPerPeriod  (userId: number, fromDate, toDate
     formData.append('toDate', toDate);
 
     try {
-        const response = await axios.post('http://localhost:8080/api/statistics/followingPerPeriod', formData, {
+        const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/statistics/followingPerPeriod`, formData, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -113,7 +113,7 @@ export async function countVisitsPerPeriod  (userId: number, fromDate, toDate, t
     formData.append('toDate', toDate);
 
     try {
-        const response = await axios.post('http://localhost:8080/api/statistics/visitsPerPeriod', formData, {
+        const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/statistics/visitsPerPeriod`, formData, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },

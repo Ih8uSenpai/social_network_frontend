@@ -2,7 +2,7 @@ import React, {ReactNode, useEffect, useState} from 'react';
 import { Navigate } from 'react-router-dom';
 
 const validateToken = async (token: string): Promise<boolean> => {
-    const response = await fetch('http://localhost:8080/api/profiles/me', {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/profiles/me`, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,

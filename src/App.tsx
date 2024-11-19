@@ -17,6 +17,7 @@ import {AudioPlayerProvider} from "./components/Music/components/AudioPlayerCont
 import Layout from "./components/common/Layout";
 import SettingsPage from "./components/settings/SettingsPage";
 
+
 function App() {
     const [selectedTrack, setSelectedTrack] = React.useState(null);
     const [isVisible, setIsVisible] = React.useState(false);

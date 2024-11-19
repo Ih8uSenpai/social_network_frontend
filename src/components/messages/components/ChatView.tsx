@@ -65,7 +65,7 @@ const Message: React.FC<{
         if (messageObject.sender.userId == Number(currentUserId))
             return;
 
-        await fetch(`http://localhost:8080/api/chats/mark-viewed`, {
+        await fetch(`${process.env.REACT_APP_API_BASE_URL}/chats/mark-viewed`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -241,7 +241,7 @@ export const ChatView: React.FC<ChatViewProps> = ({chat, onBack}) => {
                 return;
             }
             const response = await axios.post(
-                `http://localhost:8080/api/chats/messages/delete`,
+                `${process.env.REACT_APP_API_BASE_URL}/chats/messages/delete`,
                 selectedMessages,
                 {
                     headers: {
@@ -265,7 +265,7 @@ export const ChatView: React.FC<ChatViewProps> = ({chat, onBack}) => {
 
     const fetchMessages = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/api/chats/${chat.id}/messages`, {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/chats/${chat.id}/messages`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'

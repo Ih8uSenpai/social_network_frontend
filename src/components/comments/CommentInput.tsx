@@ -105,7 +105,7 @@ export const CommentInput: React.FC<CommentInputProps> = ({postId, profileId, se
             const formData = new FormData();
             formData.append('file', image);
             formData.append('content', comment)
-            const response = await axios.post(`http://localhost:8080/api/profiles/post/${postId}/comment`, formData, {
+            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/profiles/post/${postId}/comment`, formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -120,7 +120,7 @@ export const CommentInput: React.FC<CommentInputProps> = ({postId, profileId, se
             const formData = new FormData();
             formData.append('file', image);
             formData.append('content', comment)
-            const response = await axios.post(`http://localhost:8080/api/profiles/post/${postId}/${parentCommentId}/commentReply`, formData, {
+            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/profiles/post/${postId}/${parentCommentId}/commentReply`, formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },

@@ -60,7 +60,7 @@ export const Messages = () => {
                 return;
             }
             const response = await axios.post(
-                `http://localhost:8080/api/chats/messages/delete`,
+                `${process.env.REACT_APP_API_BASE_URL}/chats/messages/delete`,
                 selectedMessages,
                 {
                     headers: {
@@ -84,7 +84,7 @@ export const Messages = () => {
 
     const fetchMessages = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/api/chats/${selectedChat.id}/messages`, {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/chats/${selectedChat.id}/messages`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
@@ -166,7 +166,7 @@ export const Messages = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:8080/api/chats/create', {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/chats/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -199,7 +199,7 @@ export const Messages = () => {
             return;
         }
         try {
-            const response = await axios.get('http://localhost:8080/api/chats/search', {
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/chats/search`, {
                 params: {query: search},
                 headers: {
                     'Authorization': `Bearer ${token}`

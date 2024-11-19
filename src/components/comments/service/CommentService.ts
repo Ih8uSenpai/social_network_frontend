@@ -5,7 +5,7 @@ export async function fetchComments(postId: number, token: string): Promise<Post
 
     try {
 
-        const response = await fetch(`http://localhost:8080/api/posts/${postId}/comments`, {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/posts/${postId}/comments`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

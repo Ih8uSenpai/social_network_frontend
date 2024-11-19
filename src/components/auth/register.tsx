@@ -50,7 +50,7 @@ export const Register:React.FC<RegisterProps> = ({register, setRegister}) => {
 
         try {
             try {
-                const registrationResponse = await fetch('http://localhost:8080/api/users/register', {
+                const registrationResponse = await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/register`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

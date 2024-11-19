@@ -21,7 +21,7 @@ const UserTooltip = ({tag}) => {
             return;
         }
         try {
-            const response = await axios.get(`http://localhost:8080/api/profiles/findByTag?tag=${tag}`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/profiles/findByTag?tag=${tag}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

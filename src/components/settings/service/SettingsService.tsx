@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8080/api'; // Update this URL to match your backend's base URL
+
 export const changePassword = async (userId, oldPassword, newPassword) => {
     try {
         const response = await axios.put(
-            `${API_BASE_URL}/users/${userId}/change-password`,
+            `${process.env.REACT_APP_API_BASE_URL}/users/${userId}/change-password`,
             null, // No body needed as we're using query parameters
             {
                 params: {
@@ -26,7 +26,7 @@ export const changePassword = async (userId, oldPassword, newPassword) => {
 export const changeUsername = async (userId, newUsername) => {
     try {
         const response = await axios.put(
-            `${API_BASE_URL}/users/${userId}/change-username`,
+            `${process.env.REACT_APP_API_BASE_URL}/users/${userId}/change-username`,
             null,
             {
                 params: {
@@ -47,7 +47,7 @@ export const changeUsername = async (userId, newUsername) => {
 export const changeEmail = async (userId, newEmail) => {
     try {
         const response = await axios.put(
-            `${API_BASE_URL}/users/${userId}/change-email`,
+            `${process.env.REACT_APP_API_BASE_URL}/users/${userId}/change-email`,
             null,
             {
                 params: {
@@ -68,7 +68,7 @@ export const changeEmail = async (userId, newEmail) => {
 export const changeFirstName = async (profileId, firstName) => {
     try {
         const response = await axios.put(
-            `${API_BASE_URL}/profiles/${profileId}/update-firstname`,
+            `${process.env.REACT_APP_API_BASE_URL}/profiles/${profileId}/update-firstname`,
             null,
             {
                 params: {
@@ -89,7 +89,7 @@ export const changeFirstName = async (profileId, firstName) => {
 export const changeLastName = async (profileId, lastName) => {
     try {
         const response = await axios.put(
-            `${API_BASE_URL}/profiles/${profileId}/update-lastname`,
+            `${process.env.REACT_APP_API_BASE_URL}/profiles/${profileId}/update-lastname`,
             null,
             {
                 params: {
@@ -110,7 +110,7 @@ export const changeLastName = async (profileId, lastName) => {
 export const changeTag = async (profileId, tag) => {
     try {
         const response = await axios.put(
-            `${API_BASE_URL}/profiles/${profileId}/change-tag`,
+            `${process.env.REACT_APP_API_BASE_URL}/profiles/${profileId}/change-tag`,
             null,
             {
                 params: {
@@ -134,7 +134,7 @@ export const changeTag = async (profileId, tag) => {
 // Деактивация пользователя
 export const deactivateUser = async (userId: number): Promise<void> => {
     try {
-        const response = await axios.put(`${API_BASE_URL}/users/${userId}/deactivate`,
+        const response = await axios.put(`${process.env.REACT_APP_API_BASE_URL}/users/${userId}/deactivate`,
             null,
             {
                 headers: {
@@ -152,7 +152,7 @@ export const deactivateUser = async (userId: number): Promise<void> => {
 // Восстановление пользователя
 export const restoreUser = async (userId: number): Promise<void> => {
     try {
-        const response = await axios.put(`${API_BASE_URL}/users/${userId}/restore`,
+        const response = await axios.put(`${process.env.REACT_APP_API_BASE_URL}/users/${userId}/restore`,
             null,
             {
                 headers: {

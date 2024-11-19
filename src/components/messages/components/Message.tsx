@@ -43,7 +43,7 @@ export const Message: React.FC<{
         if (messageObject.sender.userId == Number(currentUserId))
             return;
 
-        await fetch(`http://localhost:8080/api/chats/mark-viewed`, {
+        await fetch(`${process.env.REACT_APP_API_BASE_URL}/chats/mark-viewed`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -32,7 +32,7 @@ export const Login = () => {
     const handleSubmit = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
 
-        const response = await fetch('http://localhost:8080/api/users/login', {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

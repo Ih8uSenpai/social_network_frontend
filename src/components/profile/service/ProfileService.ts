@@ -9,7 +9,7 @@ export const handleUserFollowNavigation = (userId: string, currentUserId: string
 export const updateProfile = async (profileData: ProfileData, updates: Partial<ProfileData>, token: String) => {
     const body = { ...profileData, ...updates };
     try {
-        const response = await fetch('http://localhost:8080/api/profiles/me', {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/profiles/me`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export async function fetchPhotos(profileId: number, token: string): Promise<str
 
     try {
 
-        const response = await fetch(`http://localhost:8080/api/profiles/${profileId}/photos`, {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/profiles/${profileId}/photos`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ export async function fetchPhotos(profileId: number, token: string): Promise<str
 
 export const registerVisit = async (userId:string, token: String) => {
     try {
-        const response = await fetch(`http://localhost:8080/api/profiles/visit/${userId}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/profiles/visit/${userId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ export async function fetchProfiles (query:string): Promise<ProfileData[]> {
         // Обработка отсутствия токена, например, перенаправление на страницу входа
     }
     try {
-        const response = await fetch(`http://localhost:8080/api/profiles/search?query=${query}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/profiles/search?query=${query}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

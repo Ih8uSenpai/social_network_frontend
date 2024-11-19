@@ -46,7 +46,7 @@ export const NewsSidebar: React.FC<NewsSidebarProps> = ({
     const handleSearch = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.get('http://localhost:8080/api/posts/search', {
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/posts/search`, {
                 params: {query: search},
                 headers: {
                     'Authorization': `Bearer ${token}`
