@@ -12,14 +12,14 @@ import {
     ThemeProvider,
     Typography
 } from "@mui/material";
-import {darkTheme} from "../../profile/themes/DarkTheme";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {logout} from "../../auth/service/UserService";
 import {fetchLikedPosts, fetchPosts, fetchRecommendedPosts} from "../../profile/service/PostService";
 import {fetchNewsFeed} from "../service/NewsService";
-import axios from "axios";
-
+import axios from "../../../config/axiosConfig";
+import SearchIcon from '@mui/icons-material/Search';
+import ArticleIcon from '@mui/icons-material/Article';
 
 interface NewsSidebarProps {
     section: string;
@@ -47,47 +47,53 @@ export const NewsSidebar: React.FC<NewsSidebarProps> = ({
         event.preventDefault();
         try {
             const response = await axios.get('http://localhost:8080/api/posts/search', {
-                params: { query: search },
+                params: {query: search},
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
 
             setPosts(response.data);
+            onSectionChange("search");
+            setSearch("");
         } catch (error) {
             console.error('Ошибка при поиске треков:', error);
         }
     };
 
     return (
-        <ThemeProvider theme={darkTheme}>
 
-            <Paper elevation={4} sx={{padding: 2, margin: 'auto', maxWidth: 600, bgcolor: 'rgba(0, 0, 0, 0.4)'}}>
-                <form onSubmit={handleSearch} className="header-search header-search-full-width"
-                      style={{marginBottom: "30px", marginTop: "30px"}}>
-                    <input
-                        type="text"
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                        placeholder="Search for posts..."
-                    />
-                </form>
+            <Paper elevation={4} sx={{padding: 2, margin: 'auto', maxWidth: 300, bgcolor: 'var(--background-color3)', color:'var(--text-color)'}}>
                 <List>
+                    <ListItem className={section === "search" ? "active" : ""}>
+
+                        <form onSubmit={handleSearch} className="news-sidebar-search">
+                            <input
+                                type="text"
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                                placeholder="Search for posts"
+                            />
+                        </form>
+                    </ListItem>
                     <ListItem className={section === "news" ? "active" : ""}
-                              onClick={() => {onSectionChange("news");
+                              onClick={() => {
+                                  onSectionChange("news");
                                   fetchNewsFeed(Number(currentUserId), token)
                                       .then((posts) => {
                                           setPosts(posts);
-                                      });}}>News</ListItem>
+                                      });
+                              }}>News</ListItem>
                     <ListItem className={section === "liked" ? "active" : ""}
-                              onClick={() => {onSectionChange("liked");
+                              onClick={() => {
+                                  onSectionChange("liked");
                                   fetchLikedPosts(token)
                                       .then((posts) => {
                                           setPosts(posts);
-                                      });}}>Liked</ListItem>
+                                      });
+                              }}>Liked</ListItem>
                     <ListItem className={section === "recommendations" ? "active" : ""}
-                              onClick={() =>
-                              {
+                              onClick={() => {
                                   onSectionChange("recommendations");
                                   fetchRecommendedPosts(token)
                                       .then((posts) => {
@@ -97,6 +103,5 @@ export const NewsSidebar: React.FC<NewsSidebarProps> = ({
                 </List>
             </Paper>
 
-        </ThemeProvider>
     );
 }

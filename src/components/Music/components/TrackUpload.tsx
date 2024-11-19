@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from "axios";
+import axios from "../../../config/axiosConfig";
 import { Box, TextField, Button } from '@mui/material';
 
 interface TrackUploadProps {

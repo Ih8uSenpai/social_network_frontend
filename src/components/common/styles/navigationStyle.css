@@ -1,19 +1,31 @@
-.navigation-list {
+.navigation-list-positioning {
     position: fixed;
-    left: calc(50% - 600px - 125px);
-    top: 0%;
+    left: calc(50% - 550px - 125px);
+    top: 0;
     margin: 0;
     height: 100vh;
-
-    background: rgba(0, 0 , 0, 0.5);
+    background: linear-gradient(95deg, transparent, var(--background-color) 80%);
+    border: none;
     padding: 0;
     z-index: 999;
+    list-style: none;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.navigation-list {
+    padding: 0;
+    margin: 0;
+    border: none;
     list-style: none;
     width: 250px;
 }
 
 @media (max-width: 1450px) {
-    .navigation-list {
+    .navigation-list-positioning {
         left: 0;
     }
 
@@ -31,13 +43,13 @@
 }
 
 .navigation-list li a {
-    color: #aaaaaa;
+    color: var(--text-color);
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .navigation-list li a:hover {
-    color: #dddddd; /* Цвет ссылок при наведении */
+    color: var(--text-color4);
 }
 
 .logout-btn{
@@ -49,4 +61,24 @@
 .logout-btn:hover{
     color: indianred;
     transition-duration: 1s;
+}
+
+.user-details-on-panel{
+    position: relative;
+    display: flex;
+    margin-bottom: 20px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.user-details-on-panel:hover{
+    background: var(--background-color9);
+    border-radius: 50px;
+    transition-duration: 1s;
+}
+
+.MuiMenu-paper {
+    background-color: red;
+    color: #fff;
+    border-radius: 8px;
 }

@@ -11,7 +11,7 @@ import Carousel from "react-material-ui-carousel";
 import '../styles/PhotoSection.css';
 import {photo_box_style} from "../../utils/Constants";
 import CloseIcon from '@mui/icons-material/Close';
-import axios from "axios";
+import axios from "../../../config/axiosConfig";
 import {useParams} from "react-router-dom";
 
 interface PhotoInputProps {
@@ -65,11 +65,11 @@ export const PhotoSection: React.FC<PhotoInputProps> = ({profileId}) => {
             {photos.length == 0 &&
                 <Box sx={{width: '100%', color: '#999', textAlign: 'center', marginTop: 5, marginBottom: 5}}>Unfortunately,
                     there's no photos added...</Box>}
-            <Paper elevation={4} sx={{
+            <Paper elevation={0} sx={{
                 padding: 0,
                 margin: 'auto',
-                width: 700,
-                bgcolor: 'rgba(0, 0, 0, 0.4)',
+                width: 650,
+                bgcolor: 'transparent',
                 color: 'black',
                 display: 'flex',
                 flexDirection: 'column',
@@ -77,11 +77,11 @@ export const PhotoSection: React.FC<PhotoInputProps> = ({profileId}) => {
 
             }}>
 
-                <Paper elevation={4} sx={{
+                <Paper elevation={0} sx={{
                     padding: 0,
                     margin: 'auto',
-                    width: 700,
-                    bgcolor: 'rgba(0, 0, 0, 0.4)',
+                    width: 650,
+                    bgcolor: 'transparent',
                     color: 'black',
                     display: 'flex',
                     flexWrap: 'wrap',
@@ -96,7 +96,7 @@ export const PhotoSection: React.FC<PhotoInputProps> = ({profileId}) => {
                         }}
                         onMouseLeave={() => setHoverIndex(null)}>
                             <img src={`http://localhost:8080/${photo}`}
-                                 style={{width: '100%', height: '200px', objectFit: 'cover', border: '3px solid black'}}
+                                 style={{width: '100%', height: '200px', objectFit: 'cover', border: '2px solid black'}}
                                  alt={`Photo ${index + 1}`} onClick={() => handleOpen(index)}
                                  onMouseEnter={() => setHoverIndex(index)}
                                  />

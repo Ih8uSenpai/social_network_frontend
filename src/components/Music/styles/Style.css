@@ -18,7 +18,7 @@
 
 
 .active{
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--background-color5);
     border-radius: 5px;
 }
 
@@ -35,7 +35,7 @@
     font-size: 1.5em;
 }
 .music-navigation-panel ul li{
-    color: #dddddd;
+    color: var(--text-color4);
     border-radius: 5px;
     cursor: pointer;
     padding: 2px 10px 2px 10px;
@@ -47,8 +47,8 @@
 }
 
 .music-navigation-panel li.active{
-    background: rgba(255, 255, 255, 0.1);
-    color: #eeeeee;
+    background: var(--background-color5);
+    color: var(--text-color4);
     transition-duration: 0.5s;
 }
 

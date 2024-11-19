@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Header from '../common/header';
 // @ts-ignore
-import video from "../resources/videos/bg3.mp4";
 
 interface Errors {
     username?: string;

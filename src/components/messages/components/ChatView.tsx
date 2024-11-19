@@ -13,7 +13,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ClearIcon from "@mui/icons-material/Clear";
-import axios from "axios";
+import axios from "../../../config/axiosConfig";
 import {fetchPosts} from "../../profile/service/PostService";
 import {Close} from "@mui/icons-material";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -389,6 +389,9 @@ export const ChatView: React.FC<ChatViewProps> = ({chat, onBack}) => {
                                         />
                                     </div>
                                 : null}
+
+
+
 
                             <div className={"messages"} style={{marginTop: 50}}>
                                 {messages.length > 0 ? (

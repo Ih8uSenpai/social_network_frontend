@@ -94,7 +94,7 @@ export const Following: React.FC<FollowingProps> = ({
                     </IconButton>
 
 
-                    <List style={{marginTop: 0, paddingTop: 10}}>
+                    <List style={{marginTop: 0, paddingTop: 10, background:"transparent"}}>
                         <div className="follower-entry-container" style={{width: '100%'}}>
                             {following.map(profile => (
                                 <div key={profile.profileId} className="follower-entry" style={{width: '100%'}}>
@@ -117,7 +117,7 @@ export const Following: React.FC<FollowingProps> = ({
                                         <p
                                             style={{
                                                 fontSize: '1.5em',
-                                                color: "white",
+                                                color:'var(--text-color)',
                                                 textDecoration: "none",
                                                 alignSelf: "flex-start",
                                                 marginLeft: '10px',

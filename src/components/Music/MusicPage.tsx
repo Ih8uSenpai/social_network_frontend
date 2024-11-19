@@ -5,10 +5,9 @@ import styles from "../profile/styles/UserProfile.module.css";
 import NavigationList from "../common/navigationList";
 import {MusicNavigationPanel} from "./components/MusicNavigationPanel";
 // @ts-ignore
-import video from "../resources/videos/bg3.mp4";
 import {Paper} from "@mui/material";
 import {useAudioPlayer} from "./components/AudioPlayerContext";
-import axios from "axios";
+import axios from "../../config/axiosConfig";
 
 
 export const MusicPage = ({selectedTrack, setSelectedTrack}) => {
@@ -58,8 +57,6 @@ export const MusicPage = ({selectedTrack, setSelectedTrack}) => {
     };
 
     return (
-
-        <>
             <div>
                 {selectedTrack && (
                     <TrackPlayer selectedTrack={selectedTrack} isVisible={true}
@@ -68,8 +65,8 @@ export const MusicPage = ({selectedTrack, setSelectedTrack}) => {
                 <Paper elevation={4} sx={{
                     padding: 2,
                     margin: 'auto',
-                    bgcolor: 'rgba(0, 0, 0, 0.6)',
-                    color: 'black',
+                    background: 'var(--background-color3)',
+                    color: 'var(--text-color)',
                     marginBottom: 2,
                     borderRadius: 5,
                     border: '1px solid grey'
@@ -90,7 +87,5 @@ export const MusicPage = ({selectedTrack, setSelectedTrack}) => {
                           onSelectTrack={setTrack} isProfilePage={false} setIsVisible={() => {
                 }} setTracks={setTracks} tracks={tracks} selectedTracks={[]}/>
             </div>
-        </>
-
     );
 };

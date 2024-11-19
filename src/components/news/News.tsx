@@ -16,7 +16,6 @@ import {PostData, ProfileData} from "../utils/Types";
 import {NavigateFunction} from "react-router-dom";
 import styles from "../profile/styles/UserProfile.module.css"
 // @ts-ignore
-import video from '../resources/videos/bg3.mp4';
 import {TrackPlayer2} from "../Music/components/TrackPlayer2";
 import {NewsSidebar} from "./components/NewsSidebar";
 
@@ -53,8 +52,8 @@ export const News: React.FC<NewsProps> = ({
     return (
         <div style={{marginLeft: 10}}>
 
-            <Grid container spacing={5} sx={{minWidth: "1200px"}}>
-                <Grid item xs={7.4}>
+            <Grid container spacing={5} sx={{minWidth: "1100px"}}>
+                <Grid item xs={8.4}>
                     <Box marginTop={2}>
                         <PostCreator profile={profile} onPostCreated={handlePostCreated}
                                      selectedTrack={selectedTrack} setSelectedTrack={setSelectedTrack}
@@ -67,7 +66,7 @@ export const News: React.FC<NewsProps> = ({
                     </Box>
                 </Grid>
 
-                <Grid item xs={4.4} marginTop={2}>
+                <Grid item xs={3.3} marginTop={2}>
                     <NewsSidebar section={section} setSection={setSection} onSectionChange={handleSectionChange}
                                  setPosts={setPosts}/>
                 </Grid>

@@ -5,7 +5,7 @@ import {PostComment} from "./CommentInput";
 import {useProfile} from "../profile/hooks/useProfile";
 import {fetchComments} from "./service/CommentService";
 import {fetchPosts} from "../profile/service/PostService";
-import axios from "axios";
+import axios from "../../config/axiosConfig";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import SendIcon from "@mui/icons-material/Send";
 import ReplyIcon from '@mui/icons-material/Reply';
@@ -157,7 +157,7 @@ export const Comment: React.FC<CommentProps> = ({comment, postId, setPostComment
                                 {comment.parentId &&
                                 <KeyboardReturnIcon style={{fontSize:18, marginLeft:10, cursor:"pointer"}} onClick={() => scrollToParent(comment.parentId)}/>}
                             </div>
-                            <p style={{margin: 0, color: "#eee"}}>{comment.content}</p>
+                            <p style={{margin: 0, color: "var(--text-color3)"}}>{comment.content}</p>
                             <Box sx={{marginTop: 0.5}}>
                             <span style={{
                                 color: "#999",

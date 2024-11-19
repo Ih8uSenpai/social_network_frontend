@@ -1,0 +1,148 @@
+.info-list {
+    list-style: none;
+    padding: 0;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: var(--text-color);
+}
+
+.info-item:hover {
+    background-color: var(--background-color5);
+    border-radius: 5px;
+}
+
+/* List Items for Tabs */
+.list-item {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding: 10px 15px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #111;
+    transition: background-color 0.3s ease;
+}
+
+.list-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Titles and Descriptions */
+.item-title {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.item-description {
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* Inputs and Buttons */
+.input {
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: var(--background-color2);
+    color: var(--text-color);
+    font-size: 14px;
+    width: 100%;
+}
+
+.button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1da1f2;
+    color: var(--text-color);
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0d8ce0;
+}
+
+/* Links */
+.link {
+    font-size: 12px;
+    color: #1da1f2;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* Error and Success Text */
+.error-text {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.success-text {
+    color: green;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+/* Profile Information */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.profile-image {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+
+.profile-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.profile-username {
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* Deactivate Account Section */
+.deactivate-list {
+    font-size: 14px;
+    color: #aaa;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.deactivate-button {
+    padding: 10px 20px;
+    background-color: #f00;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.deactivate-button:hover {
+    background-color: #d00000;
+}

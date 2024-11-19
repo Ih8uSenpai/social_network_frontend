@@ -28,25 +28,32 @@ export const AdditionalInfo: React.FC<AdditionalInfoProps> = ({
 
     return (
         <div className="additional-info" style={{height: height}}>
+
+
+
             <p onClick={() => {
                 handleUserFollowNavigation(userId, currentUserId, navigate, "followers");
             }} style={{
                 cursor: "pointer",
                 padding: "5px 5px 0 5px",
+                marginRight:"100px",
                 width: width
             }}>
                 <span>{profile.followersCount}</span>
-                <span><p style={{color: "#ccc"}}>Followers</p></span>
+                <span style={{color:"rgb(113, 118, 123)", marginTop:"5px"}}>Followers</span>
             </p>
+
+
             <p onClick={() => {
                 handleUserFollowNavigation(userId, currentUserId, navigate, "following");
             }} style={{
                 cursor: "pointer",
                 padding: "5px 5px 0 5px",
+                marginRight:"50px",
                 width: width
             }}>
                 <span>{profile.followingCount}</span>
-                <span><p style={{color: "#ccc"}}>Following</p></span>
+                <span style={{color:"rgb(113, 118, 123)", marginTop:"5px"}}>Following</span>
             </p>
         </div>
     );

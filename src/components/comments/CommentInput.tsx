@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Box, Button, TextField, IconButton, Paper} from '@mui/material';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import SendIcon from '@mui/icons-material/Send';
-import axios from "axios";
+import axios from "../../config/axiosConfig";
 import {fetchComments} from "./service/CommentService";
 import {PostData} from "../utils/Types";
 import Post from "../news/components/Post";
@@ -188,8 +188,8 @@ export const CommentInput: React.FC<CommentInputProps> = ({postId, profileId, se
             )}
 
 
-            <Paper elevation={4}
-                   sx={{padding: 2, margin: 'auto', maxWidth: 700, bgcolor: 'rgba(0, 0, 0, 0.4)', color: 'black'}}>
+            <Paper elevation={0}
+                   sx={{padding: 2, margin: 'auto', maxWidth: 700,background:'transparent', color: 'black'}}>
                 {postComments.map(comment => (
                     <RecursiveComment key={comment.id} comment={comment} postId={postId} setPosts={setPosts}
                                       setPostComments={setPostComments} profileId={profileId}

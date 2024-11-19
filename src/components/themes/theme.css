@@ -1,0 +1,37 @@
+:root {
+    --background-color: rgba(255,255,255,0.8);
+    --background-color1: #ffffff;
+    --background-color2: #fff;
+    --background-color3: rgba(255, 255, 255, 0.4);
+    --background-color4: rgba(255, 255, 255, 0.1);
+    --background-color5: #fff;
+    --background-color6: rgba(255, 255, 255, 0.2);
+    --background-color7: rgba(0, 0, 0, 0.1);
+    --background-color8: #fff;
+    --background-color9: rgba(255,255,255,0.4);
+    --text-color: #000000;
+    --text-color1: #111;
+    --text-color2: #333;
+    --text-color3: #222;
+    --text-color4: #777;
+    --text-color5: #333;
+}
+
+.dark-theme {
+    --background-color: rgba(0,0,0,0.9);
+    --background-color1: #000000;
+    --background-color2: #333;
+    --background-color3: rgba(0, 0, 0, 0.4);
+    --background-color4: rgba(0, 0, 0, 0.1);
+    --background-color5: #222;
+    --background-color6: rgba(0, 0, 0, 0.2);
+    --background-color7: rgba(255, 255, 255, 0.1);
+    --background-color8: #111;
+    --background-color9: rgba(255,255,255,0.15);
+    --text-color: #ffffff;
+    --text-color1: rgb(231, 233, 234);
+    --text-color2: #cccccc;
+    --text-color3: #eee;
+    --text-color4: #aaa;
+    --text-color5: rgb(231, 233, 234);
+}

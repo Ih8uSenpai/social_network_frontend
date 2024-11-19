@@ -2,7 +2,6 @@ import React, {useEffect, useRef, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import './styles/Login.css'
 // @ts-ignore
-import video from '../resources/videos/bg3.mp4'
 import {LicenseInfo} from "@mui/x-date-pickers-pro";
 // @ts-ignore
 import music1 from "../resources/music/la_vaguette.mp3";
@@ -13,7 +12,7 @@ import music3 from "../resources/music/HOYO-MiX - Emberfire Instrumental.mp3";
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import MusicOffIcon from '@mui/icons-material/MusicOff';
 import {Register} from "./register";
-
+import { ThemeProvider, useTheme } from "../themes/ThemeContext";
 LicenseInfo.setLicenseKey(
     'e0d9bb8070ce0054c9d9ecb6e82cb58fTz0wLEU9MzI0NzIxNDQwMDAwMDAsUz1wcmVtaXVtLExNPXBlcnBldHVhbCxLVj0y',
 );
@@ -28,7 +27,8 @@ export const Login = () => {
     const musicTracks = [music1, music2, music3];
     const [register, setRegister] = useState(false);
     const [randomIndex, setRandomIndex] = useState(0);
-
+    const { isDarkMode, toggleTheme } = useTheme();
+    const video = isDarkMode ? "/video/bg1.mp4" : "/video/bg4.mp4";
     const handleSubmit = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
 

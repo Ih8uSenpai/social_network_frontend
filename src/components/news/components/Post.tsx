@@ -22,7 +22,7 @@ import {CropAvatar} from "../../profile/components/CropAvatar";
 import {useIntersectionObserverPosts} from "../hooks/useIntersectionObserverPosts";
 import ClearIcon from '@mui/icons-material/Clear';
 import AttachmentIcon from '@mui/icons-material/Attachment';
-import axios from "axios";
+import axios from "../../../config/axiosConfig";
 import {formatText} from "../../utils/CommonFunctions";
 import TrackList from "../../Music/components/TrackList";
 import {useAudioPlayer} from "../../Music/components/AudioPlayerContext";
@@ -335,7 +335,7 @@ const Post: React.FC<PostProps> = ({
                 }
 
             </div>
-            <p style={{color: 'white', marginLeft: 23}}>{formatText(post?.content)}</p>
+            <p style={{color: 'var(--text-color)', marginLeft: 23}}>{formatText(post?.content)}</p>
 
             {post.postAttachments && post.postAttachments.length > 1 ? (
                 <Carousel autoPlay={false} changeOnFirstRender={true} height={400}>

@@ -35,14 +35,22 @@ export const ChatListView: React.FC<ChatListViewProps> = ({chats, onChatSelect, 
 
 
     return (
-        <div>
 
-            <ul className="chat-list">
+            <ul className="chat-list"           style={{
+                display: 'flex',
+                flexDirection:"column",
+                padding: '0',
+                borderRadius: '5px',
+                border:"none",
+                cursor: 'pointer',
+                marginBottom: '10px',
+            }}>
                 {chats.map((chat) => (
                     <li key={chat.id} onClick={() => onChatSelect(chat.id)}>
                         {chat.chatType !== null ?
                             chat.profileData !== null ?
                                 chat.chatType.toString() === ChatType[ChatType.PRIVATE] ?
+
                                     <div className={chat.unviewedMessages == 0 ? "message-entry-container": "message-entry-container message-entry-container-highlight"} style={{position:"relative"}}>
                                         <img
                                             src={chat.profileData.profilePictureUrl || defaultProfileIcon}
@@ -50,22 +58,12 @@ export const ChatListView: React.FC<ChatListViewProps> = ({chats, onChatSelect, 
                                             className="messages-user-icon"
                                             style={{marginLeft:10}}
                                         />
-                                        <Box display={"flex"} flexDirection={"column"} maxWidth={'80%'}
-                                             justifyContent={"center"} marginLeft={1}>
-                                            <Box>{chat.profileData.firstName + " " + chat.profileData.lastName}</Box>
-                                            {chat.lastMessage ?
-                                                <Box sx={{fontSize:18, wordWrap:"break-word", color:"#ddd", display:"flex", alignItems:"center", marginTop:1}}>
-                                                    <img
-                                                        src={chat.lastMessageSenderIconUrl || defaultProfileIcon}
-                                                        className="messages-user-icon-small"
-                                                    />
-                                                    {chat.lastMessage.length > 30 ? `${chat.lastMessage.slice(0, 30)}...` : chat.lastMessage}
-                                                </Box>
-                                                :
-                                                <Box sx={{fontSize:18, color:"#bbb"}}>{"no messages"}</Box>}
-                                        </Box>
+                                        <div>
+                                            <div style={{ fontWeight: 'bold', color:'var(--text-color)'}}>{chat.profileData.firstName + " " + chat.profileData.lastName}</div>
+                                            <div style={{ fontSize: '12px', color: 'var(--text-color4)' }}>@{chat.profileData.tag}</div>
+                                        </div>
                                         {chat.unviewedMessages > 0 && <Box
-                                            sx={{position:"absolute", right:10, top:"30%", background:"#aaa",
+                                            sx={{position:"absolute", right:10, top:"calc(50% - 25)", background:"#aaa",
                                                 width:50, height:50, display:"flex", justifyContent:"center",
                                                 alignItems:"center", borderRadius:"50%", fontSize:20}}>
 
@@ -92,7 +90,6 @@ export const ChatListView: React.FC<ChatListViewProps> = ({chats, onChatSelect, 
                     </li>
                 ))}
             </ul>
-        </div>
     );
 };
 

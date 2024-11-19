@@ -26,7 +26,7 @@ const PostsFeed: React.FC<PostsFeedProps> = ({ posts, profileId, setPosts, setIs
     };
 
     return (
-        <Paper elevation={4} sx={{padding: 2, margin: 'auto', maxWidth: 700, bgcolor: 'rgba(0, 0, 0, 0.4)', color:'black', marginBottom:2  }}>
+        <Paper elevation={4} sx={{padding: 2, margin: 'auto', maxWidth: 700, bgcolor: 'var(--background-color3)', color:'black', marginBottom:2  }}>
             {posts.length > 0 && posts.map(post => post ?
                 <Post key={post.id} post={post} profileId={profileId} setPosts={setPosts}
                       isCommentOpen={openCommentPostId === post.id}

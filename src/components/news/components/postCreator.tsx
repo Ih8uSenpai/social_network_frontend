@@ -6,7 +6,7 @@ import {useParams} from "react-router-dom";
 import {PostData, ProfileData} from "../../utils/Types";
 import {Box, IconButton, Paper, TextareaAutosize, TextField} from "@mui/material";
 import Button from "@mui/material/Button";
-import axios from "axios";
+import axios from "../../../config/axiosConfig";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import SendIcon from '@mui/icons-material/Send';
 import PanoramaIcon from '@mui/icons-material/Panorama';
@@ -15,6 +15,7 @@ import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import {ChooseTrackMenu} from "./ChooseTrackMenu";
 import {useAudioPlayer} from "../../Music/components/AudioPlayerContext";
 import TrackList, {Track} from "../../Music/components/TrackList";
+import {defaultProfileIcon} from "../../utils/Constants";
 
 interface PostCreatorProps {
     profile: ProfileData;
@@ -149,12 +150,12 @@ const PostCreator: React.FC<PostCreatorProps> = ({
                     padding: 2,
                     margin: 'auto',
                     maxWidth: 700,
-                    bgcolor: 'rgba(0, 0, 0, 0.4)'
+                    bgcolor: 'var(--background-color3)'
                 }}>
                     <form onSubmit={handleSubmit} style={{maxWidth: '700'}}>
 
                         <Box style={{display: "flex", flexDirection: "row", justifyContent:"center", alignItems:"center", position:"relative"}}>
-                            <img src={profile.profilePictureUrl} className={"avatar"}
+                            <img src={profile.profilePictureUrl || defaultProfileIcon} className={"avatar"}
                                  style={{height: '60px', width: '60px'}}/>
                             <TextareaAutosize
                                 value={content}
@@ -201,7 +202,7 @@ const PostCreator: React.FC<PostCreatorProps> = ({
                             </div>
 
 
-                            <Button type="submit" sx={{width: '100px'}}><SendIcon/></Button>
+                            <Button type="submit" sx={{width: '100px', background:"var(--background-color5)"}}><SendIcon/></Button>
                         </Box>
                         <input
                             accept="image/*"

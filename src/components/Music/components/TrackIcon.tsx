@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useAudioPlayer} from "./AudioPlayerContext";
 import {Box, IconButton, ListItemIcon, ListItemText, Paper, ThemeProvider, Typography} from "@mui/material";
-import {darkTheme} from "../../profile/themes/DarkTheme";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";

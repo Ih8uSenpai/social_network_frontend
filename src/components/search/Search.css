@@ -14,19 +14,9 @@
     max-width: 100%;
     padding: 15px 0;
 }
-.message-entry-container:after{
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 80%;
-    background: gray;
-    height: 1px;
-    margin: auto;
-}
+
 .message-entry-container-highlight{
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--background-color2);
 }
 
 

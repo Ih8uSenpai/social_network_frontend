@@ -4,11 +4,12 @@ import {useParams} from "react-router-dom";
 import {ChatMessage} from "../../utils/Types";
 import {WebSocketService} from "../../websocket/WebSocketService";
 import SendIcon from '@mui/icons-material/Send';
-
+import Picker from 'emoji-picker-react';
 import {useWebSocket} from '../../websocket/WebSocketContext';
 import Button from "@mui/material/Button";
-import {TextareaAutosize} from "@mui/material";
-import axios from "axios";
+import {IconButton, TextareaAutosize} from "@mui/material";
+import axios from "../../../config/axiosConfig";
+import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 
 interface MessagesCreatorProps {
     chatId: number;
@@ -33,12 +34,54 @@ const MessagesCreator: React.FC<MessagesCreatorProps> = ({
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
     const {userId} = useParams<{ userId: string }>();
     const webSocketService = useWebSocket();
+    const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
+
+    const handleEmojiClick = (emojiObject: any) => {
+        setContent((prev) => prev + emojiObject.emoji);
+        setShowEmojiPicker(false); // Close the emoji picker after selection
+    };
 
     useEffect(() => {
         if (editMessage)
             setContent(editMessage.content);
     }, [editMessage]);
+
+    const handleSubmitMessage = async () => {
+        if (!content.trim()) return;
+
+        try {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                console.error('Auth token not found');
+                return;
+            }
+
+            const response = await axios.post(
+                `http://localhost:8080/api/chats/${chatId}/messages`,
+                { content },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+
+            if (response.status === 201) {
+                const newMessage = response.data;
+                onMessageCreated(newMessage);
+                setContent('');
+                if (webSocketService && webSocketService.isConnectionActive()) {
+                    webSocketService.sendMessage(newMessage);
+                }
+            } else {
+                console.error('Failed to send message:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error sending message:', error);
+        }
+    };
 
     const handleEditMessage = async () => {
         try {
@@ -84,7 +127,7 @@ const MessagesCreator: React.FC<MessagesCreatorProps> = ({
     const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault(); // Предотвращаем добавление новой строки
-            handleSubmitForm(); // Вызываем отправку формы
+            editMessage ? handleEditMessage() : handleSubmitMessage();
         }
     };
 
@@ -148,24 +191,92 @@ const MessagesCreator: React.FC<MessagesCreatorProps> = ({
     }
 
     return (
-        <div className="message-creator-container">
-            {editMessage && <label style={{paddingBottom: 10, marginLeft: 0, color: '#1da1f2'}}>Edit message:</label>}
-            <form onSubmit={editMessage ? handleSubmitEdit : handleSubmit} style={{display: "flex"}}>
-                <TextareaAutosize
-                    value={content}
-                    onChange={handleChange}
-                    onKeyDown={handleKeyDown}
-                    ref={textAreaRef}
-                    className={"create-post-area"}
-                    placeholder={"write a message..."}
-                    style={{maxHeight: "300px", width: "100%"}}
-                />
-                <Button type="submit" sx={{marginLeft: 2}}><SendIcon/></Button>
-            </form>
+        <div style={{ position: 'relative' }}>
+        <form
+            onSubmit={(e) => {
+                e.preventDefault();
+                editMessage ? handleEditMessage() : handleSubmitMessage();
+            }}
+            style={{
+                position:"relative",
+                display: 'flex',
+                alignItems: 'center',
+                padding: '10px 20px',
+                borderTop: '1px solid #333'
+            }}
+        >
+            <IconButton
+                onClick={() => setShowEmojiPicker((prev) => !prev)}
+                style={{ cursor: 'pointer', marginRight: '10px' }}
+            >
+                <EmojiEmotionsIcon />
+            </IconButton>
+            {editMessage && (
+                <label
+                    style={{
+                        position: "absolute",
+                        top: "-25px",
+                        left: "20px",
+                        color: "#1da1f2",
+                        fontSize: "14px",
+                        backgroundColor: "var(--background-color1)",
+                        padding: "2px 6px",
+                        borderRadius: "4px",
+                        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+                        border: "1px solid #333",
+                    }}
+                >
+                    Editing message:
+                </label>
+            )}
+            <TextareaAutosize
+                ref={textAreaRef}
+                value={content}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                placeholder="Start a new message"
+                style={{
+                    flex: 1,
+                    padding: '10px',
+                    borderRadius: '5px',
+                    border: '1px solid #555',
+                    backgroundColor: 'var(--background-color2)',
+                    color: 'var(--text-color)',
+                    outline:"none",
+                    marginRight: '10px',
+                    resize: 'none',
+                    maxHeight:"300px"
+                }}
+            />
+            <Button
+                type="submit"
+                variant="contained"
+                style={{
+                    backgroundColor: '#007bff',
+                    color: '#fff',
+                    cursor: 'pointer',
+                }}
+            >
+                {editMessage ? "save" : <SendIcon />}
 
+            </Button>
+        </form>
 
-            {children}
+            {/* Emoji Picker */}
+            {showEmojiPicker && (
+                <div
+                    style={{
+                        position: 'absolute',
+                        bottom: '60px',
+                        left: '10px',
+                        zIndex: 1000,
+                    }}
+                >
+                    <Picker onEmojiClick={handleEmojiClick} />
+                </div>
+            )}
         </div>
+
     );
 };
 

@@ -6,6 +6,9 @@ import {handleMessage} from "../service/ChatService";
 import {defaultBannerImage, defaultProfileIcon} from "../../utils/Constants";
 import {OnlineStatus} from "./OnlineStatus";
 import {OfflineStatus} from "./OfflineStatus";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 interface UserInfoProps {
     userId: string
@@ -33,7 +36,7 @@ export const UserInfo: React.FC<UserInfoProps> = ({
 
 
     const isOwnProfile = currentUserId === userId || userId == null;
-
+    const [hover, setHover] = useState(false);
     return (
         <div className="user-info">
             <img
@@ -43,17 +46,22 @@ export const UserInfo: React.FC<UserInfoProps> = ({
             />
 
             <div className="user-details">
-                <p className="tag" style={{color:"#d6d6ff"}}>@{profile.tag}</p>
-                <h2>{profile.firstName} {profile.lastName}</h2>
-                <p>Joined at: {profile.user.createdAt}</p>
+                <span style={{fontWeight:"bold", color:"var(--text-color1)"}}>{profile.firstName} {profile.lastName}</span>
+                <span className="tag" style={{color:"rgb(113, 118, 123)"}}>@{profile.tag}</span>
+                <span style={{color:"rgb(113, 118, 123)", display:"flex", marginTop:"15px"}}>
+                    <CalendarMonthIcon style={{fontSize:"1.3em", marginRight:"5px"}}/>
+                    Joined at: {profile.user.createdAt}</span>
                 {!isOwnProfile && (
-                    <div>
-                        <button onClick={handleFollowToggle}
-                                className={isFollowing ? "unfollow-btn" : "follow-btn"}>
-                            {isFollowing ? 'Unfollow' : 'Follow'}
+                    <div style={{position:"absolute", top:-5, right:"-250px", display:"flex", justifyContent:"center", alignItems:"center"}}>
+                        <button className="message-btn">
+                            <MoreHorizIcon/>
                         </button>
-                        <button className="follow-btn"
-                                onClick={() => handleMessage(profile, isExisting, token, currentUserId, userId, chatId, navigate)}>message
+                        <button className="message-btn"
+                                onClick={() => handleMessage(profile, isExisting, token, currentUserId, userId, chatId, navigate)}><MailOutlineIcon/>
+                        </button>
+                        <button onClick={handleFollowToggle}
+                                className={isFollowing ? "unfollow-btn" : "follow-btn"} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+                            {isFollowing ? hover ? 'Unfollow' : 'Following' : 'Follow'}
                         </button>
                     </div>
                 )}

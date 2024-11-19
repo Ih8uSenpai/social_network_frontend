@@ -9,7 +9,6 @@ import Button from '@mui/material/Button';
 import {Box, Paper, Typography} from "@mui/material";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {LocalizationProvider, DatePicker} from '@mui/x-date-pickers';
-import {darkTheme} from "../themes/DarkTheme";
 import EditIcon from '@mui/icons-material/Edit';
 import {fetchComments} from "../../comments/service/CommentService";
 
@@ -56,7 +55,7 @@ export const UserProfileOptionalData: React.FC<UserProfileInfoProps> = ({
     };
 
     return (
-            <Paper elevation={4} sx={{padding: 2, margin: 'auto', maxWidth: 600, bgcolor: 'rgba(0, 0, 0, 0.4)'}}>
+            <Paper elevation={4} sx={{padding: 2, margin: 'auto', maxWidth: 600, bgcolor: 'var(--background-color3)'}}>
                 {isEditing ? (
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <form onSubmit={(e) => e.preventDefault()}>

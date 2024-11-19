@@ -1,0 +1,33 @@
+.theme-switcher-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.theme-switcher-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-switcher-button.light {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.theme-switcher-button.light:hover {
+    background-color: #e0e0e0;
+    color: var(--text-color);
+}
+
+.theme-switcher-button.dark {
+    background-color: var(--text-color);
+    color: var(--background-color);
+}
+
+.theme-switcher-button.dark:hover {
+    background-color: #4b4c57;
+    color: #90caf9;
+}

@@ -15,7 +15,6 @@ import PauseIcon from '@mui/icons-material/Pause';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
-import {darkTheme} from "../../profile/themes/DarkTheme";
 import {Slider1} from "../../common/Slider1";
 import {VolumeOff} from "@mui/icons-material";
 import {defaultMusicIcon} from "../../utils/Constants";
@@ -54,7 +53,6 @@ export const TrackPlayer2: React.FC<{ selectedTrack } & { isVisible } & { setIsV
     if (!isVisible) return null;
 
     return (
-        <ThemeProvider theme={darkTheme}>
 
             <Box display="flex" alignItems="center" padding={1} bgcolor={"rgba(0,0,0,0.3)"} borderRadius={5}
                  border={1}
@@ -94,6 +92,5 @@ export const TrackPlayer2: React.FC<{ selectedTrack } & { isVisible } & { setIsV
                     <CloseIcon/>
                 </IconButton>
             </Box>
-        </ThemeProvider>
     );
 };

@@ -94,7 +94,7 @@ export const Followers: React.FC<FollowersProps> = ({
                     </IconButton>
 
 
-                    <List style={{marginTop: 0, paddingTop: 10}}>
+                    <List style={{marginTop: 0, paddingTop: 10, background:"transparent"}}>
                         <div className="follower-entry-container" style={{width: '100%'}}>
                             {followers.map(profile => (
                                 <div key={profile.profileId} className="follower-entry" style={{width: '100%'}}>
@@ -117,7 +117,7 @@ export const Followers: React.FC<FollowersProps> = ({
                                         <p
                                             style={{
                                                 fontSize: '1.5em',
-                                                color: "white",
+                                                color: "var(--text-color)",
                                                 textDecoration: "none",
                                                 alignSelf: "flex-start",
                                                 marginLeft: '10px',
@@ -178,8 +178,9 @@ export const Followers: React.FC<FollowersProps> = ({
                                     maxWidth: 200,
                                     width: 100,
                                     textAlign: 'center',
-                                    bgcolor: 'rgba(0, 0, 0, 0.8)',
-                                    marginTop: 5
+                                    bgcolor: 'var(--background-color1)',
+                                    marginTop: 5,
+                                    color:'var(--text-color)'
                                 }}>
                                     {profile.firstName} {profile.lastName}
                                 </Paper>

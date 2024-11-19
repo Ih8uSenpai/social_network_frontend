@@ -1,5 +1,5 @@
 import {PostData} from "../../utils/Types";
-import axios from "axios";
+import axios from "../../../config/axiosConfig";
 
 export async function countPostsPerPeriod  (profileId: number, fromDate, toDate, token: String): Promise<number> {
     const formData = new FormData();

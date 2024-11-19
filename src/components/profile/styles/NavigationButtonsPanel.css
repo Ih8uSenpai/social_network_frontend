@@ -2,8 +2,8 @@
     height: 70px;
     display: flex;
     align-items: center;
-    background: #4b4c57;
-    color: #fff;
+    background: var(--background-color);
+    color: var(--text-color);
     width: 100%;
     box-sizing: border-box;
     margin: 0;
@@ -41,7 +41,6 @@
 }
 
 .navigation-panel li.active {
-    background-color: rgb(104, 105, 119);
-    color: #fff;
+    background-color: var(--background-color2);
     transition-duration: 0.5s;
 }

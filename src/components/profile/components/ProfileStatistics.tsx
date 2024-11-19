@@ -5,7 +5,6 @@ import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {StaticDateRangePicker} from '@mui/x-date-pickers-pro/StaticDateRangePicker';
 import {PickersShortcutsItem} from '@mui/x-date-pickers/PickersShortcuts';
 import {Box, Card, CardContent, Container, createTheme, Grid, Paper, ThemeProvider, Typography} from "@mui/material";
-import {darkTheme} from "../themes/DarkTheme";
 import {DateRange, DateRangePicker, SingleInputDateRangeField} from "@mui/x-date-pickers-pro";
 import {useEffect, useState} from "react";
 import PostAddIcon from '@mui/icons-material/PostAdd';
@@ -117,7 +116,7 @@ export const ProfileStatistics: React.FC<ProfileStatisticsProps> = ({
 
     const StatisticCard = ({icon, title, value}) => (
         <Grid item xs={4}>
-            <Card sx={{display: 'flex', alignItems: 'center', height: '100%', bgcolor:'rgba(0, 0, 0, 0.5)'}}>
+            <Card sx={{display: 'flex', alignItems: 'center', height: '100%'}}>
                 <CardContent sx={{display: 'flex', alignItems: 'center'}}>
                     <Box sx={{mr: 2, color: 'action.active'}}>{icon}</Box>
                     <Box>
@@ -131,10 +130,10 @@ export const ProfileStatistics: React.FC<ProfileStatisticsProps> = ({
         </Grid>
     );
     return (
-        <ThemeProvider theme={darkTheme}>
+
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <Paper elevation={5} sx={{padding: 2, margin: 'auto', maxWidth: 700, bgcolor:'transparent'}}>
-                    <Grid container spacing={2} bgcolor={"transparent"}>
+                <Paper elevation={0} sx={{padding: 2, margin: 'auto', maxWidth: 700}}>
+                    <Grid container spacing={2} >
                         <StatisticCard icon={<PostAddIcon/>} title="Posts created" value={postsCount}/>
                         <StatisticCard icon={<ThumbUpAltIcon/>} title="Likes received" value={likesCount}/>
                         <StatisticCard icon={<CommentIcon/>} title="Comments" value={commentsCount}/>
@@ -161,11 +160,21 @@ export const ProfileStatistics: React.FC<ProfileStatisticsProps> = ({
                                 // @ts-ignore
                                 items: shortcutsItems,
                             },
+                            textField: {
+                                size: 'small',
+                            },
+                            layout: {
+                                sx: {
+                                    backgroundColor: 'var(--background-color2)', // Задаём цвет фона календаря
+                                    borderRadius: '8px', // Добавляем скругление углов
+                                    boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)', // Добавляем тень для стиля
+                                },
+                            },
                         }}
                         slots={{field: SingleInputDateRangeField}}
+
                     />
                 </Box>
             </LocalizationProvider>
-        </ThemeProvider>
     );
 }

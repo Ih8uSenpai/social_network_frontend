@@ -4,7 +4,7 @@
     border-radius: 10px;
     margin-bottom: 15px;
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--background-color4);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     word-wrap: anywhere;
 }
@@ -17,12 +17,13 @@
 }
 
 .avatar {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 10px;
 }
+
 
 .user-details-post {
     display: flex;
@@ -33,7 +34,7 @@
 
 .user-details-post strong {
     margin-right: 5px;
-    color: #bbb;
+    color: var(--text-color1);
 }
 .user-details-post span {
     margin-left: 10px;
@@ -121,7 +122,7 @@
     border: none;
     border-radius: 8px;
     font-size: 1.2em;
-    color: white;
+    color: var(--text-color);
     outline: none;
     resize: none;
 }
@@ -155,10 +156,6 @@
 }
 
 
-.avatar {
-    width: 60px;
-    height: 60px;
-}
 
 .user-details-post {
     color: #1da1f2;

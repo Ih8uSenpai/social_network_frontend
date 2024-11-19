@@ -23,7 +23,6 @@ import TrackList, {Track} from "../Music/components/TrackList";
 import {TrackPlayer} from "../Music/components/TrackPlayer";
 import {Followers} from "../followers/Followers";
 // @ts-ignore
-import video from "../resources/videos/bg3.mp4";
 import {TrackPlayer2} from "../Music/components/TrackPlayer2";
 
 
@@ -82,7 +81,7 @@ const UserProfile: React.FC<ProfileProps> = ({
 
     return (
 
-        <div style={{overflow: "auto", border: '1px solid transparent'}}>
+        <div style={{overflow: "auto", border: '1px solid transparent'}} className={"NoScrollbar"}>
             <ProfileBanner userId={userId} currentUserId={currentUserId}
                            profile={profile} navigate={navigate}
                            fetchProfile={fetchProfile}
@@ -93,14 +92,14 @@ const UserProfile: React.FC<ProfileProps> = ({
             <p style={{height: "130px", margin: "0"}}>
                 <AdditionalInfo userId={userId} currentUserId={currentUserId}
                                 profile={profile} navigate={navigate}
-                                height={"100%"} width={"20%"}/>
+                                height={"100%"} width={"5%"}/>
             </p>
 
             <Grid container spacing={-2} marginTop={2}
                   sx={{minWidth: "1100px", overflow: 'auto', border: '1px solid transparent'}}>
                 <Grid item xs={7.5}>
                     <Paper elevation={4}
-                           sx={{padding: 2, margin: 'auto', maxWidth: 700, bgcolor: 'rgba(0, 0, 0, 0.4)'}}>
+                           sx={{padding: 2, margin: 'auto', maxWidth: 700}}>
                         <NavigationButtonsPanel onSectionChange={handleSectionChange} section={section}/>
 
                         {section == 'statistics' && (
@@ -143,11 +142,11 @@ const UserProfile: React.FC<ProfileProps> = ({
                         padding: 2,
                         margin: 'auto',
                         maxWidth: 600,
-                        bgcolor: 'rgba(0, 0, 0, 0.4)',
+                        bgcolor: 'var(--background-color3)',
                         marginTop: 5
                     }}> <Followers fullSize={false} size={4} update={update} setUpdate={setUpdate}/> </Paper>
                     <Paper elevation={4}
-                           sx={{padding: 2, margin: 'auto', maxWidth: 600, bgcolor: 'rgba(0, 0, 0, 0.4)'}}> Last
+                           sx={{padding: 2, margin: 'auto', maxWidth: 600, bgcolor: 'var(--background-color3)'}}> Last
                         followers</Paper>
                 </Grid>
 

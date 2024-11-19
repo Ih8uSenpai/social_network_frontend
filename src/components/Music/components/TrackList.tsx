@@ -159,8 +159,8 @@ const TrackList: React.FC<TrackListProps & { onSelectTrack: (track: Track) => vo
                     <Paper elevation={4} sx={{
                         padding: 2,
                         margin: 'auto',
-                        bgcolor: 'rgba(0, 0, 0, 0.6)',
-                        color: 'black',
+                        background: 'var(--background-color3)',
+                        color: 'var(--text-color4)',
                         marginBottom: 2,
                         borderRadius: 5,
                         border: '1px solid grey'

@@ -88,3 +88,30 @@ export const registerVisit = async (userId:string, token: String) => {
         throw error;
     }
 };
+
+
+export async function fetchProfiles (query:string): Promise<ProfileData[]> {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+        console.error('Токен не найден');
+        // Обработка отсутствия токена, например, перенаправление на страницу входа
+    }
+    try {
+        const response = await fetch(`http://localhost:8080/api/profiles/search?query=${query}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+                // Добавьте здесь любые другие заголовки, например, для аутентификации
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching profiles:', error);
+        throw error;
+    }
+};

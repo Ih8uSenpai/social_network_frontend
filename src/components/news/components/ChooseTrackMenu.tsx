@@ -40,14 +40,14 @@ export const ChooseTrackMenu: React.FC<ChooseTrackMenuProps> = ({
     return (
         <div>
             <Dialog open={showTrackMenu} onClose={handleClose} maxWidth="lg">
-                <DialogTitle>Choose Track</DialogTitle>
-                <DialogContent>
+                <DialogTitle style={{background:"var(--background-color1)", color:"var(--text-color)"}}>Choose Track</DialogTitle>
+                <DialogContent style={{background:"var(--background-color1)", color:"var(--text-color)"}}>
                     <TrackList token={token} OnSectionChange={handleSectionChange}
                                section={"music_my_music"} onSelectTrack={setSelectedTrack}
                                isProfilePage={true} setIsVisible={setIsVisible}
                                tracks={tracks} setTracks={setTracks} selectedTracks={[]}/>
                 </DialogContent>
-                <Button onClick={onSaveTrack}>Save</Button>
+                <Button onClick={onSaveTrack}>Add</Button>
                 <Button onClick={handleClose}>Close</Button>
             </Dialog>
         </div>

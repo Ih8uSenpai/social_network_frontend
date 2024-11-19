@@ -13,5 +13,5 @@ export const photo_box_style = {
     bgcolor: '#333',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 4
+    p: 2
 };
