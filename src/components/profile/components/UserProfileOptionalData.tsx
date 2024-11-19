@@ -69,7 +69,7 @@ export const UserProfileOptionalData: React.FC<UserProfileInfoProps> = ({
                             <DatePicker
                                 label="Birthdate"
                                 value={editBirthdate}
-                                onChange={setEditBirthdate}
+                                onChange={(newValue) => setEditBirthdate(newValue ? new Date(newValue) : null)}
                                 slotProps={{textField: {variant: 'outlined'}}}/>
                             <TextField
                                 label="Country"
