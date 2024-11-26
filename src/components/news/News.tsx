@@ -62,7 +62,7 @@ export const News: React.FC<NewsProps> = ({
                     <Box marginTop={2}>
                         <PostsFeed posts={posts} profileId={profile.profileId} setPosts={setPosts}
                                    selectedTrack={selectedTrack} setSelectedTrack={setSelectedTrack}
-                                   setIsVisible={setIsVisible} isVisible={isVisible}/>
+                                   setIsVisible={setIsVisible} isVisible={isVisible} section={section}/>
                     </Box>
                 </Grid>
 

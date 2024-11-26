@@ -132,7 +132,7 @@ const UserProfile: React.FC<ProfileProps> = ({
 
                     <Box marginTop={2}>
                         <PostsFeed posts={posts} profileId={profile.profileId} setPosts={setPosts}
-                        setIsVisible={setIsVisible} setSelectedTrack={setSelectedTrack} selectedTrack={selectedTrack} isVisible={isVisible}/>
+                        setIsVisible={setIsVisible} setSelectedTrack={setSelectedTrack} selectedTrack={selectedTrack} isVisible={isVisible} section={"news"}/>
                     </Box>
                 </Grid>
 

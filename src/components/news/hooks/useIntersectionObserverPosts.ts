@@ -1,23 +1,27 @@
 import { useEffect, useRef } from 'react';
 
-export function useIntersectionObserverPosts(elementRef, onIntersect, options) {
+export function useIntersectionObserverPosts(elementsRefs, onIntersect, options) {
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                // Передаём isIntersecting в onIntersect
-                onIntersect(entry.isIntersecting);
+                // Передаём элемент и его состояние isIntersecting
+                onIntersect(entry.target, entry.isIntersecting);
             });
         }, options);
 
-        const currentElement = elementRef.current;
-        if (currentElement) {
-            observer.observe(currentElement);
-        }
+
+        elementsRefs.forEach(ref => {
+            if (ref.current) {
+                observer.observe(ref.current);
+            }
+        });
 
         return () => {
-            if (currentElement) {
-                observer.unobserve(currentElement);
-            }
+            elementsRefs.forEach(ref => {
+                if (ref.current) {
+                    observer.unobserve(ref.current);
+                }
+            });
         };
-    }, [elementRef, onIntersect, options]);
+    }, [elementsRefs, onIntersect, options]);
 }

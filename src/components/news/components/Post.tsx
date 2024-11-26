@@ -27,6 +27,7 @@ import {formatText} from "../../utils/CommonFunctions";
 import TrackList from "../../Music/components/TrackList";
 import {useAudioPlayer} from "../../Music/components/AudioPlayerContext";
 import {photo_box_style} from "../../utils/Constants";
+import {markPostAsViewed} from "../service/NewsService";
 
 interface PostProps {
     post: PostData;
@@ -161,28 +162,6 @@ const Post: React.FC<PostProps> = ({
         }
     };
 
-    const markPostAsViewed = async (viewType: string) => {
-        const userId = localStorage.getItem('currentUserId');
-        if (!userId) {
-            console.error('Пользователь не идентифицирован');
-            return;
-        }
-
-        try {
-            await axios.post(`${process.env.REACT_APP_API_BASE_URL}/posts/mark-viewed`, {
-                postId: post.id,
-                userId: userId,
-                viewType: viewType
-            }, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-                }
-            });
-            console.log(`Post marked as viewed with type: ${viewType}`);
-        } catch (error) {
-            console.error('Error marking post as viewed:', error);
-        }
-    };
 
     const debounce = (func: Function, delay: number) => {
         let timer: NodeJS.Timeout;
@@ -198,18 +177,18 @@ const Post: React.FC<PostProps> = ({
 
     let lastIsVisible = false;
 
-    const handleVisibilityChange = (isVisible: boolean) => {
+    const handleVisibilityChange = (element, isVisible: boolean) => {
         if (isVisible && !post.viewed) {
             startViewTime.current = Date.now();
         } else if (!isVisible && startViewTime.current) {
             const viewDuration = Date.now() - startViewTime.current;
             const viewType = calculateViewType(viewDuration);
-            markPostAsViewed(viewType);
+            markPostAsViewed(post, viewType);
             startViewTime.current = null;
         }
     };
 
-    useIntersectionObserverPosts(postRef, handleVisibilityChange, {threshold: 0.7});
+    useIntersectionObserverPosts([postRef], handleVisibilityChange, {threshold: 0.7});
 
 
     const handleLike = async () => {
