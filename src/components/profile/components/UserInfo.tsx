@@ -40,7 +40,7 @@ export const UserInfo: React.FC<UserInfoProps> = ({
     return (
         <div className="user-info">
             <img
-                src={profile.profilePictureUrl || defaultProfileIcon}
+                src={`${process.env.REACT_APP_STATIC_URL}/` + (profile.profilePictureUrl || defaultProfileIcon)}
                 alt="User Icon"
                 className="user-icon"
             />

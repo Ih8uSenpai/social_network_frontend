@@ -349,7 +349,7 @@ export const Messages = () => {
                     >
                         <div style={{display: 'flex', alignItems: 'center', cursor: "pointer"}}>
                             <img
-                                src={selectedChat?.profileData?.profilePictureUrl || defaultProfileIcon}
+                                src={`${process.env.REACT_APP_STATIC_URL}/` + (selectedChat?.profileData?.profilePictureUrl || defaultProfileIcon)}
                                 alt="Chat avatar"
                                 className="messages-user-icon"
                                 onClick={() => navigate('/profile/' + selectedChat?.profileData?.user.userId)}

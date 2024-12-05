@@ -5,6 +5,7 @@ import {ProfileData} from "../utils/Types";
 import styles from "../profile/styles/UserProfile.module.css";
 import {Box, IconButton, List, ListItem, Paper} from "@mui/material";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
+import {defaultProfileIcon} from "../utils/Constants";
 
 
 interface User {
@@ -105,7 +106,7 @@ export const Followers: React.FC<FollowersProps> = ({
                                             marginBottom: '10px'
                                         }}>
                                         <img
-                                            src={profile.profilePictureUrl || defaultProfileIcon}
+                                            src={`${process.env.REACT_APP_STATIC_URL}/` + (profile?.profilePictureUrl || defaultProfileIcon)}
                                             alt={profile.user.username}
                                             className="follower-entry-icon"
                                             style={{
@@ -163,7 +164,7 @@ export const Followers: React.FC<FollowersProps> = ({
                                   onMouseEnter={() => setHoveredProfileId(profile.profileId)}
                                   onMouseLeave={() => setHoveredProfileId(null)}>
                             <img
-                                src={profile.profilePictureUrl || defaultProfileIcon} // Указать URL изображения по умолчанию
+                                src={`${process.env.REACT_APP_STATIC_URL}/` + (profile?.profilePictureUrl || defaultProfileIcon)}
                                 alt={profile.user.username}
                                 className="follower-entry-icon-small"
                                 style={{marginRight: '10px', cursor: "pointer"}}

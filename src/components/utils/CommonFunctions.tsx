@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
+import {defaultProfileIcon} from "./Constants";
 
 // Tooltip component to show user details on hover
 const UserTooltip = ({tag}) => {
@@ -72,7 +73,7 @@ const UserTooltip = ({tag}) => {
                     }}
                     onClick={() => navigate('/profile/' + profile.user.userId)}
                 >
-                    <img src={profile.profilePictureUrl} alt="avatar" style={{
+                    <img src={`${process.env.REACT_APP_STATIC_URL}/` + (profile?.profilePictureUrl || defaultProfileIcon)} alt="avatar" style={{
                         width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px'
                     }} />
                     <div>

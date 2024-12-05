@@ -101,7 +101,7 @@ export const Message: React.FC<{
                     />
                 ) : (
                     <img
-                        src={profileData.profilePictureUrl || defaultProfileIcon}
+                        src={`${process.env.REACT_APP_STATIC_URL}/` + (profileData.profilePictureUrl || defaultProfileIcon)}
                         alt={profileData.user.username}
                         className="messages-user-icon"
                         style={{

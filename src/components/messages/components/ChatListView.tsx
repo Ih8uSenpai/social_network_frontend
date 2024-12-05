@@ -53,7 +53,7 @@ export const ChatListView: React.FC<ChatListViewProps> = ({chats, onChatSelect, 
 
                                     <div className={chat.unviewedMessages == 0 ? "message-entry-container": "message-entry-container message-entry-container-highlight"} style={{position:"relative"}}>
                                         <img
-                                            src={chat.profileData.profilePictureUrl || defaultProfileIcon}
+                                            src={`${process.env.REACT_APP_STATIC_URL}/` + (chat.profileData.profilePictureUrl || defaultProfileIcon)}
                                             alt={chat.profileData.user.username}
                                             className="messages-user-icon"
                                             style={{marginLeft:10}}

@@ -165,7 +165,7 @@ export const ProfileBanner: React.FC<ProfileBannerProps> = ({
 
             <div className="banner-image-container">
                 <img
-                    src={profile.profileBannerPictureUrl || defaultBannerImage}
+                    src={`${process.env.REACT_APP_STATIC_URL}/` + (profile.profileBannerPictureUrl || defaultBannerImage)}
                     alt="Banner"
                     className="banner-image"
                 />

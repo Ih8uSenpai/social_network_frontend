@@ -6,6 +6,7 @@ import styles from "../profile/styles/UserProfile.module.css";
 import {Box, Grid, IconButton, List, ListItem, Paper} from "@mui/material";
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import {GridRow} from "@mui/x-data-grid-pro";
+import {defaultProfileIcon} from "../utils/Constants";
 
 interface User {
     userId: number;
@@ -105,7 +106,7 @@ export const Following: React.FC<FollowingProps> = ({
                                             marginBottom: '10px'
                                         }}>
                                         <img
-                                            src={profile.profilePictureUrl || defaultProfileIcon}
+                                            src={`${process.env.REACT_APP_STATIC_URL}/` + (profile?.profilePictureUrl || defaultProfileIcon)}
                                             alt={profile.user.username}
                                             className="follower-entry-icon"
                                             style={{
@@ -165,7 +166,7 @@ export const Following: React.FC<FollowingProps> = ({
                                   onMouseLeave={() => setHoveredProfileId(null)}>
                             <a href={`/profile/${profile.user.userId}`} style={{marginRight: '10px'}}>
                                 <img
-                                    src={profile.profilePictureUrl || defaultProfileIcon} // Указать URL изображения по умолчанию
+                                    src={`${process.env.REACT_APP_STATIC_URL}/` + (profile?.profilePictureUrl || defaultProfileIcon)}
                                     alt={profile.user.username}
                                     className="follower-entry-icon-small"
                                 />

@@ -26,7 +26,7 @@ import axios from "../../../config/axiosConfig";
 import {formatText} from "../../utils/CommonFunctions";
 import TrackList from "../../Music/components/TrackList";
 import {useAudioPlayer} from "../../Music/components/AudioPlayerContext";
-import {photo_box_style} from "../../utils/Constants";
+import {defaultProfileIcon, photo_box_style} from "../../utils/Constants";
 import {markPostAsViewed} from "../service/NewsService";
 
 interface PostProps {
@@ -269,7 +269,7 @@ const Post: React.FC<PostProps> = ({
         <div className="post" ref={postRef} style={{position: "relative"}}>
             <div className="post-header">
                 <img
-                    src={post.profile?.profilePictureUrl || defaultProfileIcon}
+                    src={`${process.env.REACT_APP_STATIC_URL}/` + (post.profile?.profilePictureUrl || defaultProfileIcon)}
                     alt="avatar"
                     className="avatar"
                     style={{marginLeft: 13, cursor: "pointer"}}
@@ -326,7 +326,7 @@ const Post: React.FC<PostProps> = ({
                             background: "rgba(0,0,0,0.4)",
                             borderRadius: 4
                         }} marginLeft={2}>
-                            <img src={`${process.env.REACT_APP_BACK_BASE_URL}/${url}`} alt={`Preview ${index}`}
+                            <img src={`${process.env.REACT_APP_STATIC_URL}/${url}`} alt={`Preview ${index}`}
                                  style={{maxWidth: 630, height: 390, objectFit: 'cover'}}
                                  ref={imgRef}
                                  onClick={() => handleOpen(index)}/>
@@ -342,7 +342,7 @@ const Post: React.FC<PostProps> = ({
                         background: "rgba(0,0,0,0.4)",
                         borderRadius: 4
                     }}>
-                        <img src={`${process.env.REACT_APP_BACK_BASE_URL}/${post.postAttachments[0]}`}
+                        <img src={`${process.env.REACT_APP_STATIC_URL}/${post.postAttachments[0]}`}
                              style={{maxWidth: "630px", maxHeight: "700px", objectFit: 'cover'}}
                              alt="error loading image" ref={imgRef2}
                         onClick={() => handleOpen(0)}/>

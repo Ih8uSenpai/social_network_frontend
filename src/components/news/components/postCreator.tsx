@@ -155,7 +155,7 @@ const PostCreator: React.FC<PostCreatorProps> = ({
                     <form onSubmit={handleSubmit} style={{maxWidth: '700'}}>
 
                         <Box style={{display: "flex", flexDirection: "row", justifyContent:"center", alignItems:"center", position:"relative"}}>
-                            <img src={profile.profilePictureUrl || defaultProfileIcon} className={"avatar"}
+                            <img src={`${process.env.REACT_APP_STATIC_URL}/` + (profile.profilePictureUrl || defaultProfileIcon)} className={"avatar"}
                                  style={{height: '60px', width: '60px'}}/>
                             <TextareaAutosize
                                 value={content}

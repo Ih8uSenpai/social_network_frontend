@@ -256,7 +256,7 @@ export const SettingsPage: React.FC = () => {
                     <div style={{marginBottom: "20px"}}>
                         <div className={"profile-header"}>
                             <img
-                                src={profile.profilePictureUrl || defaultProfileIcon} // Replace with actual profile image URL
+                                src={`${process.env.REACT_APP_STATIC_URL}/` + (profile.profilePictureUrl || defaultProfileIcon)}
                                 alt="Profile"
                                 className={"profile-image"}
                             />

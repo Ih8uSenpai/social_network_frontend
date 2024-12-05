@@ -11,6 +11,7 @@ import SendIcon from "@mui/icons-material/Send";
 import ReplyIcon from '@mui/icons-material/Reply';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import {useNavigate} from "react-router-dom";
+import {defaultProfileIcon} from "../utils/Constants";
 
 interface CommentProps {
     comment: PostComment;
@@ -141,7 +142,7 @@ export const Comment: React.FC<CommentProps> = ({comment, postId, setPostComment
 
                     <div className="user-details-post">
                         <img
-                            src={profile.profilePictureUrl || defaultProfileIcon}
+                            src={`${process.env.REACT_APP_STATIC_URL}/` + (profile?.profilePictureUrl || defaultProfileIcon)}
                             alt="avatar"
                             className="avatar"
                             style={{width: 40, height: 40, cursor: "pointer", marginRight: '10px', alignSelf: "center"}}

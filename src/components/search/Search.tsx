@@ -85,7 +85,7 @@ const Search = () => {
                             <li key={profile.profileId}
                                 style={{display: 'flex', alignItems: 'center', marginBottom: '10px'}}>
                                 <img
-                                    src={profile.profilePictureUrl || defaultProfileIcon} // Указать URL изображения по умолчанию
+                                    src={`${process.env.REACT_APP_STATIC_URL}/` + (profile.profilePictureUrl || defaultProfileIcon)}
                                     alt={profile.user.username}
                                     className="follower-entry-icon"
                                     style={{

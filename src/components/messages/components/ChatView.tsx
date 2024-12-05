@@ -122,7 +122,7 @@ const Message: React.FC<{
                     />
                 ) : (
                     <img
-                        src={profileData.profilePictureUrl || defaultProfileIcon}
+                        src={`${process.env.REACT_APP_STATIC_URL}/` + (profileData.profilePictureUrl || defaultProfileIcon)}
                         alt={profileData.user.username}
                         className="messages-user-icon"
                         style={{
@@ -350,7 +350,7 @@ export const ChatView: React.FC<ChatViewProps> = ({chat, onBack}) => {
                                             <button className="back-to-chats" onClick={onBack}>ᐸ Назад</button>
                                             <h3>{chat.profileData.firstName + " " + chat.profileData.lastName}</h3>
                                             <img
-                                                src={chat.profileData.profilePictureUrl || defaultProfileIcon} // Указать URL изображения по умолчанию
+                                                src={`${process.env.REACT_APP_STATIC_URL}/` + (chat.profileData.profilePictureUrl || defaultProfileIcon)}
                                                 alt={chat.profileData.user.username}
                                                 className="messages-user-icon"
                                                 onClick={() => navigate('/profile/' + chat.profileData.user.userId)}

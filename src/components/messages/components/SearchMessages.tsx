@@ -70,7 +70,7 @@ const SearchMessages = () => {
                                 style={{display: 'flex', alignItems: 'center', marginBottom: '10px'}}>
                                 <a href={`/profile/${profile.user.userId}`} style={{marginRight: '10px'}}>
                                     <img
-                                        src={profile.profilePictureUrl || defaultProfileIcon} // Указать URL изображения по умолчанию
+                                        src={`${process.env.REACT_APP_STATIC_URL}/` + (profile.profilePictureUrl || defaultProfileIcon)}
                                         alt={profile.user.username}
                                         className="follower-entry-icon"
                                         style={{width: '100px', height: '100px', borderRadius: '50%'}}

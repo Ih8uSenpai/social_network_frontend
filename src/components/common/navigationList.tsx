@@ -91,7 +91,7 @@ const NavigationList = ({setIsMusicPage, profile}) => {
             </ul>
             <div className={"user-details-on-panel"} onClick={handleClick}>
                 <img
-                    src={profile?.profilePictureUrl || defaultProfileIcon}
+                    src={`${process.env.REACT_APP_STATIC_URL}/` + (profile?.profilePictureUrl || defaultProfileIcon)}
                     alt="User Icon"
                     className="avatar"
                     style={{height: "50px", width: "50px", marginLeft: "10px"}}
