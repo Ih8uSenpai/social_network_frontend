@@ -53,7 +53,6 @@ const Post: React.FC<PostProps> = ({
                                        selectedTrack,
                                        setSelectedTrack
                                    }) => {
-    const defaultProfileIcon = `${process.env.REACT_APP_BACK_BASE_URL}/src/main/resources/static/standart_icon.jpg`;
     const [liked, setLiked] = useState(post.liked);
     const [likesCount, setLikesCount] = useState(post.likesCount);
     const [commentsCount, setCommentsCount] = useState(post.commentsCount);
