@@ -65,7 +65,6 @@ export const Followers: React.FC<FollowersProps> = ({
                                                     }) => {
     const {userId} = useParams();
     const currentUserId = localStorage.getItem("currentUserId");
-    const defaultProfileIcon = `${process.env.REACT_APP_BACK_BASE_URL}/src/main/resources/static/standart_icon.jpg`;
     const [followers, setFollowers] = useState<ProfileData[]>([]);
     const [hoveredProfileId, setHoveredProfileId] = useState<number | null>(null);
     const navigate = useNavigate();

@@ -28,7 +28,6 @@ interface CommentProps {
 
 
 export const Comment: React.FC<CommentProps> = ({comment, postId, setPostComments, setPostCommentCount, setPosts, profileId, isCommentOpen, onToggleComment, commentRefs, scrollToParent}) => {
-    const defaultProfileIcon = `${process.env.REACT_APP_BACK_BASE_URL}/src/main/resources/static/standart_icon.jpg`;
     const [liked, setLiked] = useState(comment.userLiked);
     const [likesCount, setLikesCount] = useState(comment.likesCount);
     const [previewUrl, setPreviewUrl] = useState('');

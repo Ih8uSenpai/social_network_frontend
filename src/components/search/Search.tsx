@@ -15,6 +15,7 @@ import PostsFeed from "../news/components/PostsFeed";
 import {UserProfileOptionalData} from "../profile/components/UserProfileOptionalData";
 import UserInfoSection from "../profile/components/UserInfoSection";
 import {MusicPage} from "../Music/MusicPage";
+import {defaultProfileIcon} from "../utils/Constants";
 
 interface User {
     userId: number;
@@ -29,7 +30,6 @@ const Search = () => {
     const [profiles, setProfiles] = useState<ProfileData[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const defaultProfileIcon = `${process.env.REACT_APP_BACK_BASE_URL}/src/main/resources/static/standart_icon.jpg`;
     const navigate = useNavigate();
 
     useEffect(() => {
