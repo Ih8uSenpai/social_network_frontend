@@ -400,7 +400,7 @@ const Post: React.FC<PostProps> = ({
                                     right: 0,
                                     top: -16
                                 }}></p>
-                                <img src={`${process.env.REACT_APP_BACK_BASE_URL}/` + url} alt={`Preview ${url}`}
+                                <img src={`${process.env.REACT_APP_STATIC_URL}/` + url} alt={`Preview ${url}`}
                                      style={{maxWidth: 1750, height: 750, objectFit: 'cover'}}/>
                             </Box>
 
