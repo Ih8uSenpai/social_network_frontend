@@ -21,7 +21,7 @@ export const useProfile = (userId: string | undefined, currentUserId: string | n
                 const data = await response.json();
                 setProfile(data);
                 if (userId === currentUserId) {
-                    localStorage.setItem("myProfilePicture", data.profilePictureUrl ? data.profilePictureUrl : defaultProfileIcon);
+                    localStorage.setItem("myProfilePicture", data.profilePictureUrl ? `${process.env.REACT_APP_STATIC_URL}/` + data.profilePictureUrl : `${process.env.REACT_APP_STATIC_URL}/` + defaultProfileIcon);
                     localStorage.setItem('currentProfileId', String(data.profileId));
                 }
 
