@@ -95,7 +95,7 @@ export const PhotoSection: React.FC<PhotoInputProps> = ({profileId}) => {
                             position: "relative"
                         }}
                         onMouseLeave={() => setHoverIndex(null)}>
-                            <img src={`${process.env.REACT_APP_BACK_BASE_URL}/${photo}`}
+                            <img src={`${process.env.REACT_APP_STATIC_URL}/${photo}`}
                                  style={{width: '100%', height: '200px', objectFit: 'cover', border: '2px solid black'}}
                                  alt={`Photo ${index + 1}`} onClick={() => handleOpen(index)}
                                  onMouseEnter={() => setHoverIndex(index)}
