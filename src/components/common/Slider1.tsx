@@ -1,5 +1,4 @@
-import {useNavigate} from "react-router-dom";
-import React, {useState} from "react";
+import React from "react";
 import {Slider} from "@mui/material";
 
 interface Slider1Props{
@@ -15,7 +14,7 @@ export const Slider1: React.FC<Slider1Props> = ({ playbackProgress, handleProgre
             value={playbackProgress}
             onChange={handleProgressChange}
             sx={{
-                color: 'white', // Цвет заполненной части
+                color: 'white',
                 height: 4,
                 '& .MuiSlider-thumb': {
                     height: 0,
@@ -32,7 +31,7 @@ export const Slider1: React.FC<Slider1Props> = ({ playbackProgress, handleProgre
                     border: 'none',
                 },
                 '& .MuiSlider-rail': {
-                    color: 'grey', // Цвет незаполненной части
+                    color: 'grey',
                     opacity: 0.5,
                 },
             }}

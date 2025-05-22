@@ -12,11 +12,11 @@ import {
 import  "./styles/SettingsPageStyles.css";
 import styles from "./styles/SettingsPageStylesTs";
 import ThemeSwitcher from "./ThemeSwitcher";
-import "../themes/theme.css"
+import "../../features/theme/theme.css"
 
 export const SettingsPage: React.FC = () => {
     const [selectedTab, setSelectedTab] = useState<string>("Your account");
-    const [subPage, setSubPage] = useState<string | null>(null); // Manage sub-pages
+    const [subPage, setSubPage] = useState<string | null>(null);
     const currentUserId = localStorage.getItem('currentUserId');
     const token = localStorage.getItem('authToken');
     const {profile, fetchProfile} = useProfile(currentUserId, currentUserId, token, false);
@@ -24,7 +24,6 @@ export const SettingsPage: React.FC = () => {
         {id: "Your account", label: "Your account"},
         {id: "Preferences", label: "Preferences"},
     ];
-    // State for handling input values and messages
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -35,10 +34,10 @@ export const SettingsPage: React.FC = () => {
     const [success, setSuccess] = useState<string | null>(null);
     const [newValue, setNewValue] = useState<string>('');
 
-    // Handlers for API calls
+
     const handlePasswordChange = async () => {
-        setError(null); // Clear previous errors
-        setSuccess(null); // Clear previous success messages
+        setError(null);
+        setSuccess(null);
 
         if (newPassword !== confirmPassword) {
             setError("Passwords do not match.");
@@ -47,7 +46,7 @@ export const SettingsPage: React.FC = () => {
 
         try {
             const response = await changePassword(currentUserId, oldPassword, newPassword);
-            setSuccess(response); // Set success message from the response
+            setSuccess(response);
             setOldPassword('');
             setNewPassword('');
             setConfirmPassword('');
@@ -81,10 +80,10 @@ export const SettingsPage: React.FC = () => {
                 const response = await changeTag(profile.profileId, newValue);
                 setSuccess("Tag successfully updated.");
             }
-            fetchProfile(); // Refresh profile data
+            fetchProfile();
             setError("");
             setSuccess("")
-            setSubPage(null); // Navigate back to "Your Account" page
+            setSubPage(null);
         } catch (err) {
             setError(err.response?.data?.message || "An error occurred.");
         }
@@ -361,7 +360,6 @@ export const SettingsPage: React.FC = () => {
                         settings.
                     </p>
 
-                    {/* Добавим переключатель темы */}
                     <div>
                         <h2
                             style={{
@@ -398,7 +396,7 @@ export const SettingsPage: React.FC = () => {
                         key={tab.id}
                         onClick={() => {
                             setSelectedTab(tab.id);
-                            setSubPage(null); // Reset sub-page when switching tabs
+                            setSubPage(null);
                         }}
                         style={{
                             padding: "10px",
@@ -414,7 +412,6 @@ export const SettingsPage: React.FC = () => {
                 ))}
             </div>
 
-            {/* Right Content */}
             <div style={{flex: "3", padding: "20px", overflowY: "auto"}}>{content[selectedTab]}</div>
         </div>
     );

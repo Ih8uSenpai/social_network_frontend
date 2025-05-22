@@ -1,4 +1,3 @@
-// AudioPlayerContext.js
 import React, {createContext, useContext, useState, useRef, useEffect, useCallback} from 'react';
 import {Track} from "./TrackList";
 
@@ -17,7 +16,7 @@ export const AudioPlayerProvider = ({children, selectedTrack, setSelectedTrack})
     const [tracks, setTracks] = useState<Track[]>([]);
     const [currentAlbum, setCurrentAlbum] = useState<Track[]>([]);
     const [currentIndex, setCurrentIndex] = useState(1);
-    const [activeTrackId, setActiveTrackId] = useState<number | null>(null); // Идентификатор активного трека
+    const [activeTrackId, setActiveTrackId] = useState<number | null>(null);
 
     const setTrack = (track) => {
         if (currentTrack !== track) {
@@ -120,7 +119,7 @@ export const AudioPlayerProvider = ({children, selectedTrack, setSelectedTrack})
             audioRef.current.play();
         }
         setIsPlaying(!isPlaying);
-        setIsTrackEnded(false); // Сбросим флаг завершения трека при повторном воспроизведении
+        setIsTrackEnded(false);
     };
 
     const handleVolumeChange = (_event: Event, newValue: number | number[]) => {
@@ -138,7 +137,7 @@ export const AudioPlayerProvider = ({children, selectedTrack, setSelectedTrack})
         const audio = audioRef.current;
         if (audio) {
             audio.currentTime = (audio.duration * newProgress) / 100;
-            setIsTrackEnded(false); // Сбросим флаг завершения трека при перемотке
+            setIsTrackEnded(false);
         }
     };
 

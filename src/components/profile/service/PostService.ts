@@ -41,7 +41,7 @@ export async function fetchLikedPosts(token: string): Promise<PostData[]> {
             },
         });
 
-        return response.data; // axios автоматически преобразует JSON в объект
+        return response.data;
     } catch (error) {
         console.error('fetchLikedPosts error:', error);
         throw error;
@@ -57,7 +57,7 @@ export async function fetchRecommendedPosts(token: string): Promise<PostData[]> 
             },
         });
 
-        return response.data; // axios автоматически преобразует JSON в объект
+        return response.data;
     } catch (error) {
         console.error('fetchRecommendedPosts error:', error);
         throw error;

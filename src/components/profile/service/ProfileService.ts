@@ -2,7 +2,7 @@ import {NavigateFunction} from "react-router-dom";
 import {ProfileData} from "../../utils/Types";
 
 export const handleUserFollowNavigation = (userId: string, currentUserId: string, navigate: NavigateFunction, navigationType: 'followers' | 'following') => {
-    const validatedUserId = userId || currentUserId; // This will use userId if it's truthy, otherwise it falls back to currentUserId
+    const validatedUserId = userId || currentUserId;
     navigate(`/profile/${validatedUserId}/${navigationType}`);
 };
 
@@ -94,7 +94,6 @@ export async function fetchProfiles (query:string): Promise<ProfileData[]> {
     const token = localStorage.getItem('authToken');
     if (!token) {
         console.error('Токен не найден');
-        // Обработка отсутствия токена, например, перенаправление на страницу входа
     }
     try {
         const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/profiles/search?query=${query}`, {
@@ -102,7 +101,6 @@ export async function fetchProfiles (query:string): Promise<ProfileData[]> {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
-                // Добавьте здесь любые другие заголовки, например, для аутентификации
             },
         });
 

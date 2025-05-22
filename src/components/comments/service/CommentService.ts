@@ -1,4 +1,3 @@
-import {PostData} from "../../utils/Types";
 import {PostComment} from "../CommentInput";
 
 export async function fetchComments(postId: number, token: string): Promise<PostComment[]> {
@@ -10,7 +9,6 @@ export async function fetchComments(postId: number, token: string): Promise<Post
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
-                // Добавьте здесь любые другие заголовки, например, для аутентификации
             },
         });
 

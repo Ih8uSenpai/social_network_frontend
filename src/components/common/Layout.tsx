@@ -6,13 +6,13 @@ import NavigationList from "./navigationList";
 // @ts-ignore
 import {fetchFollowers} from "../followers/Followers";
 import {useProfile} from "../profile/hooks/useProfile";
-import { ThemeProvider, useTheme } from "../themes/ThemeContext";
+import {useAppTheme} from "../../features/theme/useAppTheme";
 
 const Layout = ({children, selectedTrack, isVisible, setIsVisible, isMusicPage, setIsMusicPage}) => {
     const currentUserId = localStorage.getItem('currentUserId');
     const token = localStorage.getItem('authToken');
     const {profile, fetchProfile} = useProfile(currentUserId, currentUserId, token, false);
-    const { isDarkMode, toggleTheme } = useTheme();
+    const { isDarkMode, toggleTheme } = useAppTheme();
     const video = isDarkMode ? "/video/bg1.mp4" : "/video/bg4.mp4";
     useEffect(() => {
         setIsMusicPage(false);

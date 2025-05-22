@@ -1,32 +1,25 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import NavigationList from "../common/navigationList"; // Импортируйте компонент списка навигации
 
 import {ChatListView} from "./components/ChatListView";
 import MessagesCreator from "./components/MessagesCreator";
-import {Chat, ChatMessage, PostData, ProfileData} from "../utils/Types";
-import {ChatType} from "../utils/Types";
-import styles from "../profile/styles/UserProfile.module.css";
+import {Chat, ChatMessage, ChatType} from "../utils/Types";
 import {fetchChats} from "../profile/service/ChatService";
 // @ts-ignore
 import {Box, Grid, IconButton, Paper} from "@mui/material";
 import axios from "../../config/axiosConfig";
 import SelectMessageComponent from "./components/SelectMessageComponent";
-import {defaultChatIcon, defaultProfileIcon} from "../utils/Constants";
+import {defaultProfileIcon} from "../utils/Constants";
 import {Close} from "@mui/icons-material";
 import ReplyIcon from "@mui/icons-material/Reply";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {useWebSocket} from "../websocket/WebSocketContext";
-import {useIntersectionObserver} from "../news/hooks/useIntersectionObserver";
-import {formatDate} from "../utils/formatDate";
-import EditIcon from "@mui/icons-material/Edit";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import {Message} from "./components/Message";
 import InboxWelcomeComponent from "./components/InboxWelcomeComponent";
 
 
 export const Messages = () => {
-    const [chats, setChats] = useState<Chat[]>([]); // chats теперь содержит объекты типа Chat с сообщениями
+    const [chats, setChats] = useState<Chat[]>([]);
     const [selectedChat, setSelectedChat] = useState<Chat | null>(null);
     const [messages, setMessages] = useState<ChatMessage[]>([]);
     const navigate = useNavigate();
@@ -104,7 +97,6 @@ export const Messages = () => {
     };
 
     useEffect(() => {
-        // Функция для получения сообщений
         fetchMessages()
     }, [selectedChat?.id, setMessages]);
 
@@ -131,7 +123,6 @@ export const Messages = () => {
 
     useEffect(() => {
         if (webSocketService && webSocketService.subscribeToMessages) {
-            // Pass the updateMessages callback to the WebSocketService
             webSocketService.subscribeToMessages(updateMessages);
         }
     }, [webSocketService]);
@@ -158,7 +149,7 @@ export const Messages = () => {
     };
 
     async function createChat(name: string) {
-        const currentUserId = localStorage.getItem('currentUserId'); // Получаем ID текущего пользователя
+        const currentUserId = localStorage.getItem('currentUserId');
 
         if (!token || !currentUserId) {
             console.error('Токен или ID пользователя не найдены');

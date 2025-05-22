@@ -1,14 +1,13 @@
-/* PostCard.module.css */
 .postCard {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin-bottom: 20px; /* Space between cards */
+    margin-bottom: 20px;
 }
 
 .content {
-    margin-bottom: 20px; /* Space between content and interactions */
+    margin-bottom: 20px;
 }
 
 .interactions {

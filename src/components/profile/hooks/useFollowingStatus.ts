@@ -1,4 +1,3 @@
-// useFollowingStatus.ts
 import { useState, useEffect } from 'react';
 
 export const useFollowingStatus = (userId: string | undefined, token: string | null, update: number, setUpdate) => {

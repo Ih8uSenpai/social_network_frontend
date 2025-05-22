@@ -29,7 +29,6 @@ const formatTime = (time: number) => {
 };
 
 export const TrackPlayer: React.FC<{ selectedTrack } & { isVisible } & { setIsVisible }> = ({ selectedTrack, isVisible, setIsVisible}) => {
-    // Определение состояний
     const {
         isPlaying,
         togglePlayPause,

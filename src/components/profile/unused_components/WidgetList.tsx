@@ -43,9 +43,8 @@ const WidgetList: React.FC<WidgetListProps> = ({ count , width, height}) => {
                     <div
                         {...provided.droppableProps}
                         ref={provided.innerRef}
-                        className={styles.widgetContainer} // Style for the horizontal layout
+                        className={styles.widgetContainer}
                         style={{height:height, width:width}}
-                        // You can also use `snapshot.isDraggingOver` to apply conditional styling
                     >
                         {widgets.map((widget, index) => (
                             <Draggable key={widget.id} draggableId={widget.id} index={index}>
@@ -55,7 +54,6 @@ const WidgetList: React.FC<WidgetListProps> = ({ count , width, height}) => {
                                         {...provided.draggableProps}
                                         {...provided.dragHandleProps}
                                         className={styles.widgetCard}
-                                        // Here, you can also use `snapshot.isDragging` for conditional styling
                                     >
                                         <div className={styles.widgetTitle}>{widget.title}</div>
                                         <div className={styles.widgetContent}>{widget.content}</div>

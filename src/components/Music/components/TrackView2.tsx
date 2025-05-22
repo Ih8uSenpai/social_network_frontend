@@ -1,4 +1,3 @@
-
 import {TrackIcon} from "./TrackIcon";
 import Button from "@mui/material/Button";
 import CloseIcon from '@mui/icons-material/Close';

@@ -3,7 +3,6 @@ import axios from 'axios';
 import {useNavigate} from "react-router-dom";
 import {defaultProfileIcon} from "./Constants";
 
-// Tooltip component to show user details on hover
 const UserTooltip = ({tag}) => {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -12,9 +11,9 @@ const UserTooltip = ({tag}) => {
     const hideTimeout = useRef(null);
     const navigate = useNavigate();
 
-    // Fetch profile data on hover
+
     const fetchProfile = async () => {
-        if (profile || loading) return; // Prevent re-fetching if already loaded
+        if (profile || loading) return;
         setLoading(true);
         const token = localStorage.getItem('authToken');
         if (!token) {
@@ -43,10 +42,9 @@ const UserTooltip = ({tag}) => {
     const hideTooltipHandler = () => {
         hideTimeout.current = setTimeout(() => {
             setShowTooltip(false);
-        }, 200); // Задержка перед скрытием окна (200 мс)
+        }, 200);
     };
 
-    // Очистка таймера при размонтировании компонента
     useEffect(() => {
         return () => {
             if (hideTimeout.current) clearTimeout(hideTimeout.current);
@@ -104,7 +102,6 @@ const UserTooltip = ({tag}) => {
 
 };
 
-// Modified formatText function to integrate @tag and #hashtag detection
 export const formatText = (text: string) => {
     if (!text) return;
 
@@ -121,7 +118,7 @@ export const formatText = (text: string) => {
                     </span>
                 );
             } else if (word.startsWith('@')) {
-                const tag = word.substring(1); // Remove '@' from tag
+                const tag = word.substring(1);
                 return (
                     <span>
                     <UserTooltip key={wordIndex} tag={tag}/>

@@ -1,24 +1,23 @@
-/* UserProfileInfo.css */
 .user-profile-optional-data {
-    color: #fff; /* Белый текст */
-    background-color: #333; /* Темный фон */
+    color: #fff;
+    background-color: #333;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Добавляем немного тени для глубины */
-    max-width: 400px; /* Максимальная ширина блока */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
 }
 
 .user-profile-optional-data h2 {
-    color: #aad; /* Светло-голубой цвет для заголовков */
+    color: #aad;
 }
 
 .user-profile-optional-data ul {
-    list-style: none; /* Убираем маркеры списка */
+    list-style: none;
     padding: 0;
 }
 
 .user-profile-optional-data li {
-    background-color: #444; /* Чуть более светлый фон для элементов списка */
+    background-color: #444;
     margin: 5px 0;
     padding: 5px;
     border-radius: 5px;

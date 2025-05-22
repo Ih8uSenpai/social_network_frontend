@@ -1,10 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {useParams} from "react-router-dom";
-import {PostData} from "../utils/Types";
-import {Box, Paper} from "@mui/material";
-import Button from "@mui/material/Button";
 import {CommentInput} from "./CommentInput";
-import {fetchComments} from "./service/CommentService";
 
 interface PostCreatorProps {
     postId: number;
@@ -28,8 +24,8 @@ export const CommentCreator: React.FC<PostCreatorProps> = ({postId, profileId, s
     const adjustTextAreaHeight = () => {
         const textArea = textAreaRef.current;
         if (textArea) {
-            textArea.style.height = 'auto'; // Сброс высоты
-            textArea.style.height = `${textArea.scrollHeight}px`; // Установка новой высоты
+            textArea.style.height = 'auto';
+            textArea.style.height = `${textArea.scrollHeight}px`;
         }
     };
 

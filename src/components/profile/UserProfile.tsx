@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import SocialPanel from './components/SocialPanel';
-// Import other components as needed
 import styles from "./styles/UserProfile.module.css";
 import WidgetList from "./unused_components/WidgetList";
 import {PostData, ProfileData} from "../utils/Types";
@@ -77,7 +76,6 @@ const UserProfile: React.FC<ProfileProps> = ({
                                                  tracks,
                                                  setTracks
                                              }) => {
-
 
     return (
 

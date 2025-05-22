@@ -1,4 +1,3 @@
-/* UserProfile.module.css */
 .userProfile {
     position: relative;
     width: 1100px;
@@ -8,7 +7,7 @@
     margin: 0 auto;
     transform: translate(125px, 0);
     border: 1px solid transparent;
-    scrollbar-width: none; /* For Firefox */
+    scrollbar-width: none;
     -ms-overflow-style: none;
 }
 .userProfile::-webkit-scrollbar {
@@ -32,17 +31,17 @@
 
 .gridContainer {
     display: grid;
-    grid-template-columns: 3fr 2fr; /* Две колонки с одинаковой шириной */
-    grid-template-rows: auto auto; /* Две строки, высота которых определяется контентом */
-    gap: 10px; /* Отступы между элементами сетки */
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
     width: 100%;
 }
 
 .firstColumn {
     grid-column: 1 / 2;
-    grid-row: 1 / 2; /* Занимает две строки */
-    background-color: #444; /* Пример фона */
-    padding: 10px; /* Отступы внутри блока */
+    grid-row: 1 / 2;
+    background-color: #444;
+    padding: 10px;
 }
 
 .secondColumnTop,

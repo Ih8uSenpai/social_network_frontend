@@ -65,25 +65,25 @@ export const lightTheme = createTheme({
         MuiListItemIcon: {
             styleOverrides: {
                 root: {
-                    minWidth: 36, // Уменьшаем минимальную ширину для иконок
-                    color: 'rgba(0, 0, 0, 0.7)', // Цвет иконок
+                    minWidth: 36,
+                    color: 'rgba(0, 0, 0, 0.7)',
                 },
             },
         },
         MuiAvatar: {
             styleOverrides: {
                 root: {
-                    backgroundColor: 'rgba(0, 0, 0, 0.1)', // Фон для аватара
+                    backgroundColor: 'rgba(0, 0, 0, 0.1)',
                 },
             },
         },
         MuiListItemText: {
             styleOverrides: {
                 primary: {
-                    color: '#000', // Чёрный цвет для основного текста
+                    color: '#000',
                 },
                 secondary: {
-                    color: 'rgba(0, 0, 0, 0.7)', // Темнее для второстепенного текста
+                    color: 'rgba(0, 0, 0, 0.7)',
                 },
             },
         },
@@ -157,25 +157,25 @@ export const darkTheme = createTheme({
         MuiListItemIcon: {
             styleOverrides: {
                 root: {
-                    minWidth: 36, // Уменьшаем минимальную ширину для иконок
-                    color: 'rgba(255, 255, 255, 0.7)', // Цвет иконок
+                    minWidth: 36,
+                    color: 'rgba(255, 255, 255, 0.7)',
                 },
             },
         },
         MuiAvatar: {
             styleOverrides: {
                 root: {
-                    backgroundColor: 'rgba(255, 255, 255, 0.23)', // Фон для аватара
+                    backgroundColor: 'rgba(255, 255, 255, 0.23)',
                 },
             },
         },
         MuiListItemText: {
             styleOverrides: {
                 primary: {
-                    color: '#fff', // Белый цвет для основного текста (название трека)
+                    color: '#fff',
                 },
                 secondary: {
-                    color: 'rgba(255, 255, 255, 0.7)', // Светлее для второстепенного текста (исполнитель)
+                    color: 'rgba(255, 255, 255, 0.7)',
                 },
             },
         },

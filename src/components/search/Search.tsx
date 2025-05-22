@@ -20,7 +20,6 @@ import {defaultProfileIcon} from "../utils/Constants";
 interface User {
     userId: number;
     username: string;
-    // Другие свойства пользователя
 }
 
 
@@ -38,7 +37,6 @@ const Search = () => {
             const token = localStorage.getItem('authToken');
             if (!token) {
                 console.error('Токен не найден');
-                // Обработка отсутствия токена, например, перенаправление на страницу входа
             }
             try {
                 const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/profiles/search?query=${query}`, {
@@ -46,7 +44,6 @@ const Search = () => {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`,
-                        // Добавьте здесь любые другие заголовки, например, для аутентификации
                     },
                 });
 

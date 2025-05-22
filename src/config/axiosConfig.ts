@@ -1,6 +1,5 @@
 import axios from "axios"
 
-// Настройка глобального перехватчика
 axios.interceptors.response.use(
     (response) => response,
     (error) => {
@@ -13,5 +12,4 @@ axios.interceptors.response.use(
     }
 );
 
-// Экспортируем настроенный экземпляр Axios
 export default axios;

@@ -10,10 +10,8 @@ export class WebSocketService {
             onConnect: () => {
                 console.log('Connected to WS');
             },
-            // Заметьте, что 'onError' убран из конфигурации
         });
 
-        // Установка обработчика ошибок
         this.client.onStompError = (frame: IFrame) => {
             console.error('Broker reported error: ' + frame.headers['message']);
             console.error('Additional details: ' + frame.body);
@@ -64,7 +62,6 @@ export class WebSocketService {
         // Subscribe to the '/topic/messages' channel
         this.client.subscribe('/topic/messages', message => {
             console.log('Received:', message.body);
-            // Call the callback function, passing the received message
             maxRetries = 5;
             updateCallback(message.body);
         });
@@ -75,18 +72,15 @@ export class WebSocketService {
         if (!this.client.active) {
             console.error("Cannot send message. STOMP connection is not active. Trying to reconnect...");
 
-            // Попытка переподключения
             this.connect();
 
-            // Опционально: Задержка перед повторной отправкой или использование механизма повтора
             setTimeout(() => {
                 if (this.client.active) {
                     this.client.publish({ destination: '/app/sendMessage', body: message });
                 } else {
                     console.error("Reconnection failed. Unable to send the message.");
-                    // Дополнительная обработка ошибок переподключения
                 }
-            }, 5000); // 5 секунд задержки для примера
+            }, 5000);
 
             return;
         }

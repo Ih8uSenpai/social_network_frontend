@@ -18,7 +18,7 @@ const Header = () => {
 
     const handleSearch = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
-        navigate(`/search?query=${search}`); // Переход на страницу поиска с запросом
+        navigate(`/search?query=${search}`);
     };
 
     return (

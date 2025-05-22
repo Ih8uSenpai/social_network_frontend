@@ -1,4 +1,3 @@
-// useChatExistence.ts
 import { useState, useEffect } from 'react';
 
 export const useChatExistence = (userId: string | undefined, token: string | null) => {

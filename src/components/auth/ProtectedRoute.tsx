@@ -31,7 +31,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     }, []);
 
     if (isAuthorized === null) {
-        return <div>Loading...</div>; // Или какой-то индикатор загрузки
+        return <div>Loading...</div>;
     }
 
     return isAuthorized ? <>{children}</> : <Navigate to="/login" />;

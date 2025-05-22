@@ -12,7 +12,7 @@ import music3 from "../resources/music/HOYO-MiX - Emberfire Instrumental.mp3";
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import MusicOffIcon from '@mui/icons-material/MusicOff';
 import {Register} from "./register";
-import { ThemeProvider, useTheme } from "../themes/ThemeContext";
+import {useAppTheme} from "../../features/theme/useAppTheme";
 LicenseInfo.setLicenseKey(
     'e0d9bb8070ce0054c9d9ecb6e82cb58fTz0wLEU9MzI0NzIxNDQwMDAwMDAsUz1wcmVtaXVtLExNPXBlcnBldHVhbCxLVj0y',
 );
@@ -27,7 +27,7 @@ export const Login = () => {
     const musicTracks = [music1, music2, music3];
     const [register, setRegister] = useState(false);
     const [randomIndex, setRandomIndex] = useState(0);
-    const { isDarkMode, toggleTheme } = useTheme();
+    const { isDarkMode, toggleTheme } = useAppTheme();
     const video = isDarkMode ? "/video/bg1.mp4" : "/video/bg4.mp4";
     const handleSubmit = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();

@@ -1,4 +1,3 @@
-/* Основные стили хедера */
 .header {
     background: linear-gradient(45deg, #00fff7 -40%, hotpink 70%);
     color: #fff;
@@ -7,22 +6,21 @@
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    width: 100%; /* Установите ширину на 100%, чтобы хедер распространился на всю ширину страницы */
-    position: fixed; /* Опционально, если хотите, чтобы хедер всегда оставался сверху */
-    top: 0; /* Для фиксированного положения */
-    left: 0; /* Для фиксированного положения */
-    z-index: 1000; /* Чтобы хедер всегда был поверх других элементов */
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
-/* Стили для кнопки выхода */
 .header button {
-    background-color: #555; /* Темный фон для кнопки */
-    color: #fff; /* Светлый текст */
-    border: none; /* Убрать стандартную рамку */
-    padding: 5px 15px; /* Внутренние отступы */
-    border-radius: 4px; /* Скругленные углы */
-    cursor: pointer; /* Курсор в виде руки для интерактивности */
-    transition: background-color 0.3s; /* Плавное изменение фона при наведении */
+    background-color: #555;
+    color: #fff;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 

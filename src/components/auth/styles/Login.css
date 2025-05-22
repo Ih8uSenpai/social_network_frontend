@@ -4,15 +4,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: transparent; /* Темный фон */
+    background: transparent;
     font-family: 'Arial', sans-serif;
 }
 
 .auth-form {
     padding: 20px;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.2); /* Полупрозрачный фон */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Тень */
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     width: 300px;
     text-align: center;
 }
@@ -44,12 +44,12 @@
 }
 
 .login-btn:active, .register-btn:active {
-    transform: scale(0.98); /* Небольшое уменьшение при клике */
+    transform: scale(0.98);
 }
 
 .back-to-login {
     text-decoration: none;
-    color: #aaa;
+    color: var(--text-color);
 }
 .back-to-login:hover {
     color: #eee;

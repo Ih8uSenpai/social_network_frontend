@@ -27,21 +27,21 @@ const PostsFeed: React.FC<PostsFeedProps> = ({
                                                  selectedTrack,
                                                  section
                                              }) => {
-    const [isLoading, setIsLoading] = useState(false); // Флаг для предотвращения повторной загрузки
-    const loaderRef = useRef<HTMLDivElement | null>(null); // Ref для отслеживания последнего элемента
+    const [isLoading, setIsLoading] = useState(false);
+    const loaderRef = useRef<HTMLDivElement | null>(null);
     const [openCommentPostId, setOpenCommentPostId] = useState<number | null>(null)
     const token = localStorage.getItem('authToken');
     const [recommendedPostsEmpty, setRecommendedPostsEmpty] = useState(false);
     const handleCommentSectionToggle = (postId: number) => {
         if (openCommentPostId === postId) {
-            setOpenCommentPostId(null); // Закрыть секцию, если она уже открыта
+            setOpenCommentPostId(null);
         } else {
-            setOpenCommentPostId(postId); // Открыть новую секцию
+            setOpenCommentPostId(postId);
         }
     };
-    // Функция для загрузки новых постов
+
     const fetchMorePosts = async () => {
-        if (isLoading) return; // Если уже идёт загрузка, ничего не делать
+        if (isLoading) return;
         setIsLoading(true);
         try {
             let newPosts: PostData[] = [];
@@ -49,7 +49,6 @@ const PostsFeed: React.FC<PostsFeedProps> = ({
                 newPosts = await fetchRecommendedPosts(token);
             }
             if (newPosts.length > 0) {
-                // Добавляем новые посты к существующим
                 setPosts((prevPosts) => [...prevPosts, ...newPosts]);
             }
             else {
@@ -69,7 +68,7 @@ const PostsFeed: React.FC<PostsFeedProps> = ({
                 markPostAsViewed(posts.at(posts.length - 1), "QUICK").then(() => fetchMorePosts())
             }
         },
-        { threshold: 1.0 } // Загрузчик активируется, когда полностью виден
+        { threshold: 1.0 }
     );
 
     return (

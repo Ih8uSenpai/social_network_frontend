@@ -4,11 +4,6 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import SendIcon from '@mui/icons-material/Send';
 import axios from "../../config/axiosConfig";
 import {fetchComments} from "./service/CommentService";
-import {PostData} from "../utils/Types";
-import Post from "../news/components/Post";
-import {Comment} from "./Comment";
-import {useProfile} from "../profile/hooks/useProfile";
-import {fetchPosts} from "../profile/service/PostService";
 import {useParams} from "react-router-dom";
 import RecursiveComment from "./RecursiveComment";
 import './styles/Style.css'

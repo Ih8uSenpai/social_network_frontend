@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.11.0",
+    "@google/genai": "^1.0.0",
     "@mui/icons-material": "^5.15.11",
     "@mui/lab": "^5.0.0-alpha.166",
     "@mui/material": "^5.16.7",
@@ -12,6 +13,7 @@
     "@mui/x-data-grid-pro": "^7.0.0",
     "@mui/x-date-pickers": "^7.22.2",
     "@mui/x-date-pickers-pro": "^7.0.0",
+    "@reduxjs/toolkit": "^2.7.0",
     "@stomp/stompjs": "^7.0.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -32,6 +34,7 @@
     "react-dom": "^18.2.0",
     "react-image-crop": "latest",
     "react-material-ui-carousel": "^3.4.2",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^6.23.0",
     "react-scripts": "5.0.1",
     "react-slick": "^0.30.2",

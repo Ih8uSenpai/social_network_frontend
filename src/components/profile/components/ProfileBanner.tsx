@@ -76,7 +76,7 @@ export const ProfileBanner: React.FC<ProfileBannerProps> = ({
         if (profile != null) {
             if (e !== undefined)
                 e.preventDefault();
-            if (profile && image) { // проверка на существование профиля и изображения
+            if (profile && image) {
                 const formData = new FormData();
                 formData.append('image', image);
 
@@ -107,7 +107,7 @@ export const ProfileBanner: React.FC<ProfileBannerProps> = ({
     const handleBannerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length > 0) {
             setImage(e.target.files[0]);
-            setActiveForm('banner'); // Устанавливаем активной форму баннера
+            setActiveForm('banner');
             e.target.value = '';
         }
     };
@@ -115,7 +115,7 @@ export const ProfileBanner: React.FC<ProfileBannerProps> = ({
     const handleIconChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length > 0) {
             setImage(e.target.files[0]);
-            setActiveForm('icon'); // Устанавливаем активной форму иконки
+            setActiveForm('icon');
             e.target.value = '';
         }
     };

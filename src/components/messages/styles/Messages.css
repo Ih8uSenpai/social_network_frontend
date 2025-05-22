@@ -62,14 +62,12 @@
     margin-right: 20px;
 }
 
-.chat-content {
-    /* Стили для контента чата */
-}
+
 
 .messages-user-icon{
     width: 45px;
     height: 45px;
-    border-radius: 50%; /* Круглая иконка */
+    border-radius: 50%;
     object-fit: cover;
     margin-right: 10px;
 }
@@ -77,13 +75,12 @@
 .messages-user-icon-small{
     width: 40px;
     height: 40px;
-    border-radius: 50%; /* Круглая иконка */
+    border-radius: 50%;
     object-fit: cover;
     margin-right: 10px;
 }
 
 
-/* ChatView.css */
 .messages {
     position: relative;
     overflow: auto;

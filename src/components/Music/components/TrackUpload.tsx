@@ -47,7 +47,6 @@ export const TrackUpload: React.FC<TrackUploadProps> = ({ token }) => {
         }
     };
 
-    // Проверка, заполнены ли все поля и выбран ли файл
     const isFormFilled = file && title && artist;
 
     return (
@@ -103,7 +102,7 @@ export const TrackUpload: React.FC<TrackUploadProps> = ({ token }) => {
                 type="submit"
                 variant="contained"
                 sx={{mt: 2, mb: 2  }}
-                disabled={!isFormFilled} // Кнопка становится доступной только если все поля заполнены и файл выбран
+                disabled={!isFormFilled}
             >
                 Submit
             </Button>

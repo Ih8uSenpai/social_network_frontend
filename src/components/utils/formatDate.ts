@@ -100,7 +100,6 @@ export function formatDateRange(dateRange: StartEndDateRange): string {
     ) {
         return 'this year';
     } else {
-        // Default formatting for any date range not covered above
         return `from ${format(dateRange.start, 'PPP')} to ${format(dateRange.end, 'PPP')}`;
     }
 }

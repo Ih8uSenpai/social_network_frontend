@@ -5,7 +5,7 @@ export const changePassword = async (userId, oldPassword, newPassword) => {
     try {
         const response = await axios.put(
             `${process.env.REACT_APP_API_BASE_URL}/users/${userId}/change-password`,
-            null, // No body needed as we're using query parameters
+            null,
             {
                 params: {
                     oldPassword,
@@ -131,7 +131,6 @@ export const changeTag = async (profileId, tag) => {
 
 
 
-// Деактивация пользователя
 export const deactivateUser = async (userId: number): Promise<void> => {
     try {
         const response = await axios.put(`${process.env.REACT_APP_API_BASE_URL}/users/${userId}/deactivate`,
@@ -149,7 +148,6 @@ export const deactivateUser = async (userId: number): Promise<void> => {
     }
 };
 
-// Восстановление пользователя
 export const restoreUser = async (userId: number): Promise<void> => {
     try {
         const response = await axios.put(`${process.env.REACT_APP_API_BASE_URL}/users/${userId}/restore`,

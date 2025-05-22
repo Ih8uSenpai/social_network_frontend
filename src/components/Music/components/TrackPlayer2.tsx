@@ -33,7 +33,6 @@ export const TrackPlayer2: React.FC<{ selectedTrack } & { isVisible } & { setIsV
                                                                                                  isVisible,
                                                                                                  setIsVisible
                                                                                              }) => {
-    // Определение состояний
     const {
         isPlaying,
         togglePlayPause,

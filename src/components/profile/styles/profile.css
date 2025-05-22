@@ -35,19 +35,19 @@ html{
 }
 
 *::-webkit-scrollbar {
-    width: 15px; /* width of the entire scrollbar */
+    width: 15px;
     max-width: 1.2vw;
     min-width: 0.6vw;
 }
 
 *::-webkit-scrollbar-track {
-    background: #2e2e2e; /* color of the track (part that the thumb slides within) */
+    background: #2e2e2e;
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: #555; /* color of the scroll thumb */
-    border-radius: 10px; /* roundness of the scroll thumb */
-    border: 2px solid #2e2e2e; /* creates padding around scroll thumb */
+    background-color: #555;
+    border-radius: 10px;
+    border: 2px solid #2e2e2e;
 }
 
 
@@ -78,7 +78,7 @@ html{
 .banner-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
 }
 
 
@@ -138,21 +138,21 @@ html{
 }
 
 .edit-profile-button {
-    background-color: transparent; /* Чёрный фон */
-    color: white; /* Белый текст */
-    font-size: 16px; /* Размер текста */
-    font-weight: bold; /* Жирный текст */
-    padding: 10px 20px; /* Внутренние отступы */
-    border: 1px solid rgba(255, 255, 255, 0.5); /* Полупрозрачная рамка */
-    border-radius: 30px; /* Закруглённые углы */
-    cursor: pointer; /* Курсор в виде руки */
-    transition: background-color 0.3s, color 0.3s; /* Анимация при наведении */
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
     width: 170px;
 }
 
 .edit-profile-button:hover {
-    background-color: white; /* Белый фон при наведении */
-    color: black; /* Чёрный текст при наведении */
+    background-color: white;
+    color: black;
 }
 
 
@@ -307,6 +307,6 @@ html{
 
 
 .NoScrollbar {
-    scrollbar-width: none; /* For Firefox */
+    scrollbar-width: none;
     -ms-overflow-style: none;
 }

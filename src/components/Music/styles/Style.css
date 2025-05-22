@@ -53,7 +53,6 @@
 }
 
 
-/* Добавленные/измененные стили */
 
 .music-search{
     width: 100%;
@@ -64,7 +63,7 @@
 }
 
 .music-search input {
-    width: 95%; /* Ширина строки поиска */
+    width: 95%;
     padding: 5px 10px;
     border-radius: 4px;
     border: 1px solid #aaa;
@@ -79,8 +78,8 @@
     white-space: nowrap;
     overflow: hidden;
     box-sizing: border-box;
-    width: 140px; /* Установите желаемую ширину */
-    height: 20px; /* Установите желаемую высоту */
+    width: 140px;
+    height: 20px;
     position: relative;
 }
 

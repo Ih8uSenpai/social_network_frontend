@@ -4,7 +4,6 @@ export function useIntersectionObserverPosts(elementsRefs, onIntersect, options)
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                // Передаём элемент и его состояние isIntersecting
                 onIntersect(entry.target, entry.isIntersecting);
             });
         }, options);

@@ -1,9 +1,9 @@
 import React from "react";
-import { useTheme } from "../themes/ThemeContext";
-import "./styles/ThemeSwitcherStyles.css"; // Добавим стили
+import "./styles/ThemeSwitcherStyles.css";
+import {useAppTheme} from "../../features/theme/useAppTheme";
 
 const ThemeSwitcher: React.FC = () => {
-    const { isDarkMode, toggleTheme } = useTheme();
+    const { isDarkMode, toggleTheme } = useAppTheme();
 
     return (
         <div className="theme-switcher-container">

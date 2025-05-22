@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import NavigationList from "../common/navigationList";
 import {ProfileData} from "../utils/Types";
-import styles from "../profile/styles/UserProfile.module.css";
 import {Box, IconButton, List, ListItem, Paper} from "@mui/material";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import {defaultProfileIcon} from "../utils/Constants";

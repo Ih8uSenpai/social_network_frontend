@@ -1,9 +1,3 @@
-
-
-
-// Интерфейсы для пропсов компонентов
-
-
 export interface ChatListViewProps {
     chats: Chat[];
     onChatSelect: (chatId: string) => void;
@@ -19,7 +13,6 @@ export interface ChatViewProps {
 export interface User {
     userId: number;
     username: string;
-    // Другие поля, если нужно
 }
 
 export interface ChatMessage {
@@ -57,7 +50,7 @@ export enum ChatType {
     PRIVATE,
     GENERAL
 }
-// Интерфейс для данных пользователя
+
 export interface UserData {
     userId: number;
     username: string;
@@ -67,10 +60,9 @@ export interface UserData {
     enabled: boolean;
     isOnline: boolean;
     lastSeen: string;
-    // Другие поля, которые вам могут понадобиться
 }
 
-// Интерфейс для данных поста
+
 export interface PostData {
     id: number;
     content: string;
@@ -86,7 +78,6 @@ export interface PostData {
     pinned: boolean;
 }
 
-// Интерфейс для данных профиля
 export interface ProfileData {
     profileId: number;
     user: UserData;

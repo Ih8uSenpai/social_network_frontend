@@ -165,9 +165,9 @@ export const ProfileStatistics: React.FC<ProfileStatisticsProps> = ({
                             },
                             layout: {
                                 sx: {
-                                    backgroundColor: 'var(--background-color2)', // Задаём цвет фона календаря
-                                    borderRadius: '8px', // Добавляем скругление углов
-                                    boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)', // Добавляем тень для стиля
+                                    backgroundColor: 'var(--background-color2)',
+                                    borderRadius: '8px',
+                                    boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
                                 },
                             },
                         }}

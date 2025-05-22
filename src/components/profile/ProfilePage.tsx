@@ -19,6 +19,7 @@ interface ProfilePageProps {
     setIsVisible;
 }
 
+
 export const ProfilePage: React.FC<ProfilePageProps> = ({selectedTrack, setSelectedTrack, isVisible, setIsVisible}) => {
     const {userId} = useParams();
     const navigate = useNavigate();
@@ -58,7 +59,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({selectedTrack, setSelec
     }, [profile]);
 
     useEffect(() => {
-        window.scrollTo(0, 0); // Прокрутить страницу к началу при рендере компонента
+        window.scrollTo(0, 0);
     }, [navigate]);
 
     if (!profile) {

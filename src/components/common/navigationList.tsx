@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import './styles/navigationStyle.css'
 import './styles/header.css'
-import logo from '../resources/images/robin2.png'
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import MessageIcon from '@mui/icons-material/Message';
 import FeedIcon from '@mui/icons-material/Feed';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
@@ -12,12 +10,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import {logout} from "../auth/service/UserService";
 import {defaultProfileIcon} from "../utils/Constants";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import {handleMessage} from "../profile/service/ChatService";
-import {OnlineStatus} from "../profile/components/OnlineStatus";
-import {OfflineStatus} from "../profile/components/OfflineStatus";
-import {Menu, MenuItem, Popover} from "@mui/material";
-import { ThemeProvider, useTheme } from "../themes/ThemeContext";
+import {Menu, MenuItem} from "@mui/material";
 
 const NavigationList = ({setIsMusicPage, profile}) => {
     const navigate = useNavigate();
@@ -44,7 +37,7 @@ const NavigationList = ({setIsMusicPage, profile}) => {
 
     const handleSearch = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
-        navigate(`/search?query=${search}`); // Переход на страницу поиска с запросом
+        navigate(`/search?query=${search}`);
     };
 
     return (

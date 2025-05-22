@@ -322,7 +322,7 @@ const Post: React.FC<PostProps> = ({
                             width: 630,
                             textAlign: 'center',
                             position: 'relative',
-                            background: "rgba(0,0,0,0.4)",
+                            background: "rgba(0,0,0,0.05)",
                             borderRadius: 4
                         }} marginLeft={2}>
                             <img src={`${process.env.REACT_APP_STATIC_URL}/${url}`} alt={`Preview ${index}`}
@@ -338,7 +338,7 @@ const Post: React.FC<PostProps> = ({
                         width: 630,
                         textAlign: 'center',
                         position: 'relative',
-                        background: "rgba(0,0,0,0.4)",
+                        background: "rgba(0,0,0,0.05)",
                         borderRadius: 4
                     }}>
                         <img src={`${process.env.REACT_APP_STATIC_URL}/${post.postAttachments[0]}`}
@@ -358,16 +358,17 @@ const Post: React.FC<PostProps> = ({
                 </Box>
             }
             <div className="post-actions" style={{marginTop: "10px"}}>
-                <span onClick={onToggleComment}>
+                <span onClick={onToggleComment} style={{background:"var(--background-color)"}}>
                     {commentsCount}
                     <CommentIcon/>
                 </span>
-                <span>
+                <span style={{background:"var(--background-color)"}}>
                     {post.sharesCount}
                     <ShareIcon/>
                 </span>
                 <span
                     className={`like-button ${liked ? 'liked' : ''}`}
+                    style={{background:"var(--background-color)"}}
                     onClick={handleLike}>
                     {likesCount} {liked ? <FavoriteIcon/> : <FavoriteBorderIcon/>}
                 </span>

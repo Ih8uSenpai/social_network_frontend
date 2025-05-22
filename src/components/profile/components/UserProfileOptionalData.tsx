@@ -1,11 +1,9 @@
-// UserProfileInfo.tsx
-import '../styles/UserProfileOptionalData.css' // Импорт стилей
+import '../styles/UserProfileOptionalData.css'
 import {calculateAge, updateProfile} from "../service/ProfileService";
 import {ProfileData} from "../../utils/Types";
 import React, {useEffect, useState} from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-
 import {Box, Paper, Typography} from "@mui/material";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {LocalizationProvider, DatePicker} from '@mui/x-date-pickers';

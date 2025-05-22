@@ -14,8 +14,7 @@ import {Dialog, DialogContent, DialogTitle} from "@mui/material";
 import Button from "@mui/material/Button";
 import {ProfileData} from "../../utils/Types";
 
-// This is to demonstate how to make and center a % aspect crop
-// which is a bit trickier so we use some helper functions.
+
 function centerAspectCrop(
     mediaWidth: number,
     mediaHeight: number,
@@ -71,7 +70,7 @@ export const CropAvatar: React.FC<CropTestProps> = ({profile, token, fetchProfil
             const reader = new FileReader();
             reader.addEventListener('load', () => {
                 setImgSrc(reader.result?.toString() || '');
-                setCropModalOpen(true); // Открытие модального окна после выбора изображения
+                setCropModalOpen(true);
             });
             reader.readAsDataURL(e.target.files[0]);
         }
@@ -136,7 +135,6 @@ export const CropAvatar: React.FC<CropTestProps> = ({profile, token, fetchProfil
                 imgRef.current &&
                 previewCanvasRef.current
             ) {
-                // We use canvasPreview as it's much faster than imgPreview.
                 canvasPreview(
                     imgRef.current,
                     previewCanvasRef.current,

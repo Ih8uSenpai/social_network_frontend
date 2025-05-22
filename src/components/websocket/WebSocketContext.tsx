@@ -1,11 +1,10 @@
-// WebSocketContext.tsx
 import React, { createContext, useContext, useEffect } from 'react';
 import { WebSocketService } from './WebSocketService';
 
-// Создаем контекст с типом WebSocketService или null
+
 const WebSocketContext = createContext<WebSocketService | null>(null);
 
-// Создаем пользовательский хук для использования контекста
+
 export const useWebSocket = (): WebSocketService | null => {
     return useContext(WebSocketContext);
 };

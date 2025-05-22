@@ -1,6 +1,5 @@
 .widgetCard {
-    flex: 1 1 0; /* Grow and shrink evenly, starting with a basis of 0 */
-    /* Additional styles for appearance */
+    flex: 1 1 0;
     padding: 10px;
 
     justify-content: start;
@@ -30,11 +29,11 @@
 }
 
 .widgetContainer {
-    display: flex; /* Establishes a flex container */
-    flex-direction: row; /* Align children horizontally */
-    align-items: stretch; /* Stretch children to fill the container height */
-    overflow-x: auto; /* Allows horizontal scrolling */
-    gap: 10px; /* Optional: adds some space between the cards */
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    overflow-x: auto;
+    gap: 10px;
 }
 
 

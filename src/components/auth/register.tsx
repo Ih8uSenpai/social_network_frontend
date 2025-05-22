@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import Header from '../common/header';
-// @ts-ignore
+
 
 interface Errors {
     username?: string;
@@ -60,14 +59,11 @@ export const Register:React.FC<RegisterProps> = ({register, setRegister}) => {
 
                 if (registrationResponse.ok) {
                     const data = await registrationResponse.json();
-                    // Предполагается, что токен находится в поле `token` ответа
                     const token = data.token;
 
-                    // Сохранение токена в localStorage
                     localStorage.setItem('authToken', token);
                     localStorage.setItem('currentUserId', data.user.userId);
 
-                    // Переход на страницу профиля
                     navigate('/profile');
                 } else {
                     // Обработка ошибок регистрации
