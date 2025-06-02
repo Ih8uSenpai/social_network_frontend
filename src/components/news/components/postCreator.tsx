@@ -14,7 +14,7 @@ import { defaultProfileIcon } from '../../utils/Constants';
 import axios from '../../../config/axiosConfig';
 import AssistantIcon from '@mui/icons-material/Assistant';
 
-const STABILITY_API_KEY = 'sk-h3MZYCERXyz6dWsU5To3eubAhZ5VWeMK7RUnZyY12SubomxB';
+const STABILITY_API_KEY = 'sk-YWSKrANkTi0Umw9v3ee3JVEMWQzSgOCct2DlsulHVkC1m0Tm';
 
 const PostCreator = ({
                          profile,

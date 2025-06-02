@@ -7,6 +7,7 @@ import NavigationList from "./navigationList";
 import {fetchFollowers} from "../followers/Followers";
 import {useProfile} from "../profile/hooks/useProfile";
 import {useAppTheme} from "../../features/theme/useAppTheme";
+import ChatWidget from "../../shared/components/ChatWidget";
 
 const Layout = ({children, selectedTrack, isVisible, setIsVisible, isMusicPage, setIsMusicPage}) => {
     const currentUserId = localStorage.getItem('currentUserId');
@@ -36,6 +37,7 @@ const Layout = ({children, selectedTrack, isVisible, setIsVisible, isMusicPage, 
             <div className={styles.userProfile} style={{backgroundColor: "var(--background-color)"}}>
                 {children}
             </div>
+            <ChatWidget/>
         </div>
     );
 };

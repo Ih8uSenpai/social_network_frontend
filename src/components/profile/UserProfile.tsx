@@ -23,6 +23,7 @@ import {TrackPlayer} from "../Music/components/TrackPlayer";
 import {Followers} from "../followers/Followers";
 // @ts-ignore
 import {TrackPlayer2} from "../Music/components/TrackPlayer2";
+import ChatWidget from "../../shared/components/ChatWidget";
 
 
 interface ProfileProps {
