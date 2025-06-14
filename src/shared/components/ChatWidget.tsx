@@ -127,7 +127,7 @@ const ChatWidget: React.FC = () => {
         setMessages(prev => [...prev, { text, isUser: true }]);
         try {
             const resp = await fetch(
-                `http://localhost:8080/${sessionId.current}/chat?question=${encodeURIComponent(text)}`,{
+                `${process.env.REACT_APP_BACK_BASE_URL}/${sessionId.current}/chat?question=${encodeURIComponent(text)}`,{
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
