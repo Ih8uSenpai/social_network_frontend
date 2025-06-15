@@ -317,23 +317,41 @@ const Post: React.FC<PostProps> = ({
 
             {post.postAttachments && post.postAttachments.length > 1 ? (
                 <Carousel autoPlay={false} changeOnFirstRender={true} height={400}>
-                    {post.postAttachments.map((url, index) => (
-                        <Box key={index} sx={{
-                            width: 630,
-                            textAlign: 'center',
-                            position: 'relative',
-                            background: "rgba(0,0,0,0.05)",
-                            borderRadius: 4
-                        }} marginLeft={2}>
-                            <img src={`${process.env.REACT_APP_STATIC_URL}/${url}`} alt={`Preview ${index}`}
-                                 style={{maxWidth: 630, height: 390, objectFit: 'cover'}}
-                                 ref={imgRef}
-                                 onClick={() => handleOpen(index)}/>
-                        </Box>
-                    ))}
+                    {post.postAttachments.map((url, index) => {
+                        const fullUrl = `${process.env.REACT_APP_STATIC_URL}/${url}`;
+                        const isVideo = url.match(/\.(mp4|webm|ogg)$/i);
+
+                        return (
+                            <Box key={index} sx={{
+                                width: 630,
+                                textAlign: 'center',
+                                position: 'relative',
+                                background: "rgba(0,0,0,0.05)",
+                                borderRadius: 4
+                            }} marginLeft={2}>
+                                {isVideo ? (
+                                    <video
+                                        src={fullUrl}
+                                        controls
+                                        style={{ maxWidth: 630, height: 390, objectFit: 'cover' }}
+                                        onClick={() => handleOpen(index)}
+                                    />
+                                ) : (
+                                    <img
+                                        src={fullUrl}
+                                        alt={`Preview ${index}`}
+                                        style={{ maxWidth: 630, height: 390, objectFit: 'cover' }}
+                                        ref={imgRef}
+                                        onClick={() => handleOpen(index)}
+                                    />
+                                )}
+                            </Box>
+                        );
+                    })}
                 </Carousel>
+
             ) : post.postAttachments?.length === 1 && (
-                <Container sx={{maxWidth: 630, textAlign: 'center', display: "flex", justifyContent: "center"}}>
+                <Container sx={{ maxWidth: 630, textAlign: 'center', display: "flex", justifyContent: "center" }}>
                     <Box sx={{
                         width: 630,
                         textAlign: 'center',
@@ -341,12 +359,25 @@ const Post: React.FC<PostProps> = ({
                         background: "rgba(0,0,0,0.05)",
                         borderRadius: 4
                     }}>
-                        <img src={`${process.env.REACT_APP_STATIC_URL}/${post.postAttachments[0]}`}
-                             style={{maxWidth: "630px", maxHeight: "700px", objectFit: 'cover'}}
-                             alt="error loading image" ref={imgRef2}
-                        onClick={() => handleOpen(0)}/>
+                        {post.postAttachments[0].match(/\.(mp4|webm|ogg)$/i) ? (
+                            <video
+                                src={`${process.env.REACT_APP_STATIC_URL}/${post.postAttachments[0]}`}
+                                controls
+                                style={{ maxWidth: "630px", maxHeight: "700px", objectFit: 'cover' }}
+                                onClick={() => handleOpen(0)}
+                            />
+                        ) : (
+                            <img
+                                src={`${process.env.REACT_APP_STATIC_URL}/${post.postAttachments[0]}`}
+                                style={{ maxWidth: "630px", maxHeight: "700px", objectFit: 'cover' }}
+                                alt="Preview"
+                                ref={imgRef2}
+                                onClick={() => handleOpen(0)}
+                            />
+                        )}
                     </Box>
                 </Container>
+
             )}
 
             {post.postTracks?.length > 0 &&
@@ -388,25 +419,40 @@ const Post: React.FC<PostProps> = ({
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={photo_box_style}>
-                    <Carousel fullHeightHover={true} autoPlay={false} changeOnFirstRender={true} index={selectedIndex}
-                              height={750} className={'photo'}>
-                        {post.postAttachments?.map((url, index) => (
-                            <Box key={index} sx={{width: 1750, textAlign: 'center'}}>
-                                <p style={{
-                                    width: 1750,
-                                    height: "100%",
-                                    background: "rgba(0,0,0,0.5)",
-                                    position: "absolute",
-                                    zIndex: -1,
-                                    right: 0,
-                                    top: -16
-                                }}></p>
-                                <img src={`${process.env.REACT_APP_STATIC_URL}/` + url} alt={`Preview ${url}`}
-                                     style={{maxWidth: 1750, height: 750, objectFit: 'cover'}}/>
-                            </Box>
+                    <Carousel fullHeightHover autoPlay={false} changeOnFirstRender index={selectedIndex} height={750} className="photo">
+                        {post.postAttachments?.map((url, index) => {
+                            const fullUrl = `${process.env.REACT_APP_STATIC_URL}/${url}`;
+                            const isVideo = url.match(/\.(mp4|webm|ogg)$/i);
 
-                        ))}
+                            return (
+                                <Box key={index} sx={{ width: 1750, textAlign: 'center' }}>
+                                    <p style={{
+                                        width: 1750,
+                                        height: "100%",
+                                        background: "rgba(0,0,0,0.5)",
+                                        position: "absolute",
+                                        zIndex: -1,
+                                        right: 0,
+                                        top: -16
+                                    }}></p>
+                                    {isVideo ? (
+                                        <video
+                                            src={fullUrl}
+                                            controls
+                                            style={{ maxWidth: 1750, height: 750, objectFit: 'cover' }}
+                                        />
+                                    ) : (
+                                        <img
+                                            src={fullUrl}
+                                            alt={`Preview ${index}`}
+                                            style={{ maxWidth: 1750, height: 750, objectFit: 'cover' }}
+                                        />
+                                    )}
+                                </Box>
+                            );
+                        })}
                     </Carousel>
+
 
                 </Box>
             </Modal>

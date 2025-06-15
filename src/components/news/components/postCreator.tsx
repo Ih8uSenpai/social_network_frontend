@@ -30,6 +30,7 @@ const PostCreator = ({
     const [showImageGenerator, setShowImageGenerator] = useState(false);
     const textAreaRef = useRef(null);
     const fileInputRef = useRef(null);
+    const videoInputRef = useRef(null);
     const { userId } = useParams();
     const [previewUrls, setPreviewUrls] = useState([]);
     const [files, setFiles] = useState([]);
@@ -42,6 +43,7 @@ const PostCreator = ({
     const handleMusicClick = () => setShowTrackMenu(true);
     const handleChange = (e) => setContent(e.target.value);
     const handleClickAttachIcon = () => fileInputRef.current?.click();
+    const handleClickVideoIcon = () => videoInputRef.current?.click();
     const handleKeyDown = (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
@@ -53,7 +55,10 @@ const PostCreator = ({
         if (e.target.files) {
             const newFiles = Array.from(e.target.files as FileList);
             setFiles((prev) => [...prev, ...newFiles]);
-            const newPreviewUrls = newFiles.map((file) => URL.createObjectURL(file));
+            const newPreviewUrls = newFiles.map((file) => ({
+                url: URL.createObjectURL(file),
+                type: file.type.startsWith('video') ? 'video' : 'image',
+            }));
             setPreviewUrls((prev) => [...prev, ...newPreviewUrls]);
         }
     };
@@ -118,7 +123,7 @@ const PostCreator = ({
 
             const blob: Blob = await response.blob();
             const imageUrl = URL.createObjectURL(blob);
-            setPreviewUrls((prev) => [...prev, imageUrl]);
+            setPreviewUrls((prev) => [...prev, { url: imageUrl, type: 'image' }]);
             const filename = `generated_${Date.now()}_${Math.floor(Math.random() * 10000)}.png`;
             const generatedFile = new File([blob], filename, { type: 'image/png' });
             setFiles((prev) => [...prev, generatedFile]);
@@ -157,8 +162,10 @@ const PostCreator = ({
 
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
                     <div className="post-creator-menu" style={{ color: '#1da1f2' }}>
-                        <IconButton onClick={handleClickAttachIcon} aria-label="attach file" style={{ color: '#1da1f2' }}><PanoramaIcon /></IconButton>
-                        <IconButton style={{ color: '#1da1f2' }}><OndemandVideoIcon /></IconButton>
+                        <IconButton onClick={handleClickAttachIcon} aria-label="attach image" style={{ color: '#1da1f2' }}><PanoramaIcon /></IconButton>
+                        <IconButton onClick={handleClickVideoIcon} style={{ color: '#1da1f2' }} aria-label="attach video">
+                            <OndemandVideoIcon />
+                        </IconButton>
                         <IconButton onClick={handleMusicClick} style={{ color: '#1da1f2' }}><MusicNoteIcon /></IconButton>
                         <IconButton onClick={() => setShowImageGenerator((prev) => !prev)} style={{ color: '#1da1f2' }}><AssistantIcon /></IconButton>
                         <ChooseTrackMenu showTrackMenu={showTrackMenu} setShowTrackMenu={setShowTrackMenu} token={token} selectedTrack={selectedTrack} setSelectedTrack={setSelectedTrack} isVisible={isVisible} setIsVisible={setIsVisible} onSaveTrack={handleSaveTrack} />
@@ -167,10 +174,15 @@ const PostCreator = ({
                 </Box>
 
                 <input accept="image/*" type="file" onChange={handleFileChange} style={{ display: 'none' }} ref={fileInputRef} />
+                <input accept="video/*" type="file" onChange={handleFileChange} style={{ display: 'none' }} ref={videoInputRef} />
 
-                {previewUrls.map((url, index) => (
+                {previewUrls.map((media, index) => (
                     <Box key={index} sx={{ margin: '8px 0', width: '100%', textAlign: 'center' }}>
-                        <img src={url} alt={`Preview ${index + 1}`} style={{ maxWidth: '100%', maxHeight: '100px' }} />
+                        {media.type === 'image' ? (
+                            <img src={media.url} alt={`Preview ${index + 1}`} style={{ maxWidth: '100%', maxHeight: '200px' }} />
+                        ) : (
+                            <video src={media.url} controls style={{ maxWidth: '100%', maxHeight: '240px' }} />
+                        )}
                     </Box>
                 ))}
 
