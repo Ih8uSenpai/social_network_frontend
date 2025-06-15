@@ -11,8 +11,9 @@ export interface ChatViewProps {
 
 
 export interface User {
-    userId: number;
-    username: string;
+    firstName: string;
+    lastName: string;
+    user: UserData;
 }
 
 export interface ChatMessage {

@@ -62,7 +62,7 @@ const Message: React.FC<{
             console.error('Пользователь не идентифицирован');
             return;
         }
-        if (messageObject.sender.userId == Number(currentUserId))
+        if (messageObject?.sender?.user.userId == Number(currentUserId))
             return;
 
         await fetch(`${process.env.REACT_APP_API_BASE_URL}/chats/mark-viewed`, {
@@ -104,10 +104,9 @@ const Message: React.FC<{
             ref={messageRef}
         >
             {messageObject.single && profileData !== null && myProfilePicture != null ? (
-                messageObject.sender.userId.toString() === currentUserId ? (
+                messageObject?.sender?.user.userId.toString() === currentUserId ? (
                     <img
                         src={myProfilePicture || defaultProfileIcon}
-                        alt={messageObject.sender.username}
                         className="messages-user-icon"
                         style={{
                             height: "50px",
@@ -148,7 +147,7 @@ const Message: React.FC<{
             }} ref={messageRef}>
                 {messageObject.single && (
                     <div>
-                        <strong>{messageObject.sender.username} </strong>
+                        <strong>{messageObject?.sender?.firstName + ' ' + messageObject?.sender?.lastName} </strong>
                         <small style={{
                             marginLeft: "3px",
                             fontSize: "0.8em",
@@ -166,7 +165,7 @@ const Message: React.FC<{
                     {messageObject.content}
                 </span>
 
-                {messageObject.sender.userId === Number(currentUserId) && isHovered && (
+                {messageObject?.sender?.user.userId === Number(currentUserId) && isHovered && (
                     <EditIcon
                         onClick={handleEditMessage}
                         className={'change-color-on-hover'}
