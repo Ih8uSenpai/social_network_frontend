@@ -116,8 +116,8 @@ const ChatWidget: React.FC = () => {
     const handleOpen = () => {
         const w = size.width;
         const h = size.height;
-        const x = window.innerWidth - w - 20;
-        const y = window.innerHeight - h - 70;
+        const x = 50;
+        const y = window.innerHeight - h - 100;
         setPosition({ x, y });
         setIsOpen(true);
     };
@@ -154,7 +154,7 @@ const ChatWidget: React.FC = () => {
                 style={{
                     position: 'fixed',
                     bottom: 24,
-                    right: 24,
+                    left: 24,
                     padding: '12px 24px',
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: '#fff',
